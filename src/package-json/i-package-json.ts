@@ -38,9 +38,9 @@ export interface IContributor extends Partial<IContributorMeta> {
 export declare type PackageJsonMainField = "module"|"browser"|"es2015"|"main"|"jsnext:main";
 
 export interface IPackageJson {
-	name: string;
-	version: string;
-	description: string;
+	name?: string;
+	version?: string;
+	description?: string;
 	scripts?: { [key: string]: string };
 	keywords?: string[];
 	devDependencies?: { [key: string]: string };
