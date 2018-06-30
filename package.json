@@ -33,9 +33,10 @@
     "prepublishOnly": "NODE_ENV=production npm run validate && NODE_ENV=production npm run build",
     "precommit": "npm run tslint && exit 0",
     "prepush": "npm run validate && exit 0",
-    "publish:major": "npm version major && npm run generate:all && git add . && git commit -am \"Bumped version\" --no-verify || true && git push && NODE_ENV=production npm publish",
-    "publish:minor": "npm version minor && npm run generate:all && git add . && git commit -am \"Bumped version\" --no-verify || true && git push && NODE_ENV=production npm publish",
-    "publish:patch": "npm version patch && npm run generate:all && git add . && git commit -am \"Bumped version\" --no-verify || true && git push && NODE_ENV=production npm publish",
+    "commit:bump": "git add . && git commit -am \"Bumped version\" --no-verify || true",
+    "publish:major": "npm version major && npm run generate:all && npm run commit:bump && git push && NODE_ENV=production npm publish",
+    "publish:minor": "npm version minor && npm run generate:all && npm run commit:bump && git push && NODE_ENV=production npm publish",
+    "publish:patch": "npm version patch && npm run generate:all && npm run commit:bump && git push && NODE_ENV=production npm publish",
     "update": "ncu -ua && npm update && npm install"
   },
   "keywords": [
