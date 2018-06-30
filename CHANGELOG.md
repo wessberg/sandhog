@@ -1,0 +1,24 @@
+## <small>0.0.3 (2018-06-30)</small>
+
+* 0.0.3 ([4908690](https://github.com/wessberg/ts-config/commit/4908690))
+* Updated scripts ([2271701](https://github.com/wessberg/ts-config/commit/2271701))
+* Updated scripts ([0006da7](https://github.com/wessberg/ts-config/commit/0006da7))
+
+
+
+## <small>0.0.2 (2018-06-30)</small>
+
+* 0.0.2 ([9c5f7f1](https://github.com/wessberg/ts-config/commit/9c5f7f1))
+* Updated scripts ([3e097a2](https://github.com/wessberg/ts-config/commit/3e097a2))
+
+
+
+## <small>0.0.1 (2018-06-30)</small>
+
+* 0.0.1 ([13cc114](https://github.com/wessberg/ts-config/commit/13cc114))
+* Added keywords ([792ac25](https://github.com/wessberg/ts-config/commit/792ac25))
+* First commit ([552160f](https://github.com/wessberg/ts-config/commit/552160f))
+* Updated configuration ([c4b4915](https://github.com/wessberg/ts-config/commit/c4b4915))
+
+
+
