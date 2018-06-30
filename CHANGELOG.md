@@ -1,3 +1,11 @@
+## <small>0.0.5 (2018-06-30)</small>
+
+* 0.0.5 ([24212b2](https://github.com/wessberg/ts-config/commit/24212b2))
+* Bumped version ([d955a61](https://github.com/wessberg/ts-config/commit/d955a61))
+* Updated scripts ([5164b76](https://github.com/wessberg/ts-config/commit/5164b76))
+
+
+
 ## <small>0.0.4 (2018-06-30)</small>
 
 * 0.0.4 ([53872b0](https://github.com/wessberg/ts-config/commit/53872b0))
