@@ -1,0 +1,101 @@
+{
+  "name": "@wessberg/scaffold",
+  "version": "0.0.0",
+  "bin": {
+    "scaffold": "bin/scaffold"
+  },
+  "description": "A virtual Open Source project maintainer",
+  "scripts": {
+    "changelog:generate": "conventional-changelog --outfile CHANGELOG.md --release-count 0",
+    "generate:readme": "bin/scaffold readme --blacklist faq",
+    "generate:license": "bin/scaffold license",
+    "generate:contributing": "bin/scaffold contributing",
+    "generate:coc": "bin/scaffold coc",
+    "generate:all": "npm run generate:license & npm run generate:contributing & npm run generate:coc & npm run generate:readme",
+    "clean:dist": "rm -r -f dist",
+    "clean:compiled": "rm -r -f compiled",
+    "clean": "npm run clean:dist && npm run clean:compiled",
+    "rollup": "rollup -c rollup.config.js",
+    "rollup:watch": "rollup -c rollup.config.js --watch",
+    "rollup:test": "rollup -c rollup.test.config.js",
+    "pretest": "npm run clean:compiled && npm run rollup:test",
+    "test": "NODE_ENV=TEST ava --fail-fast",
+    "posttest": "npm run clean:compiled",
+    "prebuild": "npm run clean",
+    "build": "npm run rollup",
+    "serve": "nodemon --delay 800ms ./dist/index.js",
+    "serve:production": "NODE_ENV=production node ./dist/index.js",
+    "bs": "npm run build && npm run serve",
+    "bs:watch": "npm run watch & npm run serve",
+    "watch": "npm run rollup:watch",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "validate": "npm run tslint",
+    "prepublishOnly": "NODE_ENV=production npm run validate && NODE_ENV=production npm run build",
+    "precommit": "npm run tslint && exit 0",
+    "prepush": "npm run validate && exit 0",
+    "publish:major": "npm version major && npm run commit:readme && git push && NODE_ENV=production npm publish",
+    "publish:minor": "npm version minor && npm run commit:readme && git push && NODE_ENV=production npm publish",
+    "publish:patch": "npm version patch && npm run commit:readme && git push && NODE_ENV=production npm publish",
+    "update": "ncu -ua && npm update && npm install"
+  },
+  "keywords": [],
+  "dependencies": {
+    "@textlint/markdown-to-ast": "^6.0.8",
+    "@types/node-fetch": "^2.1.1",
+    "@types/prettier": "^1.13.1",
+    "@wessberg/di": "^1.0.30",
+    "@wessberg/fileloader": "^1.1.9",
+    "@wessberg/filesaver": "^1.0.8",
+    "@wessberg/pathutil": "0.0.10",
+    "commander": "^2.16.0",
+    "prettier": "^1.13.7",
+    "tslint-language-service": "^0.9.9"
+  },
+  "devDependencies": {
+    "@wessberg/rollup-plugin-di": "^1.0.84",
+    "@wessberg/rollup-plugin-ts": "0.0.30",
+    "@wessberg/ts-config": "0.0.27",
+    "ava": "^0.25.0",
+    "conventional-changelog-cli": "^2.0.1",
+    "npm-check-updates": "^2.14.2",
+    "tslint": "^5.10.0",
+    "typescript": "^2.9.2"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "browser": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
+  "es2015": "./dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wessberg/ts-config.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wessberg/ts-config/issues"
+  },
+  "contributors": [
+    {
+      "name": "Frederik Wessberg",
+      "email": "frederikwessberg@hotmail.com",
+      "url": "https://github.com/wessberg"
+    }
+  ],
+  "engines": {
+    "node": ">=9.0.0"
+  },
+  "license": "MIT",
+  "scaffold": {
+    "patreonUserId": "11315442",
+    "logo": "",
+    "contributorMeta": {
+      "Frederik Wessberg": {
+        "imageUrl": "https://avatars2.githubusercontent.com/u/20454213?s=460&v=4",
+        "role": "Lead Developer",
+        "twitterHandle": "FredWessberg",
+        "isCocEnforcer": true
+      }
+    },
+    "backers": []
+  }
+}
