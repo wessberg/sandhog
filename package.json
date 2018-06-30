@@ -38,7 +38,17 @@
     "publish:patch": "npm version patch && npm run commit:readme && git push && NODE_ENV=production npm publish",
     "update": "ncu -ua && npm update && npm install"
   },
-  "keywords": [],
+  "keywords": [
+    "open source",
+    "project",
+    "scaffold",
+    "code of conduct",
+    "contributing",
+    "readme",
+    "codegen",
+    "maintainers",
+    "backers"
+  ],
   "dependencies": {
     "@textlint/markdown-to-ast": "^6.0.8",
     "@types/node-fetch": "^2.1.1",
