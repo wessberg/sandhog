@@ -6,12 +6,12 @@
   },
   "description": "A virtual Open Source project maintainer",
   "scripts": {
-    "changelog:generate": "conventional-changelog --outfile CHANGELOG.md --release-count 0",
+    "generate:changelog": "conventional-changelog --outfile CHANGELOG.md --release-count 0",
     "generate:readme": "bin/scaffold readme --blacklist faq",
     "generate:license": "bin/scaffold license",
     "generate:contributing": "bin/scaffold contributing",
     "generate:coc": "bin/scaffold coc",
-    "generate:all": "npm run generate:license & npm run generate:contributing & npm run generate:coc & npm run generate:readme",
+    "generate:all": "npm run generate:license & npm run generate:contributing & npm run generate:coc & npm run generate:readme && npm run generate:changelog",
     "clean:dist": "rm -r -f dist",
     "clean:compiled": "rm -r -f compiled",
     "clean": "npm run clean:dist && npm run clean:compiled",
@@ -33,9 +33,9 @@
     "prepublishOnly": "NODE_ENV=production npm run validate && NODE_ENV=production npm run build",
     "precommit": "npm run tslint && exit 0",
     "prepush": "npm run validate && exit 0",
-    "publish:major": "npm version major && npm run commit:readme && git push && NODE_ENV=production npm publish",
-    "publish:minor": "npm version minor && npm run commit:readme && git push && NODE_ENV=production npm publish",
-    "publish:patch": "npm version patch && npm run commit:readme && git push && NODE_ENV=production npm publish",
+    "publish:major": "npm version major && npm run generate:all && git commit -am \"Bumped version\" --no-verify || true && git push && NODE_ENV=production npm publish",
+    "publish:minor": "npm version minor && npm run generate:all && git commit -am \"Bumped version\" --no-verify || true && git push && NODE_ENV=production npm publish",
+    "publish:patch": "npm version patch && npm run generate:all && git commit -am \"Bumped version\" --no-verify || true && git push && NODE_ENV=production npm publish",
     "update": "ncu -ua && npm update && npm install"
   },
   "keywords": [
