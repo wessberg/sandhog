@@ -1,3 +1,11 @@
+## <small>0.0.6 (2018-06-30)</small>
+
+* 0.0.6 ([dd80d5e](https://github.com/wessberg/ts-config/commit/dd80d5e))
+* Bumped version ([d9c796f](https://github.com/wessberg/ts-config/commit/d9c796f))
+* Don't include introHeader if package.name is undefined ([c46b015](https://github.com/wessberg/ts-config/commit/c46b015))
+
+
+
 ## <small>0.0.5 (2018-06-30)</small>
 
 * 0.0.5 ([24212b2](https://github.com/wessberg/ts-config/commit/24212b2))
