@@ -130,6 +130,8 @@ export class ReadmeService implements IReadmeService {
 	 * @returns {string}
 	 */
 	private introHeader ({packageJson, license}: IReadmeServiceHeaderOptions): string {
+		if (packageJson.name == null) return "";
+
 		return `
 			${packageJson.scaffold == null || packageJson.scaffold.logo == null || packageJson.scaffold.logo === "" ? "" : `${this.generateImage({height: this.config.readme.logoHeight, alt: `Logo for ${packageJson.name}`, imageUrl: packageJson.scaffold.logo})}<br>`}
 			${packageJson.name == null ? "" : this.generateImage({height: this.config.readme.badgeHeight, alt: "Downloads per month", url: `https://npmcharts.com/compare/${packageJson.name}?minimal=true`, imageUrl: `https://img.shields.io/npm/dm/${encodeURIComponent(packageJson.name)}.svg`})}
@@ -204,7 +206,7 @@ export class ReadmeService implements IReadmeService {
 	 */
 	private installHeader ({packageJson, blacklist}: IReadmeServiceHeaderOptions): string {
 		const headerName = this.readmeServiceConfig.installHeader.name(packageJson);
-		if (this.headerIsBlacklisted(headerName, blacklist)) return "";
+		if (packageJson.name == null || this.headerIsBlacklisted(headerName, blacklist)) return "";
 
 		return `
 			${"#".repeat(this.readmeServiceConfig.installHeader.depth)} ${headerName}
