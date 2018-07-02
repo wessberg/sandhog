@@ -1,3 +1,10 @@
+## <small>0.0.8 (2018-07-02)</small>
+
+* 0.0.8 ([1b307db](https://github.com/wessberg/scaffold/commit/1b307db))
+* Bumped version ([a9114cd](https://github.com/wessberg/scaffold/commit/a9114cd))
+
+
+
 ## <small>0.0.7 (2018-07-02)</small>
 
 * 0.0.7 ([7a7d7bb](https://github.com/wessberg/scaffold/commit/7a7d7bb))
