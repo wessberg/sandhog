@@ -1,3 +1,11 @@
+## 0.1.0 (2018-07-02)
+
+* 0.1.0 ([070b1ba](https://github.com/wessberg/scaffold/commit/070b1ba))
+* Bumped version ([ec39be8](https://github.com/wessberg/scaffold/commit/ec39be8))
+* Updated Prettier configuration ([bfa1388](https://github.com/wessberg/scaffold/commit/bfa1388))
+
+
+
 ## <small>0.0.8 (2018-07-02)</small>
 
 * 0.0.8 ([1b307db](https://github.com/wessberg/scaffold/commit/1b307db))
