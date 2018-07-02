@@ -1,3 +1,12 @@
+## 1.0.0 (2018-07-02)
+
+* 1.0.0 ([1c2dc01](https://github.com/wessberg/scaffold/commit/1c2dc01))
+* Bumped version ([e50d5d0](https://github.com/wessberg/scaffold/commit/e50d5d0))
+* Updated NPM scripts to ensure that the service is built before publishing ([eccdac1](https://github.com/wessberg/scaffold/commit/eccdac1))
+* fix: Fixed linting errors ([55a8746](https://github.com/wessberg/scaffold/commit/55a8746))
+
+
+
 ## 0.1.0 (2018-07-02)
 
 * 0.1.0 ([070b1ba](https://github.com/wessberg/scaffold/commit/070b1ba))

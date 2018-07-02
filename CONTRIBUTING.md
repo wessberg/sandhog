@@ -1,5 +1,5 @@
 You are more than welcome to contribute to `@wessberg/scaffold` in any way you please, including:
-	
+
 - Updating documentation.
 - Fixing spelling and grammar
 - Adding tests
