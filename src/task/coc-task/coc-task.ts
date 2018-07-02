@@ -29,7 +29,7 @@ export class CocTask implements ICocTask {
 
 		// Generate the CODE_OF_CONDUCT.md text
 		const cocText = this.cocService.getCocText(
-			(await this.contributorService.getContributors(packageJson))
+			this.contributorService.getContributors(packageJson)
 				.filter(contributor => contributor.isCocEnforcer)
 		);
 		await this.fileSaver.save(cocPath, cocText);

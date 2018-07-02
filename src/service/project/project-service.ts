@@ -4,6 +4,9 @@ import {IFileLoader} from "@wessberg/fileloader";
 import {IProjectServiceGetPackageJsonResult} from "./i-project-service-get-package-json-result";
 import {IProjectServiceGetReadmeResult} from "./i-project-service-get-readme-result";
 
+/**
+ * A Service that helps with getting resources within a project
+ */
 export class ProjectService implements IProjectService {
 
 	constructor (private readonly fileLoader: IFileLoader) {
@@ -55,6 +58,6 @@ export class ProjectService implements IProjectService {
 		return {
 			path,
 			readme: readme.toString()
-		}
+		};
 	}
 }

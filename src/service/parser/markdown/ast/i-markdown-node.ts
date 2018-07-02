@@ -4,16 +4,16 @@ export interface IMarkdownNode {
 	type: MarkdownNodeKind;
 	raw: string;
 	range: MarkdownNodeRange;
-	loc: MarkdownNodeLineLocation;
+	loc: IMarkdownNodeLineLocation;
 	parent?: IMarkdownNode;
 }
 
-export interface MarkdownNodeLineLocation {
-	start: MarkdownNodePosition;
-	end: MarkdownNodePosition;
+export interface IMarkdownNodeLineLocation {
+	start: IMarkdownNodePosition;
+	end: IMarkdownNodePosition;
 }
 
-export interface MarkdownNodePosition {
+export interface IMarkdownNodePosition {
 	line: number;
 	column: number;
 }

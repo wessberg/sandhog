@@ -29,7 +29,7 @@ export class LicenseTask implements ILicenseTask {
 		if (packageJson.license == null) return;
 
 		// Generate the license text
-		const licenseText = this.licenseService.generateLicenseText(packageJson.license, packageJson, await this.contributorService.getContributors(packageJson));
+		const licenseText = this.licenseService.generateLicenseText(packageJson.license, packageJson, this.contributorService.getContributors(packageJson));
 		await this.fileSaver.save(licensePath, licenseText);
 	}
 }

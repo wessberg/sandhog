@@ -152,7 +152,7 @@ export class ReadmeService implements IReadmeService {
 	 */
 	private headerIsBlacklisted (rawHeader: string, blacklist: string[]): boolean {
 		if (blacklist.length < 1) return false;
-		return blacklist.some(b => b.toLowerCase() === rawHeader.toLowerCase())
+		return blacklist.some(b => b.toLowerCase() === rawHeader.toLowerCase());
 	}
 
 	/**
@@ -165,7 +165,7 @@ export class ReadmeService implements IReadmeService {
 		if (this.headerIsBlacklisted(headerName, blacklist)) return "";
 		return `
 			${"#".repeat(this.readmeServiceConfig.licenseHeader.depth)} ${headerName}
-	
+
 			${license} © ${contributors.map(contributor => this.generateLinkToContributor(contributor)).join(", ")}`;
 	}
 
@@ -180,7 +180,7 @@ export class ReadmeService implements IReadmeService {
 
 		return `
 			${"#".repeat(this.readmeServiceConfig.faqHeader.depth)} ${headerName}
-	
+
 			<!-- Write your FAQ here -->`;
 	}
 
@@ -195,7 +195,7 @@ export class ReadmeService implements IReadmeService {
 
 		return `
 			${"#".repeat(this.readmeServiceConfig.contributingHeader.depth)} ${headerName}
-			
+
 			Do you want to contribute? Awesome! Please follow [these recommendations](./CONTRIBUTING.md).`;
 	}
 
@@ -211,19 +211,19 @@ export class ReadmeService implements IReadmeService {
 		return `
 			${"#".repeat(this.readmeServiceConfig.installHeader.depth)} ${headerName}
 
-			${"#".repeat(this.readmeServiceConfig.installHeader.depth +1)} NPM
+			${"#".repeat(this.readmeServiceConfig.installHeader.depth + 1)} NPM
 
 			\`\`\`
 			$ npm install ${packageJson.name}
 			\`\`\`
-			
-			${"#".repeat(this.readmeServiceConfig.installHeader.depth +1)} Yarn
+
+			${"#".repeat(this.readmeServiceConfig.installHeader.depth + 1)} Yarn
 
 			\`\`\`
 			$ yarn add ${packageJson.name}
 			\`\`\`
-			
-			${"#".repeat(this.readmeServiceConfig.installHeader.depth +1)} Run once with NPX
+
+			${"#".repeat(this.readmeServiceConfig.installHeader.depth + 1)} Run once with NPX
 
 			\`\`\`
 			$ npx ${packageJson.name}
@@ -241,7 +241,7 @@ export class ReadmeService implements IReadmeService {
 
 		return `
 			${"#".repeat(this.readmeServiceConfig.usageHeader.depth)} ${headerName}
-			
+
 			<!-- Write usage description here -->`;
 	}
 
@@ -256,7 +256,7 @@ export class ReadmeService implements IReadmeService {
 
 		return `
 			${"#".repeat(this.readmeServiceConfig.descriptionHeader.depth)} ${headerName}
-			
+
 			<!-- Write description here -->`;
 	}
 
@@ -272,25 +272,25 @@ export class ReadmeService implements IReadmeService {
 
 		return `
 			${"#".repeat(this.readmeServiceConfig.maintainersHeader.depth)} ${headerName}
-			
+
 			${contributors.map(contributor => {
-				let str = `- `;
-				// If the contributor has an image, place it before anything else.
-				if (contributor.imageUrl != null) {
-					str += this.generateImage({
-						alt: contributor.name,
-						height: this.config.readme.teamMemberHeight,
-						url: contributor.url,
-						imageUrl: contributor.imageUrl
-					});
-				}
-				str += ` ${this.generateLinkToContributor(contributor)}`;
-				
-				// Also add the role of the contributor, if available
-				if (contributor.role != null) {
-					str += `: *${contributor.role}*`;
-				}
-				return str;
+			let str = `- `;
+			// If the contributor has an image, place it before anything else.
+			if (contributor.imageUrl != null) {
+				str += this.generateImage({
+					alt: contributor.name,
+					height: this.config.readme.teamMemberHeight,
+					url: contributor.url,
+					imageUrl: contributor.imageUrl
+				});
+			}
+			str += ` ${this.generateLinkToContributor(contributor)}`;
+
+			// Also add the role of the contributor, if available
+			if (contributor.role != null) {
+				str += `: *${contributor.role}*`;
+			}
+			return str;
 		}).join("\n")}`;
 	}
 
@@ -304,9 +304,9 @@ export class ReadmeService implements IReadmeService {
 		const headerName = this.readmeServiceConfig.backersHeader.name(packageJson);
 		if (this.headerIsBlacklisted(headerName, blacklist)) return "";
 
-		let top = `
+		const top = `
 			${"#".repeat(this.readmeServiceConfig.backersHeader.depth)} ${headerName}
-			
+
 			[Become a backer](https://www.patreon.com/bePatron?u=${packageJson.scaffold.patreonUserId}) and get your name, logo, and link to your site listed here.`;
 
 		let bottom = "";
@@ -362,8 +362,8 @@ export class ReadmeService implements IReadmeService {
 	 */
 	private trimLeadingWhitespace (content: string): string {
 		return content
-			.replace(/^\s+(.*)/gm, (_match, content) => {
-				return content;
+			.replace(/^\s+(.*)/gm, (_match, p1) => {
+				return p1;
 			});
 	}
 
@@ -395,7 +395,6 @@ export class ReadmeService implements IReadmeService {
 		return name
 			.replace(/(http?s?:\/\/?)?(www\.)?github.com\//g, "")
 			.replace(".git", "");
-
 
 	}
 

@@ -46,7 +46,7 @@ export class ContributorService implements IContributorService {
 	public getContributingText (packageJson: IPackageJson, contributors: IContributor[]): string {
 		return `\
 You are more than welcome to contribute to \`${packageJson.name}\` in any way you please, including:
-	
+
 - Updating documentation.
 - Fixing spelling and grammar
 - Adding tests

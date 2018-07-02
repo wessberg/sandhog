@@ -28,7 +28,7 @@ export class ContributingTask implements IContributingTask {
 		// Generate the CONTRIBUTING.md text
 		const contributingText = this.contributorService.getContributingText(
 			packageJson,
-			await this.contributorService.getContributors(packageJson)
+			this.contributorService.getContributors(packageJson)
 		);
 		await this.fileSaver.save(contributingPath, contributingText);
 	}
