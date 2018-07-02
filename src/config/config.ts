@@ -11,7 +11,8 @@ export const config: IConfig = {
 		backerHeight: 50
 	},
 	formatOptions: {
-		useTabs: true,
+		// Tabs don't print well in Github Flavored Markdown Syntax highlighting
+		useTabs: false,
 		semi: true,
 		tabWidth: 2,
 		singleQuote: false,
