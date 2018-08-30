@@ -1,3 +1,11 @@
+## <small>1.0.1 (2018-08-30)</small>
+
+* 1.0.1 ([91fb6bd](https://github.com/wessberg/scaffold/commit/91fb6bd))
+* Bumped dependencies ([aef2473](https://github.com/wessberg/scaffold/commit/aef2473))
+* Bumped version ([0de86cf](https://github.com/wessberg/scaffold/commit/0de86cf))
+
+
+
 ## 1.0.0 (2018-07-02)
 
 * 1.0.0 ([1c2dc01](https://github.com/wessberg/scaffold/commit/1c2dc01))
