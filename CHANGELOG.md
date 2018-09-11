@@ -1,3 +1,11 @@
+## <small>1.0.3 (2018-09-11)</small>
+
+* 1.0.3 ([d9d63af](https://github.com/wessberg/scaffold/commit/d9d63af))
+* Bumped version ([bc09a42](https://github.com/wessberg/scaffold/commit/bc09a42))
+* Fixed an issue where the intro header couldn't be blacklisted ([a062caf](https://github.com/wessberg/scaffold/commit/a062caf))
+
+
+
 ## <small>1.0.2 (2018-09-11)</small>
 
 * 1.0.2 ([69bc7af](https://github.com/wessberg/scaffold/commit/69bc7af))
