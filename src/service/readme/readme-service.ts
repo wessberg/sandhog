@@ -41,15 +41,15 @@ export class ReadmeService implements IReadmeService {
 
 		return {
 			content: this.format(`
-				${this.introHeader(headerOptions)}
-				${this.descriptionHeader(headerOptions)}
-				${this.installHeader(headerOptions)}
-				${this.usageHeader(headerOptions)}
-				${this.contributingHeader(headerOptions)}
-				${this.maintainersHeader(headerOptions)}
-				${this.faqHeader(headerOptions)}
-				${this.backersHeader(headerOptions)}
-				${this.licenseHeader(headerOptions)}`)
+${this.introHeader(headerOptions)}
+${this.descriptionHeader(headerOptions)}
+${this.installHeader(headerOptions)}
+${this.usageHeader(headerOptions)}
+${this.contributingHeader(headerOptions)}
+${this.maintainersHeader(headerOptions)}
+${this.faqHeader(headerOptions)}
+${this.backersHeader(headerOptions)}
+${this.licenseHeader(headerOptions)}`)
 		};
 	}
 
@@ -95,7 +95,7 @@ export class ReadmeService implements IReadmeService {
 	 * @returns {string}
 	 */
 	private format (text: string): string {
-		return this.formatter.format(this.trimLeadingWhitespace(text), {...this.config.formatOptions, parser: "markdown"});
+		return this.formatter.format(text, {...this.config.formatOptions, parser: "markdown"});
 	}
 
 	/**
@@ -135,16 +135,16 @@ export class ReadmeService implements IReadmeService {
 		if (packageJson.name == null) return "";
 
 		return `
-			${packageJson.scaffold == null || packageJson.scaffold.logo == null || packageJson.scaffold.logo === "" ? "" : `${this.generateImage({height: this.config.readme.logoHeight, alt: `Logo for ${packageJson.name}`, imageUrl: packageJson.scaffold.logo})}<br>`}
-			${packageJson.name == null ? "" : this.generateImage({height: this.config.readme.badgeHeight, alt: "Downloads per month", url: `https://npmcharts.com/compare/${packageJson.name}?minimal=true`, imageUrl: `https://img.shields.io/npm/dm/${encodeURIComponent(packageJson.name)}.svg`})}
-			${packageJson.name == null ? "" : this.generateImage({height: this.config.readme.badgeHeight, alt: "Dependencies", url: `https://david-dm.org/${this.stripLeadingScope(packageJson.name)}`, imageUrl: `https://img.shields.io/david/${this.stripLeadingScope(packageJson.name)}.svg`})}
-			${packageJson.name == null ? "" : this.generateImage({height: this.config.readme.badgeHeight, alt: "NPM Version", url: `https://www.npmjs.com/package/${packageJson.name}`, imageUrl: `https://badge.fury.io/js/${encodeURIComponent(packageJson.name)}.svg`})}
-			${packageJson.repository == null || packageJson.repository.url == null ? "" : this.generateImage({height: this.config.readme.badgeHeight, alt: "Contributors", url: `https://github.com/${this.takeGithubRepositoryName(packageJson.repository.url)}/graphs/contributors`, imageUrl: `https://img.shields.io/github/contributors/${encodeURIComponent(this.takeGithubRepositoryName(packageJson.repository.url))}.svg`})}
-			${this.generateImage({height: this.config.readme.badgeHeight, alt: `${license} License`, ...this.licenseService.getLicense(license)})}
-			${packageJson.scaffold == null || packageJson.scaffold.patreonUserId == null ? "" : this.generateImage({height: this.config.readme.badgeHeight, alt: "Support on Patreon", url: `https://www.patreon.com/bePatron?u=${packageJson.scaffold.patreonUserId}`, imageUrl: `https://c5.patreon.com/external/logo/become_a_patron_button@2x.png`})}
+${packageJson.scaffold == null || packageJson.scaffold.logo == null || packageJson.scaffold.logo === "" ? "" : `${this.generateImage({height: this.config.readme.logoHeight, alt: `Logo for ${packageJson.name}`, imageUrl: packageJson.scaffold.logo})}<br>`}
+${packageJson.name == null ? "" : this.generateImage({height: this.config.readme.badgeHeight, alt: "Downloads per month", url: `https://npmcharts.com/compare/${packageJson.name}?minimal=true`, imageUrl: `https://img.shields.io/npm/dm/${encodeURIComponent(packageJson.name)}.svg`})}
+${packageJson.name == null ? "" : this.generateImage({height: this.config.readme.badgeHeight, alt: "Dependencies", url: `https://david-dm.org/${this.stripLeadingScope(packageJson.name)}`, imageUrl: `https://img.shields.io/david/${this.stripLeadingScope(packageJson.name)}.svg`})}
+${packageJson.name == null ? "" : this.generateImage({height: this.config.readme.badgeHeight, alt: "NPM Version", url: `https://www.npmjs.com/package/${packageJson.name}`, imageUrl: `https://badge.fury.io/js/${encodeURIComponent(packageJson.name)}.svg`})}
+${packageJson.repository == null || packageJson.repository.url == null ? "" : this.generateImage({height: this.config.readme.badgeHeight, alt: "Contributors", url: `https://github.com/${this.takeGithubRepositoryName(packageJson.repository.url)}/graphs/contributors`, imageUrl: `https://img.shields.io/github/contributors/${encodeURIComponent(this.takeGithubRepositoryName(packageJson.repository.url))}.svg`})}
+${this.generateImage({height: this.config.readme.badgeHeight, alt: `${license} License`, ...this.licenseService.getLicense(license)})}
+${packageJson.scaffold == null || packageJson.scaffold.patreonUserId == null ? "" : this.generateImage({height: this.config.readme.badgeHeight, alt: "Support on Patreon", url: `https://www.patreon.com/bePatron?u=${packageJson.scaffold.patreonUserId}`, imageUrl: `https://c5.patreon.com/external/logo/become_a_patron_button@2x.png`})}
 
-			${"#".repeat(this.readmeServiceConfig.introHeader.depth)} ${this.readmeServiceConfig.introHeader.name(packageJson)}
-			${packageJson.description == null ? "" : `> ${packageJson.description}`}`;
+${"#".repeat(this.readmeServiceConfig.introHeader.depth)} ${this.readmeServiceConfig.introHeader.name(packageJson)}
+${packageJson.description == null ? "" : `> ${packageJson.description}`}`;
 	}
 
 	/**
@@ -166,9 +166,9 @@ export class ReadmeService implements IReadmeService {
 		const headerName = this.readmeServiceConfig.licenseHeader.name(packageJson);
 		if (this.headerIsBlacklisted(this.readmeServiceConfig.licenseHeader.identifier, blacklist)) return "";
 		return `
-			${"#".repeat(this.readmeServiceConfig.licenseHeader.depth)} ${headerName}
+${"#".repeat(this.readmeServiceConfig.licenseHeader.depth)} ${headerName}
 
-			${license} © ${contributors.map(contributor => this.generateLinkToContributor(contributor)).join(", ")}`;
+${license} © ${contributors.map(contributor => this.generateLinkToContributor(contributor)).join(", ")}`;
 	}
 
 	/**
@@ -181,9 +181,9 @@ export class ReadmeService implements IReadmeService {
 		if (this.headerIsBlacklisted(this.readmeServiceConfig.faqHeader.identifier, blacklist)) return "";
 
 		return `
-			${"#".repeat(this.readmeServiceConfig.faqHeader.depth)} ${headerName}
+${"#".repeat(this.readmeServiceConfig.faqHeader.depth)} ${headerName}
 
-			<!-- Write your FAQ here -->`;
+<!-- Write your FAQ here -->`;
 	}
 
 	/**
@@ -196,9 +196,9 @@ export class ReadmeService implements IReadmeService {
 		if (this.headerIsBlacklisted(this.readmeServiceConfig.contributingHeader.identifier, blacklist)) return "";
 
 		return `
-			${"#".repeat(this.readmeServiceConfig.contributingHeader.depth)} ${headerName}
+${"#".repeat(this.readmeServiceConfig.contributingHeader.depth)} ${headerName}
 
-			Do you want to contribute? Awesome! Please follow [these recommendations](./CONTRIBUTING.md).`;
+Do you want to contribute? Awesome! Please follow [these recommendations](./CONTRIBUTING.md).`;
 	}
 
 	/**
@@ -211,25 +211,25 @@ export class ReadmeService implements IReadmeService {
 		if (packageJson.name == null || this.headerIsBlacklisted(this.readmeServiceConfig.installHeader.identifier, blacklist)) return "";
 
 		return `
-			${"#".repeat(this.readmeServiceConfig.installHeader.depth)} ${headerName}
+${"#".repeat(this.readmeServiceConfig.installHeader.depth)} ${headerName}
 
-			${"#".repeat(this.readmeServiceConfig.installHeader.depth + 1)} NPM
+${"#".repeat(this.readmeServiceConfig.installHeader.depth + 1)} NPM
 
-			\`\`\`
-			$ npm install ${packageJson.name}
-			\`\`\`
+\`\`\`
+$ npm install ${packageJson.name}
+\`\`\`
 
-			${"#".repeat(this.readmeServiceConfig.installHeader.depth + 1)} Yarn
+${"#".repeat(this.readmeServiceConfig.installHeader.depth + 1)} Yarn
 
-			\`\`\`
-			$ yarn add ${packageJson.name}
-			\`\`\`
+\`\`\`
+$ yarn add ${packageJson.name}
+\`\`\`
 
-			${"#".repeat(this.readmeServiceConfig.installHeader.depth + 1)} Run once with NPX
+${"#".repeat(this.readmeServiceConfig.installHeader.depth + 1)} Run once with NPX
 
-			\`\`\`
-			$ npx ${packageJson.name}
-			\`\`\``;
+\`\`\`
+$ npx ${packageJson.name}
+\`\`\``;
 	}
 
 	/**
@@ -242,9 +242,9 @@ export class ReadmeService implements IReadmeService {
 		if (this.headerIsBlacklisted(this.readmeServiceConfig.usageHeader.identifier, blacklist)) return "";
 
 		return `
-			${"#".repeat(this.readmeServiceConfig.usageHeader.depth)} ${headerName}
+${"#".repeat(this.readmeServiceConfig.usageHeader.depth)} ${headerName}
 
-			<!-- Write usage description here -->`;
+<!-- Write usage description here -->`;
 	}
 
 	/**
@@ -257,9 +257,9 @@ export class ReadmeService implements IReadmeService {
 		if (this.headerIsBlacklisted(this.readmeServiceConfig.descriptionHeader.identifier, blacklist)) return "";
 
 		return `
-			${"#".repeat(this.readmeServiceConfig.descriptionHeader.depth)} ${headerName}
+${"#".repeat(this.readmeServiceConfig.descriptionHeader.depth)} ${headerName}
 
-			<!-- Write description here -->`;
+<!-- Write description here -->`;
 	}
 
 	/**
@@ -273,9 +273,9 @@ export class ReadmeService implements IReadmeService {
 		if (this.headerIsBlacklisted(this.readmeServiceConfig.maintainersHeader.identifier, blacklist)) return "";
 
 		return `
-			${"#".repeat(this.readmeServiceConfig.maintainersHeader.depth)} ${headerName}
+${"#".repeat(this.readmeServiceConfig.maintainersHeader.depth)} ${headerName}
 
-			${contributors.map(contributor => {
+${contributors.map(contributor => {
 			let str = `- `;
 			// If the contributor has an image, place it before anything else.
 			if (contributor.imageUrl != null) {
@@ -307,9 +307,9 @@ export class ReadmeService implements IReadmeService {
 		if (this.headerIsBlacklisted(this.readmeServiceConfig.backersHeader.identifier, blacklist)) return "";
 
 		const top = `
-			${"#".repeat(this.readmeServiceConfig.backersHeader.depth)} ${headerName}
+${"#".repeat(this.readmeServiceConfig.backersHeader.depth)} ${headerName}
 
-			[Become a backer](https://www.patreon.com/bePatron?u=${packageJson.scaffold.patreonUserId}) and get your name, logo, and link to your site listed here.`;
+[Become a backer](https://www.patreon.com/bePatron?u=${packageJson.scaffold.patreonUserId}) and get your name, logo, and link to your site listed here.`;
 
 		let bottom = "";
 		Object.keys(backers).map(kind => {
@@ -355,18 +355,6 @@ export class ReadmeService implements IReadmeService {
 		}
 
 		return anchor(img);
-	}
-
-	/**
-	 * Trims all leading whitespace
-	 * @param {string} content
-	 * @returns {string}
-	 */
-	private trimLeadingWhitespace (content: string): string {
-		return content
-			.replace(/^\s+(.*)/gm, (_match, p1) => {
-				return p1;
-			});
 	}
 
 	/**
