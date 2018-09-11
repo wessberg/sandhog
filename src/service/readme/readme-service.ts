@@ -13,7 +13,7 @@ import {IReadmeServiceUpgradeResult} from "./i-readme-service-upgrade-result";
 import {IMarkdownParserService} from "../parser/markdown/i-markdown-parser-service";
 import {IMarkdownHeaderNode} from "../parser/markdown/ast/i-markdown-node";
 import {MarkdownNodeKind} from "../parser/markdown/ast/markdown-node-kind";
-import {IReadmeServiceConfig} from "./i-readme-service-config";
+import {IReadmeServiceConfig, IReadmeServiceHeaderConfig} from "./i-readme-service-config";
 import {IReadmeServiceHeaderOptions} from "./i-readme-service-header-options";
 import {IContributorService} from "../contributor-service/i-contributor-service";
 
@@ -62,13 +62,13 @@ export class ReadmeService implements IReadmeService {
 		let newReadme = readme;
 		const headerOptions = await this.getHeaderOptions(packageJson, blacklist);
 		const readmeHeaders = this.getReadmeHeaders(newReadme);
-		const allSchemaHeaders = Object.entries(this.readmeServiceConfig);
+		const allSchemaHeaders = <[keyof IReadmeServiceConfig, IReadmeServiceHeaderConfig][]> Object.entries(this.readmeServiceConfig);
 		const readmeHeadersRaw = new Set(readmeHeaders.map(header => header.children.map(child => child.raw).join("")));
 
 		const missingHeaders = <(keyof IReadmeServiceConfig)[]> allSchemaHeaders
 			.filter(([, value]) => {
 				const computedHeader = value.name(packageJson);
-				return !readmeHeadersRaw.has(computedHeader) && !this.headerIsBlacklisted(computedHeader, blacklist);
+				return !readmeHeadersRaw.has(computedHeader) && !this.headerIsBlacklisted(value.identifier, blacklist);
 			})
 			.map(([key]) => key);
 
@@ -162,7 +162,7 @@ export class ReadmeService implements IReadmeService {
 	 */
 	private licenseHeader ({packageJson, license, contributors, blacklist}: IReadmeServiceHeaderOptions): string {
 		const headerName = this.readmeServiceConfig.licenseHeader.name(packageJson);
-		if (this.headerIsBlacklisted(headerName, blacklist)) return "";
+		if (this.headerIsBlacklisted(this.readmeServiceConfig.licenseHeader.identifier, blacklist)) return "";
 		return `
 			${"#".repeat(this.readmeServiceConfig.licenseHeader.depth)} ${headerName}
 
@@ -176,7 +176,7 @@ export class ReadmeService implements IReadmeService {
 	 */
 	private faqHeader ({packageJson, blacklist}: IReadmeServiceHeaderOptions): string {
 		const headerName = this.readmeServiceConfig.faqHeader.name(packageJson);
-		if (this.headerIsBlacklisted(headerName, blacklist)) return "";
+		if (this.headerIsBlacklisted(this.readmeServiceConfig.faqHeader.identifier, blacklist)) return "";
 
 		return `
 			${"#".repeat(this.readmeServiceConfig.faqHeader.depth)} ${headerName}
@@ -191,7 +191,7 @@ export class ReadmeService implements IReadmeService {
 	 */
 	private contributingHeader ({packageJson, blacklist}: IReadmeServiceHeaderOptions): string {
 		const headerName = this.readmeServiceConfig.contributingHeader.name(packageJson);
-		if (this.headerIsBlacklisted(headerName, blacklist)) return "";
+		if (this.headerIsBlacklisted(this.readmeServiceConfig.contributingHeader.identifier, blacklist)) return "";
 
 		return `
 			${"#".repeat(this.readmeServiceConfig.contributingHeader.depth)} ${headerName}
@@ -206,7 +206,7 @@ export class ReadmeService implements IReadmeService {
 	 */
 	private installHeader ({packageJson, blacklist}: IReadmeServiceHeaderOptions): string {
 		const headerName = this.readmeServiceConfig.installHeader.name(packageJson);
-		if (packageJson.name == null || this.headerIsBlacklisted(headerName, blacklist)) return "";
+		if (packageJson.name == null || this.headerIsBlacklisted(this.readmeServiceConfig.installHeader.identifier, blacklist)) return "";
 
 		return `
 			${"#".repeat(this.readmeServiceConfig.installHeader.depth)} ${headerName}
@@ -237,7 +237,7 @@ export class ReadmeService implements IReadmeService {
 	 */
 	private usageHeader ({packageJson, blacklist}: IReadmeServiceHeaderOptions): string {
 		const headerName = this.readmeServiceConfig.usageHeader.name(packageJson);
-		if (this.headerIsBlacklisted(headerName, blacklist)) return "";
+		if (this.headerIsBlacklisted(this.readmeServiceConfig.usageHeader.identifier, blacklist)) return "";
 
 		return `
 			${"#".repeat(this.readmeServiceConfig.usageHeader.depth)} ${headerName}
@@ -252,7 +252,7 @@ export class ReadmeService implements IReadmeService {
 	 */
 	private descriptionHeader ({packageJson, blacklist}: IReadmeServiceHeaderOptions): string {
 		const headerName = this.readmeServiceConfig.descriptionHeader.name(packageJson);
-		if (this.headerIsBlacklisted(headerName, blacklist)) return "";
+		if (this.headerIsBlacklisted(this.readmeServiceConfig.descriptionHeader.identifier, blacklist)) return "";
 
 		return `
 			${"#".repeat(this.readmeServiceConfig.descriptionHeader.depth)} ${headerName}
@@ -268,7 +268,7 @@ export class ReadmeService implements IReadmeService {
 	private maintainersHeader ({packageJson, contributors, blacklist}: IReadmeServiceHeaderOptions): string {
 		if (contributors.length === 0) return "";
 		const headerName = this.readmeServiceConfig.maintainersHeader.name(packageJson);
-		if (this.headerIsBlacklisted(headerName, blacklist)) return "";
+		if (this.headerIsBlacklisted(this.readmeServiceConfig.maintainersHeader.identifier, blacklist)) return "";
 
 		return `
 			${"#".repeat(this.readmeServiceConfig.maintainersHeader.depth)} ${headerName}
@@ -302,7 +302,7 @@ export class ReadmeService implements IReadmeService {
 	private backersHeader ({packageJson, backers, blacklist}: IReadmeServiceHeaderOptions): string {
 		if (packageJson.scaffold == null || packageJson.scaffold.patreonUserId == null) return "";
 		const headerName = this.readmeServiceConfig.backersHeader.name(packageJson);
-		if (this.headerIsBlacklisted(headerName, blacklist)) return "";
+		if (this.headerIsBlacklisted(this.readmeServiceConfig.backersHeader.identifier, blacklist)) return "";
 
 		const top = `
 			${"#".repeat(this.readmeServiceConfig.backersHeader.depth)} ${headerName}
