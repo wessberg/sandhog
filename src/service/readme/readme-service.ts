@@ -127,9 +127,11 @@ export class ReadmeService implements IReadmeService {
 	 * Gets the intro section for a README
 	 * @param {IPackageJson} packageJson
 	 * @param {string} license
+	 * @param {string[]} blacklist
 	 * @returns {string}
 	 */
-	private introHeader ({packageJson, license}: IReadmeServiceHeaderOptions): string {
+	private introHeader ({packageJson, license, blacklist}: IReadmeServiceHeaderOptions): string {
+		if (this.headerIsBlacklisted(this.readmeServiceConfig.introHeader.identifier, blacklist)) return "";
 		if (packageJson.name == null) return "";
 
 		return `
