@@ -65,7 +65,7 @@ export class ReadmeService implements IReadmeService {
 		const allSchemaHeaders = <[keyof IReadmeServiceConfig, IReadmeServiceHeaderConfig][]> Object.entries(this.readmeServiceConfig);
 		const readmeHeadersRaw = new Set(readmeHeaders.map(header => header.children.map(child => child.raw).join("")));
 
-		const missingHeaders = <(keyof IReadmeServiceConfig)[]> allSchemaHeaders
+		const missingHeaders = allSchemaHeaders
 			.filter(([, value]) => {
 				const computedHeader = value.name(packageJson);
 				return !readmeHeadersRaw.has(computedHeader) && !this.headerIsBlacklisted(value.identifier, blacklist);
