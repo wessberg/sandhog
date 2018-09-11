@@ -1,3 +1,12 @@
+## <small>1.0.2 (2018-09-11)</small>
+
+* 1.0.2 ([69bc7af](https://github.com/wessberg/scaffold/commit/69bc7af))
+* Added identifiers to all headers such that they can be more easily blacklisted ([70523f2](https://github.com/wessberg/scaffold/commit/70523f2))
+* Bumped version ([6377ca3](https://github.com/wessberg/scaffold/commit/6377ca3))
+* Removed an unneccesary typecast ([724b775](https://github.com/wessberg/scaffold/commit/724b775))
+
+
+
 ## <small>1.0.1 (2018-08-30)</small>
 
 * 1.0.1 ([91fb6bd](https://github.com/wessberg/scaffold/commit/91fb6bd))
