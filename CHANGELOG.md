@@ -1,3 +1,12 @@
+## <small>1.0.4 (2018-09-11)</small>
+
+* 1.0.4 ([01725b9](https://github.com/wessberg/scaffold/commit/01725b9))
+* Bumped version ([70cdd35](https://github.com/wessberg/scaffold/commit/70cdd35))
+* Fixed an issue where newlines would be erased ([5a72821](https://github.com/wessberg/scaffold/commit/5a72821))
+* Updated README ([18a4cd7](https://github.com/wessberg/scaffold/commit/18a4cd7))
+
+
+
 ## <small>1.0.3 (2018-09-11)</small>
 
 * 1.0.3 ([d9d63af](https://github.com/wessberg/scaffold/commit/d9d63af))

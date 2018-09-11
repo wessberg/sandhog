@@ -88,7 +88,7 @@ In the configuration for the auto-generated README you are reading right now, th
 Prettier will be used to format your README. Sometimes, parts of your README may be formatted in ways that you don't like. In such cases,
 In these cases, you can put a `<!-- prettier-ignore -->` line immediately above the content that shouldn't be formatted.
 
-You can read more about it [here](https://prettier.io/docs/en/ignore.html) 
+You can read more about it [here](https://prettier.io/docs/en/ignore.html)
 
 ### Generating a `LICENSE.md`
 
