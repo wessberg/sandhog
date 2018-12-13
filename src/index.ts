@@ -1,6 +1,5 @@
-import "./services";
-import {DIContainer} from "@wessberg/di";
+import {container} from "./services";
 import {ICommandContainer} from "./command/i-command-container";
 
-DIContainer.get<ICommandContainer>()
+container.get<ICommandContainer>()
 	.run();

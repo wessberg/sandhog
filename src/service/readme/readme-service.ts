@@ -312,7 +312,7 @@ ${"#".repeat(this.readmeServiceConfig.backersHeader.depth)} ${headerName}
 [Become a backer](https://www.patreon.com/bePatron?u=${packageJson.scaffold.patreonUserId}) and get your name, logo, and link to your site listed here.`;
 
 		let bottom = "";
-		Object.keys(backers).map(kind => {
+		Object.keys(backers).forEach(kind => {
 			bottom += `\n### ${kind}\n`;
 			bottom += packageJson.scaffold!.backers![kind].map(backer => this.generateImage({height: this.config.readme.backerHeight, url: backer.url, imageUrl: backer.imageUrl, alt: backer.name})).join(" ");
 		});

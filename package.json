@@ -6,7 +6,7 @@
   },
   "description": "A virtual Open Source project maintainer",
   "scripts": {
-    "generate:changelog": "conventional-changelog --outfile CHANGELOG.md --release-count 0",
+    "generate:changelog": "standard-changelog --first-release",
     "generate:readme": "bin/scaffold readme --blacklist faq",
     "generate:license": "bin/scaffold license",
     "generate:contributing": "bin/scaffold contributing",
@@ -51,25 +51,26 @@
     "backers"
   ],
   "dependencies": {
-    "@textlint/markdown-to-ast": "^6.0.9",
-    "@types/node-fetch": "^2.1.2",
-    "@types/prettier": "^1.13.2",
-    "@wessberg/di": "^1.1.0",
-    "@wessberg/fileloader": "^1.1.9",
-    "@wessberg/filesaver": "^1.0.8",
+    "@textlint/markdown-to-ast": "6.0.9",
+    "@types/node-fetch": "2.1.4",
+    "@types/prettier": "1.15.2",
+    "@wessberg/di": "2.0.3",
+    "@wessberg/fileloader": "1.1.9",
+    "@wessberg/filesaver": "1.0.8",
     "@wessberg/pathutil": "0.0.10",
-    "commander": "^2.17.1",
-    "prettier": "^1.14.2"
+    "commander": "2.19.0",
+    "prettier": "1.15.3",
+    "tslint": "^5.11.0"
   },
   "devDependencies": {
-    "@wessberg/rollup-plugin-di": "^1.0.86",
-    "@wessberg/rollup-plugin-ts": "0.0.38",
-    "@wessberg/ts-config": "0.0.29",
-    "ava": "^0.25.0",
-    "conventional-changelog-cli": "^2.0.5",
-    "npm-check-updates": "^2.14.2",
-    "tslint": "^5.11.0",
-    "typescript": "^3.0.3"
+    "@wessberg/di-compiler": "2.0.2",
+    "@wessberg/rollup-plugin-ts": "1.1.9",
+    "@wessberg/ts-config": "0.0.34",
+    "rollup": "0.67.4",
+    "ava": "0.25.0",
+    "standard-changelog": "2.0.6",
+    "npm-check-updates": "2.15.0",
+    "typescript": "3.2.2"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",

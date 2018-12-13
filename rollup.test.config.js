@@ -1,5 +1,5 @@
-import typescriptRollupPlugin from "@wessberg/rollup-plugin-ts";
-import diPlugin from "@wessberg/rollup-plugin-di";
+import ts from "@wessberg/rollup-plugin-ts";
+import {di} from "@wessberg/di-compiler";
 import packageJSON from "./package.json";
 
 export default {
@@ -11,11 +11,11 @@ export default {
 	},
 	treeshake: true,
 	plugins: [
-		diPlugin(),
-		typescriptRollupPlugin({
+		ts({
 			tsconfig: "tsconfig.json",
-			include: ["*.ts+(|x)", "**/*.ts+(|x)"],
-			exclude: ["*.d.ts", "**/*.d.ts"]
+			transformers: [
+				di
+			]
 		})
 	],
 	external: [

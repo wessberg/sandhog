@@ -43,47 +43,49 @@ import {CocTaskWrapper, ICocTask} from "./task/coc-task/i-coc-task";
 import {ICocService} from "./service/coc-service/i-coc-service";
 import {CocService} from "./service/coc-service/coc-service";
 
+export const container = new DIContainer();
+
 // Services
-DIContainer.registerSingleton<IReadmeService, ReadmeService>();
-DIContainer.registerSingleton<ILicenseService, LicenseService>();
-DIContainer.registerSingleton<IFormatter, IFormatter>(() => prettier);
-DIContainer.registerSingleton<IFileLoader, FileLoader>();
-DIContainer.registerSingleton<IFileSaver, FileSaver>();
-DIContainer.registerSingleton<IProjectService, ProjectService>();
-DIContainer.registerSingleton<IPatreonService, PatreonService>();
-DIContainer.registerSingleton<IBackingService, BackingService>();
-DIContainer.registerSingleton<IContributorService, ContributorService>();
-DIContainer.registerSingleton<ICocService, CocService>();
-DIContainer.registerSingleton<IMarkdownParserService, MarkdownParserService>();
+container.registerSingleton<IReadmeService, ReadmeService>();
+container.registerSingleton<ILicenseService, LicenseService>();
+container.registerSingleton<IFormatter>(() => prettier);
+container.registerSingleton<IFileLoader, FileLoader>();
+container.registerSingleton<IFileSaver, FileSaver>();
+container.registerSingleton<IProjectService, ProjectService>();
+container.registerSingleton<IPatreonService, PatreonService>();
+container.registerSingleton<IBackingService, BackingService>();
+container.registerSingleton<IContributorService, ContributorService>();
+container.registerSingleton<ICocService, CocService>();
+container.registerSingleton<IMarkdownParserService, MarkdownParserService>();
 
 // Writers
 
 // Configuration
-DIContainer.registerSingleton<IConfig, IConfig>(() => config);
-DIContainer.registerSingleton<IReadmeServiceConfig, IReadmeServiceConfig>(() => readmeServiceConfig);
+container.registerSingleton<IConfig>(() => config);
+container.registerSingleton<IReadmeServiceConfig>(() => readmeServiceConfig);
 
 // Commands
-DIContainer.registerSingleton<ICommandContainer, CommandContainer>();
-DIContainer.registerSingleton<IReadmeCommand, ReadmeCommand>();
-DIContainer.registerSingleton<ILicenseCommand, LicenseCommand>();
-DIContainer.registerSingleton<IContributingCommand, ContributingCommand>();
-DIContainer.registerSingleton<ICocCommand, CocCommand>();
+container.registerSingleton<ICommandContainer, CommandContainer>();
+container.registerSingleton<IReadmeCommand, ReadmeCommand>();
+container.registerSingleton<ILicenseCommand, LicenseCommand>();
+container.registerSingleton<IContributingCommand, ContributingCommand>();
+container.registerSingleton<ICocCommand, CocCommand>();
 
-DIContainer.registerSingleton<Commands, Commands>(() => [
-	DIContainer.get<IReadmeCommand>(),
-	DIContainer.get<ILicenseCommand>(),
-	DIContainer.get<IContributingCommand>(),
-	DIContainer.get<ICocCommand>()
+container.registerSingleton<Commands>(() => [
+	container.get<IReadmeCommand>(),
+	container.get<ILicenseCommand>(),
+	container.get<IContributingCommand>(),
+	container.get<ICocCommand>()
 ]);
 
 // Tasks
-DIContainer.registerTransient<IReadmeTask, ReadmeTask>();
-DIContainer.registerTransient<ILicenseTask, LicenseTask>();
-DIContainer.registerTransient<IContributingTask, ContributingTask>();
-DIContainer.registerTransient<ICocTask, CocTask>();
+container.registerTransient<IReadmeTask, ReadmeTask>();
+container.registerTransient<ILicenseTask, LicenseTask>();
+container.registerTransient<IContributingTask, ContributingTask>();
+container.registerTransient<ICocTask, CocTask>();
 
 // Task wrappers
-DIContainer.registerSingleton<ReadmeTaskWrapper, ReadmeTaskWrapper>(() => () => DIContainer.get<IReadmeTask>());
-DIContainer.registerSingleton<LicenseTaskWrapper, LicenseTaskWrapper>(() => () => DIContainer.get<ILicenseTask>());
-DIContainer.registerSingleton<ContributingTaskWrapper, ContributingTaskWrapper>(() => () => DIContainer.get<IContributingTask>());
-DIContainer.registerSingleton<CocTaskWrapper, CocTaskWrapper>(() => () => DIContainer.get<ICocTask>());
+container.registerSingleton<ReadmeTaskWrapper>(() => () => container.get<IReadmeTask>());
+container.registerSingleton<LicenseTaskWrapper>(() => () => container.get<ILicenseTask>());
+container.registerSingleton<ContributingTaskWrapper>(() => () => container.get<IContributingTask>());
+container.registerSingleton<CocTaskWrapper>(() => () => container.get<ICocTask>());

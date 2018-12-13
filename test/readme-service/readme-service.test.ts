@@ -1,17 +1,16 @@
-import "../../src/services";
+import {container} from "../../src/services";
 
 import {test} from "ava";
-import {DIContainer} from "@wessberg/di";
 import {IReadmeService} from "../../src/service/readme/i-readme-service";
 import {IProjectService} from "../../src/service/project/i-project-service";
 import {IFileLoader} from "@wessberg/fileloader";
 import {IFileSaver} from "@wessberg/filesaver";
 import {join} from "path";
 
-const readmeService = DIContainer.get<IReadmeService>();
-const projectService = DIContainer.get<IProjectService>();
-const fileLoader = DIContainer.get<IFileLoader>();
-const fileSaver = DIContainer.get<IFileSaver>();
+const readmeService = container.get<IReadmeService>();
+const projectService = container.get<IProjectService>();
+const fileLoader = container.get<IFileLoader>();
+const fileSaver = container.get<IFileSaver>();
 
 test.serial("Correctly resets a README", async t => {
 	const root = await projectService.findRoot();
