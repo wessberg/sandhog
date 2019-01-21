@@ -11,7 +11,6 @@ import {Commands} from "./command/commands";
 import {IReadmeService} from "./service/readme/i-readme-service";
 import {ReadmeService} from "./service/readme/readme-service";
 import {IFormatter} from "./formatter/i-formatter";
-import prettier from "prettier";
 import {ILicenseService} from "./service/license/i-license-service";
 import {LicenseService} from "./service/license/license-service";
 import {FileLoader, IFileLoader} from "@wessberg/fileloader";
@@ -42,13 +41,14 @@ import {CocTask} from "./task/coc-task/coc-task";
 import {CocTaskWrapper, ICocTask} from "./task/coc-task/i-coc-task";
 import {ICocService} from "./service/coc-service/i-coc-service";
 import {CocService} from "./service/coc-service/coc-service";
+import {Formatter} from "./formatter/formatter";
 
 export const container = new DIContainer();
 
 // Services
 container.registerSingleton<IReadmeService, ReadmeService>();
 container.registerSingleton<ILicenseService, LicenseService>();
-container.registerSingleton<IFormatter>(() => prettier);
+container.registerSingleton<IFormatter, Formatter>();
 container.registerSingleton<IFileLoader, FileLoader>();
 container.registerSingleton<IFileSaver, FileSaver>();
 container.registerSingleton<IProjectService, ProjectService>();
@@ -71,12 +71,7 @@ container.registerSingleton<ILicenseCommand, LicenseCommand>();
 container.registerSingleton<IContributingCommand, ContributingCommand>();
 container.registerSingleton<ICocCommand, CocCommand>();
 
-container.registerSingleton<Commands>(() => [
-	container.get<IReadmeCommand>(),
-	container.get<ILicenseCommand>(),
-	container.get<IContributingCommand>(),
-	container.get<ICocCommand>()
-]);
+container.registerSingleton<Commands>(() => [container.get<IReadmeCommand>(), container.get<ILicenseCommand>(), container.get<IContributingCommand>(), container.get<ICocCommand>()]);
 
 // Tasks
 container.registerTransient<IReadmeTask, ReadmeTask>();

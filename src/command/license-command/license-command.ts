@@ -7,7 +7,6 @@ import {LicenseTaskWrapper} from "../../task/license-task/i-license-task";
  * A command that generates a license file and adds it to the package
  */
 export class LicenseCommand extends CommandBase implements ILicenseCommand {
-
 	/**
 	 * The command name
 	 * @type {string}
@@ -17,7 +16,7 @@ export class LicenseCommand extends CommandBase implements ILicenseCommand {
 	 * The rest of the command, following the short name
 	 * @type {string?}
 	 */
-	public readonly command: string|undefined = undefined;
+	public readonly command: string | undefined = undefined;
 	/**
 	 * The description of the command
 	 * @type {string}
@@ -29,7 +28,7 @@ export class LicenseCommand extends CommandBase implements ILicenseCommand {
 	 */
 	public readonly options: ICommandOption[] = [];
 
-	constructor (private readonly licenseTaskWrapper: LicenseTaskWrapper) {
+	constructor(private readonly licenseTaskWrapper: LicenseTaskWrapper) {
 		super();
 	}
 
@@ -39,7 +38,7 @@ export class LicenseCommand extends CommandBase implements ILicenseCommand {
 	 * @param {ILicenseCommandOptions} options
 	 * @returns {Promise<void>}
 	 */
-	public async onCommand (_args: string[], options: ILicenseCommandOptions): Promise<void> {
+	public async onCommand(_args: string[], options: ILicenseCommandOptions): Promise<void> {
 		await this.licenseTaskWrapper().execute(options);
 	}
 }

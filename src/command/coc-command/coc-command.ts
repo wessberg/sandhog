@@ -7,7 +7,6 @@ import {CocTaskWrapper} from "../../task/coc-task/i-coc-task";
  * A command that generates a CODE_OF_CONDUCT.md file and adds it to the package
  */
 export class CocCommand extends CommandBase implements ICocCommand {
-
 	/**
 	 * The command name
 	 * @type {string}
@@ -17,7 +16,7 @@ export class CocCommand extends CommandBase implements ICocCommand {
 	 * The rest of the command, following the short name
 	 * @type {string?}
 	 */
-	public readonly command: string|undefined = undefined;
+	public readonly command: string | undefined = undefined;
 	/**
 	 * The description of the command
 	 * @type {string}
@@ -29,7 +28,7 @@ export class CocCommand extends CommandBase implements ICocCommand {
 	 */
 	public readonly options: ICommandOption[] = [];
 
-	constructor (private readonly cocTaskWrapper: CocTaskWrapper) {
+	constructor(private readonly cocTaskWrapper: CocTaskWrapper) {
 		super();
 	}
 
@@ -39,7 +38,7 @@ export class CocCommand extends CommandBase implements ICocCommand {
 	 * @param {ICocCommandOptions} options
 	 * @returns {Promise<void>}
 	 */
-	public async onCommand (_args: string[], options: ICocCommandOptions): Promise<void> {
+	public async onCommand(_args: string[], options: ICocCommandOptions): Promise<void> {
 		await this.cocTaskWrapper().execute(options);
 	}
 }

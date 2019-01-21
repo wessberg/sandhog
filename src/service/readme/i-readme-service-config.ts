@@ -1,7 +1,7 @@
 import {IPackageJson} from "../../package-json/i-package-json";
 
 export interface IReadmeServiceHeaderConfig {
-	name (packageJson: IPackageJson): string;
+	name(packageJson: IPackageJson): string;
 	identifier: string;
 	depth: number;
 }

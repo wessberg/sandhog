@@ -4,6 +4,10 @@
   "bin": {
     "scaffold": "bin/scaffold"
   },
+  "files": [
+    "dist/**/*.*",
+    "bin/**/*.*"
+  ],
   "description": "A virtual Open Source project maintainer",
   "scripts": {
     "generate:changelog": "standard-changelog --first-release",
@@ -23,21 +27,14 @@
     "posttest": "npm run clean:compiled",
     "prebuild": "npm run clean",
     "build": "npm run rollup",
-    "serve": "nodemon --delay 800ms ./dist/index.js",
-    "serve:production": "NODE_ENV=production node ./dist/index.js",
-    "bs": "npm run build && npm run serve",
-    "bs:watch": "npm run watch & npm run serve",
     "watch": "npm run rollup:watch",
-    "tslint": "tslint -c tslint.json -p tsconfig.json",
-    "validate": "npm run tslint",
-    "prepare": "NODE_ENV=production npm run validate && NODE_ENV=production npm run build",
-    "precommit": "npm run tslint && exit 0",
-    "prepush": "npm run validate && exit 0",
-    "commit:bump": "git add . && git commit -am \"Bumped version\" --no-verify || true",
-    "publish:major": "npm run prepare && npm version major && npm run generate:all && npm run commit:bump && git push && NODE_ENV=production npm publish",
-    "publish:minor": "npm run prepare && npm version minor && npm run generate:all && npm run commit:bump && git push && NODE_ENV=production npm publish",
-    "publish:patch": "npm run prepare && npm version patch && npm run generate:all && npm run commit:bump && git push && NODE_ENV=production npm publish",
-    "update": "ncu -ua && npm update && npm install"
+    "prepare": "npm run build",
+    "prettier": "prettier --write 'src/**/*.*'",
+    "publish:before": "NODE_ENV=production npm run lint && NODE_ENV=production npm run prepare && npm run generate:all && git add . && ((git commit -am \"Bumped version\") || true) && ((git push) || true)",
+    "publish:after": "git push && npm publish",
+    "publish:patch": "npm run publish:before && npm version patch && npm run publish:after",
+    "publish:minor": "npm run publish:before && npm version minor && npm run publish:after",
+    "publish:major": "npm run publish:before && npm version major && npm run publish:after"
   },
   "keywords": [
     "open source",
@@ -51,7 +48,7 @@
     "backers"
   ],
   "dependencies": {
-    "@textlint/markdown-to-ast": "6.0.9",
+    "@textlint/markdown-to-ast": "6.1.2",
     "@types/node-fetch": "2.1.4",
     "@types/prettier": "1.15.2",
     "@wessberg/di": "2.0.3",
@@ -59,18 +56,18 @@
     "@wessberg/filesaver": "1.0.8",
     "@wessberg/pathutil": "0.0.10",
     "commander": "2.19.0",
-    "prettier": "1.15.3",
-    "tslint": "^5.11.0"
+    "prettier": "1.16.0",
+    "tslint": "^5.12.1"
   },
   "devDependencies": {
     "@wessberg/di-compiler": "2.0.2",
-    "@wessberg/rollup-plugin-ts": "1.1.9",
-    "@wessberg/ts-config": "0.0.34",
-    "rollup": "0.67.4",
-    "ava": "0.25.0",
+    "@wessberg/rollup-plugin-ts": "1.1.18",
+    "@wessberg/ts-config": "0.0.38",
+    "rollup": "1.1.2",
+    "ava": "1.1.0",
     "standard-changelog": "2.0.6",
     "npm-check-updates": "2.15.0",
-    "typescript": "3.2.2"
+    "typescript": "3.2.4"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -108,5 +105,10 @@
       }
     },
     "backers": []
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }

@@ -1,3 +1,3 @@
 export interface ICommandContainer {
-	run (): void;
+	run(): void;
 }

@@ -6,16 +6,14 @@ import {IContributorService} from "../contributor-service/i-contributor-service"
  * A service that helps with generating a CODE_OF_CONDUCT.md file
  */
 export class CocService implements ICocService {
-
-	constructor (private readonly contributorService: IContributorService) {
-	}
+	constructor(private readonly contributorService: IContributorService) {}
 
 	/**
 	 * Generates the text that will go into a CODE_OF_CONDUCT.md file
 	 * @param {IContributor[]} cocEnforcers
 	 * @returns {string}
 	 */
-	public getCocText (cocEnforcers: IContributor[]): string {
+	public getCocText(cocEnforcers: IContributor[]): string {
 		return `\
 Contributor Covenant Code of Conduct
 
@@ -89,5 +87,4 @@ Attribution
 This Code of Conduct is adapted from the Contributor Covenant, version 1.4,
 available at http://contributor-covenant.org/version/1/4/`;
 	}
-
 }

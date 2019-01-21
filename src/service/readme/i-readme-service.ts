@@ -4,6 +4,6 @@ import {IReadmeServiceUpgradeOptions} from "./i-readme-service-upgrade-options";
 import {IReadmeServiceUpgradeResult} from "./i-readme-service-upgrade-result";
 
 export interface IReadmeService {
-	reset (options: IReadmeServiceResetOptions): Promise<IReadmeServiceResetResult>;
-	upgrade (options: IReadmeServiceUpgradeOptions): Promise<IReadmeServiceUpgradeResult>;
+	reset(options: IReadmeServiceResetOptions): Promise<IReadmeServiceResetResult>;
+	upgrade(options: IReadmeServiceUpgradeOptions): Promise<IReadmeServiceUpgradeResult>;
 }

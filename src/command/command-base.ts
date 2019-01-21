@@ -18,7 +18,7 @@ export abstract class CommandBase implements ICommand {
 	 * All contents of a command beside its' short name
 	 * @type {string}
 	 */
-	public abstract readonly command: string|undefined;
+	public abstract readonly command: string | undefined;
 
 	/**
 	 * The name of the command (such as 'create')
@@ -36,12 +36,12 @@ export abstract class CommandBase implements ICommand {
 	 * Invoked when the action is triggered from the command line
 	 * @type {...*[]} args
 	 */
-	public abstract onCommand (...args: any[]): Promise<void>;
+	public abstract onCommand(...args: any[]): Promise<void>;
 
 	/**
 	 * Prepares the command
 	 */
-	public prepare (): void {
+	public prepare(): void {
 		// Initialize the command
 		const result = commander.command(`${this.shortName}${this.command == null || this.command.length < 1 ? "" : ` ${this.command}`}`, this.description);
 
@@ -55,8 +55,7 @@ export abstract class CommandBase implements ICommand {
 	 * Invoked when a command happens
 	 * @param {...*[]} rest
 	 */
-	private beforeCommand (...rest: any[]): void {
-
+	private beforeCommand(...rest: any[]): void {
 		// The last provided argument will contain the options. All prior arguments minus the first one will include options given to the command
 		const options = rest.length === 1 ? rest[0] : rest[rest.length - 1];
 		const args = rest.length === 1 ? [] : rest.slice(0, rest.length - 1);
@@ -78,15 +77,12 @@ export abstract class CommandBase implements ICommand {
 	 * @param {string} shortOption
 	 * @returns {string}
 	 */
-	private formatCommandOption ({longOption, shortOption}: ICommandOption): string {
+	private formatCommandOption({longOption, shortOption}: ICommandOption): string {
 		if (longOption != null && shortOption != null) {
 			return `-${shortOption}, --${longOption}`;
-		}
-		else if (longOption != null) {
+		} else if (longOption != null) {
 			return `-${shortOption}`;
-		}
-
-		else {
+		} else {
 			return `--${longOption}`;
 		}
 	}

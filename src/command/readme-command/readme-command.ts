@@ -7,7 +7,6 @@ import {ReadmeTaskWrapper} from "../../task/readme-task/i-readme-task";
  * A command that generates or upgrades a README.md file
  */
 export class ReadmeCommand extends CommandBase implements IReadmeCommand {
-
 	/**
 	 * The command name
 	 * @type {string}
@@ -17,7 +16,7 @@ export class ReadmeCommand extends CommandBase implements IReadmeCommand {
 	 * The rest of the command, following the short name
 	 * @type {string?}
 	 */
-	public readonly command: string|undefined = undefined;
+	public readonly command: string | undefined = undefined;
 	/**
 	 * The description of the command
 	 * @type {string}
@@ -41,7 +40,7 @@ export class ReadmeCommand extends CommandBase implements IReadmeCommand {
 		}
 	];
 
-	constructor (private readonly readmeTaskWrapper: ReadmeTaskWrapper) {
+	constructor(private readonly readmeTaskWrapper: ReadmeTaskWrapper) {
 		super();
 	}
 
@@ -51,7 +50,7 @@ export class ReadmeCommand extends CommandBase implements IReadmeCommand {
 	 * @param {IReadmeCommandOptions} options
 	 * @returns {Promise<void>}
 	 */
-	public async onCommand (_args: string[], options: IReadmeCommandOptions): Promise<void> {
+	public async onCommand(_args: string[], options: IReadmeCommandOptions): Promise<void> {
 		await this.readmeTaskWrapper().execute(options);
 	}
 }

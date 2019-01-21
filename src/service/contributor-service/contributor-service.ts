@@ -5,13 +5,12 @@ import {IContributor, IPackageJson} from "../../package-json/i-package-json";
  * A service that helps with taking the contributors from a package.json file and generating a CONTRIBUTING.md file
  */
 export class ContributorService implements IContributorService {
-
 	/**
 	 * Gets all contributors from the given options
 	 * @param {IPackageJson} packageJson
 	 * @returns {IContributor[]}
 	 */
-	public getContributors (packageJson: IPackageJson): IContributor[] {
+	public getContributors(packageJson: IPackageJson): IContributor[] {
 		const contributors: Map<string, IContributor> = new Map();
 		if (packageJson.author != null) {
 			contributors.set(packageJson.author.name, packageJson.author);
@@ -43,7 +42,7 @@ export class ContributorService implements IContributorService {
 	 * @param {IPackageJson} packageJson
 	 * @param {IContributor[]} contributors
 	 */
-	public getContributingText (packageJson: IPackageJson, contributors: IContributor[]): string {
+	public getContributingText(packageJson: IPackageJson, contributors: IContributor[]): string {
 		return `\
 You are more than welcome to contribute to \`${packageJson.name}\` in any way you please, including:
 
@@ -52,7 +51,14 @@ You are more than welcome to contribute to \`${packageJson.name}\` in any way yo
 - Adding tests
 - Fixing issues and suggesting new features
 - Blogging, tweeting, and creating tutorials about \`${packageJson.name}\`
-${contributors.every(contributor => contributor.twitterHandle == null) ? "" : `- Reaching out to ${contributors.filter(contributor => contributor.twitterHandle != null).map(contributor => `[@${contributor.twitterHandle}](https://twitter.com/${contributor.twitterHandle})`).join(" or")} on Twitter`}
+${
+	contributors.every(contributor => contributor.twitterHandle == null)
+		? ""
+		: `- Reaching out to ${contributors
+				.filter(contributor => contributor.twitterHandle != null)
+				.map(contributor => `[@${contributor.twitterHandle}](https://twitter.com/${contributor.twitterHandle})`)
+				.join(" or")} on Twitter`
+}
 - Submit an issue or a Pull Request`;
 	}
 
@@ -61,12 +67,10 @@ ${contributors.every(contributor => contributor.twitterHandle == null) ? "" : `-
 	 * @param {IContributor[]} contributors
 	 * @param {boolean} [markdownFormat=false]
 	 */
-	public formatContributorNames (contributors: IContributor[], markdownFormat: boolean = false): string {
+	public formatContributorNames(contributors: IContributor[], markdownFormat: boolean = false): string {
 		if (markdownFormat) {
-			return contributors.map(contributor => contributor.email == null ? contributor.name : `[${contributor.name}](mailto:${contributor.email})`).join(", ");
-		}
-
-		else {
+			return contributors.map(contributor => (contributor.email == null ? contributor.name : `[${contributor.name}](mailto:${contributor.email})`)).join(", ");
+		} else {
 			return contributors.map(contributor => `${contributor.name} ${contributor.email == null ? "" : `<${contributor.email}>`}`).join(", ");
 		}
 	}

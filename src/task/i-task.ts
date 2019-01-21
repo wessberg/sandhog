@@ -1,5 +1,5 @@
 import {ITaskExecuteOptions} from "./i-task-execute-options";
 
 export interface ITask {
-	execute (options: ITaskExecuteOptions): Promise<void>;
+	execute(options: ITaskExecuteOptions): Promise<void>;
 }

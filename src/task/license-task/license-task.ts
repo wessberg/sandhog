@@ -10,19 +10,19 @@ import {join} from "path";
  * A task used for generating a license
  */
 export class LicenseTask implements ILicenseTask {
-
-	constructor (private readonly licenseService: ILicenseService,
-							 private readonly contributorService: IContributorService,
-							 private readonly fileSaver: IFileSaver,
-							 private readonly projectService: IProjectService) {
-	}
+	constructor(
+		private readonly licenseService: ILicenseService,
+		private readonly contributorService: IContributorService,
+		private readonly fileSaver: IFileSaver,
+		private readonly projectService: IProjectService
+	) {}
 
 	/**
 	 * Executes a 'license' task
 	 * @param {ILicenseTaskExecuteOptions} _options
 	 * @returns {Promise<void>}
 	 */
-	public async execute (_options: ILicenseTaskExecuteOptions): Promise<void> {
+	public async execute(_options: ILicenseTaskExecuteOptions): Promise<void> {
 		const rootDirectory = await this.projectService.findRoot();
 		const licensePath = join(rootDirectory, "LICENSE.md");
 		const {packageJson} = await this.projectService.getPackageJson();

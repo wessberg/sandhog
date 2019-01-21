@@ -37,7 +37,7 @@ export interface IMarkdownCodeNode extends IMarkdownNode {
 export interface IMarkdownCodeBlockNode extends IMarkdownNode {
 	type: MarkdownNodeKind.CodeBlock;
 	value: string;
-	lang: string|null;
+	lang: string | null;
 }
 
 export interface IMarkdownBlockQuoteNode extends IMarkdownNode {
@@ -70,13 +70,13 @@ export interface IMarkdownListNode extends IMarkdownNode {
 export interface IMarkdownListItemNode extends IMarkdownNode {
 	type: MarkdownNodeKind.ListItem;
 	loose: boolean;
-	checked: boolean|null;
+	checked: boolean | null;
 	children: MarkdownNode[];
 }
 
 export interface IMarkdownLinkNode extends IMarkdownNode {
 	type: MarkdownNodeKind.Link;
-	title: string|null;
+	title: string | null;
 	url: string;
 	children: MarkdownNode[];
 }
@@ -104,14 +104,14 @@ export interface IMarkdownEmphasisNode extends IMarkdownNode {
 
 export interface IMarkdownImageNode extends IMarkdownNode {
 	type: MarkdownNodeKind.Image;
-	title: string|null;
+	title: string | null;
 	url: string;
 	alt: string;
 }
 
 export interface IMarkdownTableNode extends IMarkdownNode {
 	type: MarkdownNodeKind.Table;
-	align: [string|null, string|null];
+	align: [string | null, string | null];
 	children: IMarkdownTableRowNode[];
 }
 
@@ -131,22 +131,22 @@ export interface IMarkdownTableCellNode extends IMarkdownNode {
 export type MarkdownNodeRange = [number, number];
 
 export type MarkdownNode =
-	IMarkdownDocumentNode
-	|IMarkdownHeaderNode
-	|IMarkdownCodeNode
-	|IMarkdownCodeBlockNode
-	|IMarkdownBlockQuoteNode
-	|IMarkdownParagraphNode
-	|IMarkdownStrNode
-	|IMarkdownHtmlNode
-	|IMarkdownListNode
-	|IMarkdownListItemNode
-	|IMarkdownLinkNode
-	|IMarkdownLinkReferenceNode
-	|IMarkdownHorizontalRuleNode
-	|IMarkdownStrongNode
-	|IMarkdownEmphasisNode
-	|IMarkdownImageNode
-	|IMarkdownTableNode
-	|IMarkdownTableRowNode
-	|IMarkdownTableCellNode;
+	| IMarkdownDocumentNode
+	| IMarkdownHeaderNode
+	| IMarkdownCodeNode
+	| IMarkdownCodeBlockNode
+	| IMarkdownBlockQuoteNode
+	| IMarkdownParagraphNode
+	| IMarkdownStrNode
+	| IMarkdownHtmlNode
+	| IMarkdownListNode
+	| IMarkdownListItemNode
+	| IMarkdownLinkNode
+	| IMarkdownLinkReferenceNode
+	| IMarkdownHorizontalRuleNode
+	| IMarkdownStrongNode
+	| IMarkdownEmphasisNode
+	| IMarkdownImageNode
+	| IMarkdownTableNode
+	| IMarkdownTableRowNode
+	| IMarkdownTableCellNode;

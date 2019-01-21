@@ -7,6 +7,6 @@ export interface ICommand {
 	command?: string;
 	shortName: string;
 	options: ICommandOption[];
-	onCommand (...args: any[]): Promise<void>;
-	prepare (): void;
+	onCommand(...args: any[]): Promise<void>;
+	prepare(): void;
 }

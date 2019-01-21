@@ -9,27 +9,20 @@ import {join} from "path";
  * A task used for generating a CONTRIBUTING.md file
  */
 export class ContributingTask implements IContributingTask {
-
-	constructor (private readonly contributorService: IContributorService,
-							 private readonly fileSaver: IFileSaver,
-							 private readonly projectService: IProjectService) {
-	}
+	constructor(private readonly contributorService: IContributorService, private readonly fileSaver: IFileSaver, private readonly projectService: IProjectService) {}
 
 	/**
 	 * Executes a 'contributing' task
 	 * @param {IContributingTaskExecuteOptions} _options
 	 * @returns {Promise<void>}
 	 */
-	public async execute (_options: IContributingTaskExecuteOptions): Promise<void> {
+	public async execute(_options: IContributingTaskExecuteOptions): Promise<void> {
 		const rootDirectory = await this.projectService.findRoot();
 		const contributingPath = join(rootDirectory, "CONTRIBUTING.md");
 		const {packageJson} = await this.projectService.getPackageJson();
 
 		// Generate the CONTRIBUTING.md text
-		const contributingText = this.contributorService.getContributingText(
-			packageJson,
-			this.contributorService.getContributors(packageJson)
-		);
+		const contributingText = this.contributorService.getContributingText(packageJson, this.contributorService.getContributors(packageJson));
 		await this.fileSaver.save(contributingPath, contributingText);
 	}
 }

@@ -12,9 +12,9 @@ export enum ReadmeCommandLongOptionKind {
 
 export interface IReadmeCommandOptions {
 	[ReadmeCommandLongOptionKind.RESET]: boolean;
-	[ReadmeCommandLongOptionKind.BLACKLIST]: string|true;
+	[ReadmeCommandLongOptionKind.BLACKLIST]: string | true;
 }
 
 export interface IReadmeCommand extends ICommand {
-	onCommand (args: string[], options: IReadmeCommandOptions): Promise<void>;
+	onCommand(args: string[], options: IReadmeCommandOptions): Promise<void>;
 }

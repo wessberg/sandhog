@@ -8,15 +8,13 @@ import {IProjectServiceGetReadmeResult} from "./i-project-service-get-readme-res
  * A Service that helps with getting resources within a project
  */
 export class ProjectService implements IProjectService {
-
-	constructor (private readonly fileLoader: IFileLoader) {
-	}
+	constructor(private readonly fileLoader: IFileLoader) {}
 
 	/**
 	 * Finds the project root directory. The project root will be the nearest directory that contains a package.json file
 	 * @returns {string}
 	 */
-	public async findRoot (): Promise<string> {
+	public async findRoot(): Promise<string> {
 		let currentDir = process.cwd();
 
 		while (currentDir != null && currentDir !== "" && currentDir !== "/") {
@@ -33,7 +31,7 @@ export class ProjectService implements IProjectService {
 	 * Gets the package.json file that resides in the nearest project root
 	 * @returns {Promise<IProjectServiceGetPackageJsonResult>}
 	 */
-	public async getPackageJson (): Promise<IProjectServiceGetPackageJsonResult> {
+	public async getPackageJson(): Promise<IProjectServiceGetPackageJsonResult> {
 		const root = await this.findRoot();
 		const path = join(root, "package.json");
 		const packageJson = await this.fileLoader.load(path);
@@ -47,7 +45,7 @@ export class ProjectService implements IProjectService {
 	 * Gets the README.md file that resides in the nearest project root, if any exists
 	 * @returns {Promise<IProjectServiceGetReadmeResult>}
 	 */
-	public async getReadme (): Promise<IProjectServiceGetReadmeResult> {
+	public async getReadme(): Promise<IProjectServiceGetReadmeResult> {
 		const root = await this.findRoot();
 		const path = join(root, "README.md");
 		// If the README doesn't exist, return undefined

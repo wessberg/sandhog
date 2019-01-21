@@ -1,6 +1,6 @@
 import {container} from "../../src/services";
 
-import {test} from "ava";
+import test from "ava";
 import {IReadmeService} from "../../src/service/readme/i-readme-service";
 import {IProjectService} from "../../src/service/project/i-project-service";
 import {IFileLoader} from "@wessberg/fileloader";

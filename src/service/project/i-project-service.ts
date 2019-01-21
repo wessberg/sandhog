@@ -2,7 +2,7 @@ import {IProjectServiceGetPackageJsonResult} from "./i-project-service-get-packa
 import {IProjectServiceGetReadmeResult} from "./i-project-service-get-readme-result";
 
 export interface IProjectService {
-	findRoot (): Promise<string>;
-	getPackageJson (): Promise<IProjectServiceGetPackageJsonResult>;
-	getReadme (): Promise<IProjectServiceGetReadmeResult>;
+	findRoot(): Promise<string>;
+	getPackageJson(): Promise<IProjectServiceGetPackageJsonResult>;
+	getReadme(): Promise<IProjectServiceGetReadmeResult>;
 }

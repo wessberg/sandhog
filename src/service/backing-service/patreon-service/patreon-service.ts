@@ -11,9 +11,8 @@ export class PatreonService implements IPatreonService {
 	 * @param {IBackingServiceGetBackersOptions} options
 	 * @returns {Promise<IReadmeServiceGetBackersResult>}
 	 */
-	public async getBackers ({packageJson}: IBackingServiceGetBackersOptions): Promise<IReadmeServiceGetBackersResult> {
+	public async getBackers({packageJson}: IBackingServiceGetBackersOptions): Promise<IReadmeServiceGetBackersResult> {
 		if (packageJson.scaffold == null || packageJson.scaffold.patreonUserId == null || packageJson.scaffold.backers == null) return {};
 		return packageJson.scaffold.backers;
 	}
-
 }

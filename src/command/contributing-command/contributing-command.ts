@@ -7,7 +7,6 @@ import {ContributingTaskWrapper} from "../../task/contributing-task/i-contributi
  * A command that generates a CONTRIBUTING.md file and adds it to the package
  */
 export class ContributingCommand extends CommandBase implements IContributingCommand {
-
 	/**
 	 * The command name
 	 * @type {string}
@@ -17,7 +16,7 @@ export class ContributingCommand extends CommandBase implements IContributingCom
 	 * The rest of the command, following the short name
 	 * @type {string?}
 	 */
-	public readonly command: string|undefined = undefined;
+	public readonly command: string | undefined = undefined;
 	/**
 	 * The description of the command
 	 * @type {string}
@@ -29,7 +28,7 @@ export class ContributingCommand extends CommandBase implements IContributingCom
 	 */
 	public readonly options: ICommandOption[] = [];
 
-	constructor (private readonly contributingTaskWrapper: ContributingTaskWrapper) {
+	constructor(private readonly contributingTaskWrapper: ContributingTaskWrapper) {
 		super();
 	}
 
@@ -39,7 +38,7 @@ export class ContributingCommand extends CommandBase implements IContributingCom
 	 * @param {IContributingCommandOptions} options
 	 * @returns {Promise<void>}
 	 */
-	public async onCommand (_args: string[], options: IContributingCommandOptions): Promise<void> {
+	public async onCommand(_args: string[], options: IContributingCommandOptions): Promise<void> {
 		await this.contributingTaskWrapper().execute(options);
 	}
 }

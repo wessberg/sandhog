@@ -2,5 +2,5 @@ import {IReadmeServiceGetBackersResult} from "./i-readme-service-get-backers-res
 import {IBackingServiceGetBackersOptions} from "./i-backing-service-get-backers-options";
 
 export interface IBackingService {
-	getBackers (options: IBackingServiceGetBackersOptions): Promise<IReadmeServiceGetBackersResult>;
+	getBackers(options: IBackingServiceGetBackersOptions): Promise<IReadmeServiceGetBackersResult>;
 }

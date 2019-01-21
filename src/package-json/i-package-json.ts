@@ -35,17 +35,17 @@ export interface IContributor extends Partial<IContributorMeta> {
 	url: string;
 }
 
-export declare type PackageJsonMainField = "module"|"browser"|"es2015"|"main"|"jsnext:main";
+export declare type PackageJsonMainField = "module" | "browser" | "es2015" | "main" | "jsnext:main";
 
 export interface IPackageJson {
 	name?: string;
 	version?: string;
 	description?: string;
-	scripts?: { [key: string]: string };
+	scripts?: {[key: string]: string};
 	keywords?: string[];
-	devDependencies?: { [key: string]: string };
-	peerDependencies?: { [key: string]: string };
-	dependencies?: { [key: string]: string };
+	devDependencies?: {[key: string]: string};
+	peerDependencies?: {[key: string]: string};
+	dependencies?: {[key: string]: string};
 	module?: string;
 	main?: string;
 	"jsnext:main"?: string;
@@ -58,7 +58,7 @@ export interface IPackageJson {
 	author?: IContributor;
 	authors?: IContributor[];
 	contributors?: IContributor[];
-	engines?: { [key: string]: string };
+	engines?: {[key: string]: string};
 	license?: LicenseName;
 	private?: boolean;
 	scaffold?: Partial<IScaffoldConfig>;

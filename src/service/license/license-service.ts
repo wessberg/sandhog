@@ -8,8 +8,7 @@ import {IContributorService} from "../contributor-service/i-contributor-service"
  * A class that helps with working with Licenses
  */
 export class LicenseService implements ILicenseService {
-
-	constructor (private readonly contributorService: IContributorService) {}
+	constructor(private readonly contributorService: IContributorService) {}
 
 	/**
 	 * A Map between LicenseNames and ILicenses
@@ -35,7 +34,7 @@ export class LicenseService implements ILicenseService {
 	 * A Map between LicenseNames and methods that retrieve their full text content
 	 * @type {object}
 	 */
-	private readonly LICENSE_NAME_TO_LICENSE_TEXT_MAP: { [Key in LicenseName]: (packageJson: IPackageJson, contributors: IContributor[]) => string } = {
+	private readonly LICENSE_NAME_TO_LICENSE_TEXT_MAP: {[Key in LicenseName]: (packageJson: IPackageJson, contributors: IContributor[]) => string} = {
 		"APACHE-2.0": (_packageJson, contributors) => `\
                                  Apache License
                            Version 2.0, January 2004
@@ -3804,7 +3803,7 @@ freely, subject to the following restrictions:
 	 * @param {LicenseName} name
 	 * @returns {ILicense}
 	 */
-	public getLicense (name: LicenseName): ILicense {
+	public getLicense(name: LicenseName): ILicense {
 		return this.LICENSE_MAP.get(name)!;
 	}
 
@@ -3815,8 +3814,7 @@ freely, subject to the following restrictions:
 	 * @param {IContributor[]} contributors
 	 * @returns {string}
 	 */
-	public generateLicenseText (name: LicenseName, packageJson: IPackageJson, contributors: IContributor[]): string {
+	public generateLicenseText(name: LicenseName, packageJson: IPackageJson, contributors: IContributor[]): string {
 		return this.LICENSE_NAME_TO_LICENSE_TEXT_MAP[name](packageJson, contributors);
 	}
-
 }

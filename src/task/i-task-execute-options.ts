@@ -1,2 +1,1 @@
-export interface ITaskExecuteOptions {
-}
+export interface ITaskExecuteOptions {}
