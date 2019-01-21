@@ -13,7 +13,6 @@ export class Formatter implements IFormatter {
 	public async format(source: string, options?: Options): Promise<string> {
 		// Resolve the closest prettier config on the disk from the current working directory - and preferably use that one
 		const config = await resolveConfig(process.cwd());
-		console.log(config);
 		const normalizedConfig = config == null ? {} : config;
 
 		return format(source, {

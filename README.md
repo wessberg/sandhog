@@ -53,28 +53,28 @@ For example:
 
 ```json
 {
-  "name": "my-package-name",
-  "version": "1.2.3",
-  "description": "my awesome project!",
-  "scaffold": {
-    "patreonUserId": "",
-    "logo": "",
-    "contributorMeta": {
-      "John Doe": {
-        "imageUrl": "",
-        "role": "Lead Developer",
-        "twitterHandle": "",
-        "isCocEnforcer": true
-      }
-    },
-    "backers": [
-      {
-        "name": "",
-        "url": "",
-        "imageUrl": ""
-      }
-    ]
-  }
+	"name": "my-package-name",
+	"version": "1.2.3",
+	"description": "my awesome project!",
+	"scaffold": {
+		"patreonUserId": "",
+		"logo": "",
+		"contributorMeta": {
+			"John Doe": {
+				"imageUrl": "",
+				"role": "Lead Developer",
+				"twitterHandle": "",
+				"isCocEnforcer": true
+			}
+		},
+		"backers": [
+			{
+				"name": "",
+				"url": "",
+				"imageUrl": ""
+			}
+		]
+	}
 }
 ```
 
