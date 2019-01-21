@@ -6,7 +6,7 @@
   },
   "files": [
     "dist/**/*.*",
-    "bin/**/*.*"
+    "bin/*.*"
   ],
   "description": "A virtual Open Source project maintainer",
   "scripts": {
