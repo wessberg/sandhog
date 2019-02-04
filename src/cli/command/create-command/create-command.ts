@@ -1,4 +1,4 @@
-import program from "commander";
+import commander from "commander";
 import {CommandAction, CommandActionOptions, CommandOptionType, CreateCommandOptions} from "./create-command-options";
 
 // tslint:disable:no-any
@@ -65,7 +65,7 @@ function formatCommandNameWithArgs<T extends CreateCommandOptions>(options: T): 
  */
 export function createCommand<T extends CreateCommandOptions>(options: T, action: CommandAction<T>): void {
 	// Add the command to the program
-	const result = program.command(formatCommandNameWithArgs(options)).description(options.description);
+	const result = commander.command(formatCommandNameWithArgs(options)).description(options.description);
 
 	// Add options to the command
 	Object.entries(options.options).forEach(([longhand, {shortHand, description, type, defaultValue}]) => {

@@ -1,4 +1,7 @@
 import {prompt} from "inquirer";
+
+// tslint:disable
+
 /**
  * Provides a "radio button group" of potential options the user may pick
  * @param {string} message

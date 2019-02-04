@@ -1,5 +1,7 @@
 import {prompt} from "inquirer";
 
+// tslint:disable
+
 /**
  * Prints a 'confirm' prompt in the terminal
  * @param {string} message

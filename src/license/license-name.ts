@@ -1,5 +1,5 @@
 import {ElementOf} from "../util/type/element-of";
-import {stringTuple} from "../util/type/stringTuple";
+import {stringTuple} from "../util/type/string-tuple";
 
 export const LICENSE_NAMES = stringTuple(
 	"APACHE-2.0",

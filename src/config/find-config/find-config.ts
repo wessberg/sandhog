@@ -7,7 +7,7 @@ import {DeepPartial} from "../../util/type/deep-partial";
 import {findPackage} from "../../package/find-package/find-package";
 import {ILogger} from "../../logger/i-logger";
 import {FileSystem} from "../../file-system/file-system";
-import JSON5 from "json5";
+import json5 from "json5";
 
 /**
  * Finds a scaffold config if possible
@@ -55,7 +55,7 @@ async function findConfigRecursiveStep(root: string, logger: ILogger, fs: Pick<F
 
 			// If it is extension-less, parse it as JSON5
 			if (extname(path) === "" || extname(path) === ".json5" || extname(path) === ".json") {
-				return JSON5.parse(fs.readFileSync(path, "utf8"));
+				return json5.parse(fs.readFileSync(path, "utf8"));
 			}
 
 			// Otherwise, use the module loader directly

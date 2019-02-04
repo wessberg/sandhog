@@ -1,5 +1,7 @@
 import {prompt} from "inquirer";
 
+// tslint:disable
+
 /**
  * Provides a list of options that the user may select
  * @param {string} message

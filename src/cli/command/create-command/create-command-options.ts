@@ -8,18 +8,18 @@ export interface CommandOption {
 	description: string;
 }
 
-export type CommandOptions = {
-	[Key: string]: CommandOption;
-};
+export interface CommandOptions {
+	[key: string]: CommandOption;
+}
 
 export interface CommandArg {
 	type: CommandArgType;
 	required: boolean;
 }
 
-export type CommandArgs = {
-	[Key: string]: CommandArg;
-};
+export interface CommandArgs {
+	[key: string]: CommandArg;
+}
 
 export interface CreateCommandOptions {
 	name: string;

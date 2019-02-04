@@ -1,9 +1,10 @@
-import program from "commander";
+import commander from "commander";
 
-program.parse(process.argv);
+commander.parse(process.argv);
 
 // Show help if no arguments are given
-if (!program.args.length)
-	program.help(text => {
+if (commander.args.length === 0) {
+	commander.help(text => {
 		return `Welcome to Scaffold!\n\n` + text;
 	});
+}
