@@ -2,4 +2,4 @@
 'use strict';
 
 process.title = 'scaffold';
-require("../dist/index.js");
+require("../dist/cli.js");

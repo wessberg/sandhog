@@ -1,4 +1,16 @@
-import {container} from "./services";
-import {ICommandContainer} from "./command/i-command-container";
-
-container.get<ICommandContainer>().run();
+export {generateReadme} from "./readme/generate-readme/generate-readme";
+export {GenerateReadmeOptions} from "./readme/generate-readme/generate-readme-options";
+export {GenerateLicenseOptions} from "./license/generate-license/generate-license-options";
+export {generateLicense} from "./license/generate-license/generate-license";
+export {generateContributing} from "./contributing/generate-contributing/generate-contributing";
+export {GenerateContributingOptions} from "./contributing/generate-contributing/generate-contributing-options";
+export {generateCoc} from "./coc/generate-coc/generate-coc";
+export {GenerateCocOptions} from "./coc/generate-coc/generate-coc-options";
+export {BadgeKind} from "./badge/badge-kind";
+export {SectionKind} from "./section/section-kind";
+export {ILogger} from "./logger/i-logger";
+export {Logger} from "./logger/logger";
+export {Package} from "./package/package";
+export {FileSystem} from "./file-system/file-system";
+export {findConfig} from "./config/find-config/find-config";
+export {getConfig} from "./config/get-config/get-config";
