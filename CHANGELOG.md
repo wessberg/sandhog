@@ -1,3 +1,14 @@
+## [1.0.9](https://github.com/wessberg/scaffold/compare/v1.0.8...v1.0.9) (2019-02-04)
+
+### Bug Fixes
+
+- **lint:** fixes lint issues ([8742c98](https://github.com/wessberg/scaffold/commit/8742c98))
+
+### Features
+
+- **core:** major rewrite ([f50d7a5](https://github.com/wessberg/scaffold/commit/f50d7a5))
+- **core:** major rewrite ([f510154](https://github.com/wessberg/scaffold/commit/f510154))
+
 ## [1.0.8](https://github.com/wessberg/scaffold/compare/v1.0.7...v1.0.8) (2019-01-21)
 
 ## [1.0.7](https://github.com/wessberg/scaffold/compare/v1.0.6...v1.0.7) (2019-01-21)
