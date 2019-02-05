@@ -322,11 +322,15 @@ async function generateBackersSection(context: GenerateReadmeContext): Promise<v
 		content +=
 			`### Patreon\n\n` +
 			`[Become a backer](${CONSTANT.PATREON_DONATE_URL(context.config.donate.patreon.userId)}) and get your name, avatar, and Twitter handle listed here.\n\n` +
-			`<picture style="width: 500px">\n` +
-			`    <source type="image/webp" srcset="${CONSTANT.PATREON_BADGE_URL(context.config.donate.patreon.userId, ".webp")}">\n` +
-			`    <source type="image/png" srcset="${CONSTANT.PATREON_BADGE_URL(context.config.donate.patreon.userId, ".png")}">\n` +
-			`    <img alt="Patreon pledgers" src="${CONSTANT.PATREON_BADGE_URL(context.config.donate.patreon.userId, ".png")}" />\n` +
-			`</picture>\n\n`;
+			formatUrl({
+				url: CONSTANT.PATREON_DONATE_URL(context.config.donate.patreon.userId),
+				inner: formatImage({
+					url: CONSTANT.PATREON_BADGE_URL(context.config.donate.patreon.userId, ".png"),
+					alt: "Backers on Patreon",
+					width: 500
+				})
+			}) +
+			"\n\n";
 	}
 
 	if (context.config.donate.openCollective.project != null) {

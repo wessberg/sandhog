@@ -444,11 +444,7 @@ Do you want to contribute? Awesome! Please follow [these recommendations](./CONT
 
 [Become a backer](https://www.patreon.com/bePatron?u=11315442) and get your name, avatar, and Twitter handle listed here.
 
-<picture style="width: 500px">
-    <source type="image/webp" srcset="https://patreon-badge.herokuapp.com/11315442.webp">
-    <source type="image/png" srcset="https://patreon-badge.herokuapp.com/11315442.png">
-    <img alt="Patreon pledgers" src="https://patreon-badge.herokuapp.com/11315442.png" />
-</picture>
+<a href="https://www.patreon.com/bePatron?u=11315442"><img alt="Backers on Patreon" src="https://patreon-badge.herokuapp.com/11315442.png"  width="500"  /></a>
 
 <!-- SHADOW_SECTION_BACKERS_END -->
 
