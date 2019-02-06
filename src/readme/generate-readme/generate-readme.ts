@@ -358,7 +358,7 @@ async function generateBackersSection(context: GenerateReadmeContext): Promise<v
 			"\n\n";
 	}
 
-	setSection(context, SectionKind.BACKERS, context.config.donate.patreon.userId == null && context.config.donate.openCollective.project == null ? "" : `## Backers 🏅\n\n` + content);
+	setSection(context, SectionKind.BACKERS, context.config.donate.patreon.userId == null && context.config.donate.openCollective.project == null ? "" : `## Backers\n\n` + content);
 }
 
 /**
@@ -375,6 +375,6 @@ async function generateLicenseSection(context: GenerateReadmeContext): Promise<v
 		SectionKind.LICENSE,
 		license == null || !context.fs.existsSync(licenseFilePath)
 			? ""
-			: `## License 📄\n\n` + `${license} © ${listFormat(contributors.map(contributor => formatContributor(contributor, "markdown")), "and")}`
+			: `## License\n\n` + `${license} © ${listFormat(contributors.map(contributor => formatContributor(contributor, "markdown")), "and")}`
 	);
 }
