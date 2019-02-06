@@ -1,3 +1,11 @@
+## [1.0.13](https://github.com/wessberg/scaffold/compare/v1.0.10...v1.0.13) (2019-02-06)
+
+### Bug Fixes
+
+- **chore:** updates dependencies ([b181ad8](https://github.com/wessberg/scaffold/commit/b181ad8))
+- **chore:** updates dependencies ([81bea0a](https://github.com/wessberg/scaffold/commit/81bea0a))
+- **readme:** removes emojis from headings which was hard to generate relative links to ([5a1f250](https://github.com/wessberg/scaffold/commit/5a1f250))
+
 ## [1.0.10](https://github.com/wessberg/scaffold/compare/v1.0.9...v1.0.10) (2019-02-05)
 
 ### Bug Fixes

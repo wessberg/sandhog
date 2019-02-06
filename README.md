@@ -89,12 +89,12 @@ Scaffold works out of the box without any configuration. Some highlights include
   - [`license`](#license)
 - [Contributing](#contributing)
 - [Maintainers](#maintainers)
-- [Backers 🏅](#backers-%F0%9F%8F%85)
+- [Backers](#backers)
   - [Patreon](#patreon)
   - [FAQ](#faq)
     - [Do you support custom templates?](#do-you-support-custom-templates)
     - [How do you determine the Code Style of the project?](#how-do-you-determine-the-code-style-of-the-project)
-- [License 📄](#license-%F0%9F%93%84)
+- [License](#license)
 
 <!-- SHADOW_SECTION_TOC_END -->
 
@@ -438,7 +438,7 @@ Do you want to contribute? Awesome! Please follow [these recommendations](./CONT
 
 <!-- SHADOW_SECTION_BACKERS_START -->
 
-## Backers 🏅
+## Backers
 
 ### Patreon
 
@@ -470,7 +470,7 @@ By looking for several things, including:
 
 <!-- SHADOW_SECTION_LICENSE_START -->
 
-## License 📄
+## License
 
 MIT © [Frederik Wessberg](mailto:frederikwessberg@hotmail.com) ([@FredWessberg](https://twitter.com/FredWessberg)) ([Website](https://github.com/wessberg))
 
