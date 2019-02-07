@@ -1,3 +1,9 @@
+## [1.0.15](https://github.com/wessberg/scaffold/compare/v1.0.14...v1.0.15) (2019-02-07)
+
+### Bug Fixes
+
+- **badges:** fixes an issue where the dependencies badge would be wrong for non-scoped packages ([e6b05fe](https://github.com/wessberg/scaffold/commit/e6b05fe))
+
 ## [1.0.14](https://github.com/wessberg/scaffold/compare/v1.0.13...v1.0.14) (2019-02-07)
 
 ## [1.0.13](https://github.com/wessberg/scaffold/compare/v1.0.10...v1.0.13) (2019-02-06)
