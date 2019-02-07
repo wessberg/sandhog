@@ -5,7 +5,6 @@ import {findCodeStyles} from "../../code-style/find-code-style/find-code-styles"
 import {CONSTANT} from "../../constant/constant";
 import {formatUrl} from "../../markdown/format-url/format-url";
 import {formatImage} from "../../markdown/format-image/format-image";
-import {stripLeadingIfMatched} from "../../util/path/strip-leading-if-matched";
 import {takeGithubRepositoryName} from "../../package/take-github-repository-name/take-github-repository-name";
 import {findLicense} from "../../license/find-license/find-license";
 import {getLicenseForLicenseName} from "../../license/get-license-for-license-name/get-license-for-license-name";
@@ -20,7 +19,6 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 	const badgeOptions = options.config.readme.badges;
 	const excluded = new Set(badgeOptions.exclude);
 
-	const name = options.pkg.name == null ? undefined : options.pkg.name;
 	const encodedName = options.pkg.name == null ? undefined : encodeURIComponent(options.pkg.name);
 	const repoUrl = takeGithubRepositoryName(options.pkg);
 	const encodedRepoUrl = repoUrl == null ? undefined : encodeURIComponent(repoUrl);
@@ -52,13 +50,13 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 	}
 
 	// Unless explicitly excluded, and if possible, generate a badge for the package dependencies
-	if (!excluded.has(BadgeKind.DEPENDENCIES) && name != null && encodedName != null) {
+	if (!excluded.has(BadgeKind.DEPENDENCIES) && repoUrl != null && encodedRepoUrl != null) {
 		result[BadgeKind.NPM] = [
 			formatUrl({
-				url: `https://david-dm.org/${stripLeadingIfMatched(name, "@")}`,
+				url: `https://david-dm.org/${repoUrl}`,
 				inner: formatImage({
 					alt: `Dependencies`,
-					url: `https://img.shields.io/david/${stripLeadingIfMatched(encodedName, "@")}.svg`
+					url: `https://img.shields.io/david/${encodedRepoUrl}.svg`
 				})
 			})
 		];
