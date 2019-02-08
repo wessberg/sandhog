@@ -51,7 +51,7 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 
 	// Unless explicitly excluded, and if possible, generate a badge for the package dependencies
 	if (!excluded.has(BadgeKind.DEPENDENCIES) && repoUrl != null && encodedRepoUrl != null) {
-		result[BadgeKind.NPM] = [
+		result[BadgeKind.DEPENDENCIES] = [
 			formatUrl({
 				url: `https://david-dm.org/${repoUrl}`,
 				inner: formatImage({
