@@ -13,6 +13,7 @@
 <!-- SHADOW_SECTION_BADGES_START -->
 
 <a href="https://npmcharts.com/compare/%40wessberg%2Fscaffold?minimal=true"><img alt="Downloads per month" src="https://img.shields.io/npm/dm/%40wessberg%2Fscaffold.svg"    /></a>
+<a href="https://www.npmjs.com/package/%40wessberg%2Fscaffold"><img alt="NPM version" src="https://badge.fury.io/js/%40wessberg%2Fscaffold.svg"    /></a>
 <a href="https://david-dm.org/wessberg/scaffold"><img alt="Dependencies" src="https://img.shields.io/david/wessberg%2Fscaffold.svg"    /></a>
 <a href="https://github.com/wessberg/scaffold/graphs/contributors"><img alt="Contributors" src="https://img.shields.io/github/contributors/wessberg%2Fscaffold.svg"    /></a>
 <a href="https://github.com/prettier/prettier"><img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square"    /></a>

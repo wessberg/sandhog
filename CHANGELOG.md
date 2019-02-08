@@ -1,3 +1,9 @@
+## [1.0.16](https://github.com/wessberg/scaffold/compare/v1.0.15...v1.0.16) (2019-02-08)
+
+### Bug Fixes
+
+- **badge:** fixes an issue where the NPM badge would not be generated ([5e970d9](https://github.com/wessberg/scaffold/commit/5e970d9))
+
 ## [1.0.15](https://github.com/wessberg/scaffold/compare/v1.0.14...v1.0.15) (2019-02-07)
 
 ### Bug Fixes
