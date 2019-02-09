@@ -221,7 +221,7 @@ async function generateFeaturesSection(context: GenerateReadmeContext): Promise<
  * @param {GenerateReadmeContext} context
  */
 async function generateFaqSection(context: GenerateReadmeContext): Promise<void> {
-	setSection(context, SectionKind.FAQ, `### FAQ\n\n`);
+	setSection(context, SectionKind.FAQ, `## FAQ\n\n`);
 }
 
 /**
