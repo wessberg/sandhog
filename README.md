@@ -301,7 +301,7 @@ When you run the `readme` command, a README will be generated (or your existing 
 ```markdown
 <!-- SHADOW_SECTION_FAQ_START -->
 
-### FAQ
+## FAQ
 
 <!-- SHADOW_SECTION_FAQ_END -->
 ```

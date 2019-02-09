@@ -1,3 +1,9 @@
+## [1.0.17](https://github.com/wessberg/scaffold/compare/v1.0.16...v1.0.17) (2019-02-09)
+
+### Bug Fixes
+
+- **readme:** fixes FAQ section heading size ([f2ae74c](https://github.com/wessberg/scaffold/commit/f2ae74c))
+
 ## [1.0.16](https://github.com/wessberg/scaffold/compare/v1.0.15...v1.0.16) (2019-02-08)
 
 ### Bug Fixes
