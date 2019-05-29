@@ -79,14 +79,14 @@ export function createCommand<T extends CreateCommandOptions>(options: T, action
 		const actionOptions = {} as CommandActionOptions<T>;
 		for (let i = 0; i < args.length; i++) {
 			if (argKeys[i] == null) continue;
-			actionOptions[argKeys[i]] = args[i] as any;
+			actionOptions[argKeys[i] as keyof typeof actionOptions] = args[i] as any;
 		}
 
 		// Take the last argument
 		const lastArg = args[args.length - 1];
 		// Apply all option values
 		for (const key of optionKeys) {
-			actionOptions[key] = (lastArg as any)[key];
+			actionOptions[key as keyof typeof actionOptions] = (lastArg as any)[key];
 		}
 
 		// Invoke the action
