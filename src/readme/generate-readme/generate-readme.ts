@@ -298,7 +298,11 @@ async function generateMaintainersSection(context: GenerateReadmeContext): Promi
 		}
 
 		if (contributor.twitter != null) {
-			str += `<br>[@${contributor.twitter}](https://twitter.com/${contributor.twitter})`;
+			str += `<br><strong>Twitter</strong>: [@${contributor.twitter}](https://twitter.com/${contributor.twitter})`;
+		}
+
+		if (contributor.github != null) {
+			str += `<br><strong>Github</strong>: [@${contributor.github}](https://github.com/${contributor.github})`;
 		}
 
 		// Also add the role of the contributor, if available
