@@ -5,4 +5,5 @@ export type Contributor = Partial<{
 	role: string;
 	imageUrl: string;
 	twitter: string;
+	github: string;
 }>;

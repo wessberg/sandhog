@@ -8,6 +8,7 @@ import {findPackage} from "../../package/find-package/find-package";
 import {ILogger} from "../../logger/i-logger";
 import {FileSystem} from "../../file-system/file-system";
 import json5 from "json5";
+import yaml from "yaml";
 
 /**
  * Finds a scaffold config if possible
@@ -46,20 +47,36 @@ async function findConfigRecursiveStep(root: string, logger: ILogger, fs: Pick<F
 	const absolutePaths =
 		filename != null
 			? [isAbsolute(filename) ? filename : join(root, filename)]
-			: [join(root, CONSTANT.CONFIG_FILENAME_JS), join(root, CONSTANT.CONFIG_FILENAME_JSON), join(root, CONSTANT.CONFIG_FILENAME_JSON5), join(root, CONSTANT.CONFIG_FILENAME_RC)];
+			: [
+					join(root, CONSTANT.CONFIG_FILENAME_JS),
+					join(root, CONSTANT.CONFIG_FILENAME_JSON),
+					join(root, CONSTANT.CONFIG_FILENAME_JSON5),
+					join(root, CONSTANT.CONFIG_FILENAME_YAML),
+					join(root, CONSTANT.CONFIG_FILENAME_YML),
+					join(root, CONSTANT.CONFIG_FILENAME_RC)
+			  ];
 
 	for (const path of absolutePaths) {
 		logger.debug(`Checking path for config: ${path}`);
 		if (fs.existsSync(path)) {
 			logger.debug(`Matched config at path: ${path}`);
+			const ext = extname(path);
 
-			// If it is extension-less, parse it as JSON5
-			if (extname(path) === "" || extname(path) === ".json5" || extname(path) === ".json") {
-				return json5.parse(fs.readFileSync(path, "utf8"));
+			switch (ext) {
+				case "":
+				case ".json5":
+				case ".json":
+					// If it is extension-less, or if it has a .json[5] extension, parse it as JSON5
+					return json5.parse(fs.readFileSync(path, "utf8"));
+
+				case ".yml":
+				case ".yaml":
+					// If it has a .y[a]ml extension, parse it as YAML
+					return yaml.parse(fs.readFileSync(path, "utf8"));
+				default:
+					// Otherwise, use the module loader directly
+					return await import(path);
 			}
-
-			// Otherwise, use the module loader directly
-			return await import(path);
 		}
 	}
 

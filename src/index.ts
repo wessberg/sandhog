@@ -6,6 +6,8 @@ export {generateContributing} from "./contributing/generate-contributing/generat
 export {GenerateContributingOptions} from "./contributing/generate-contributing/generate-contributing-options";
 export {generateCoc} from "./coc/generate-coc/generate-coc";
 export {GenerateCocOptions} from "./coc/generate-coc/generate-coc-options";
+export {generateFunding} from "./funding/generate-funding/generate-funding";
+export {GenerateFundingOptions} from "./funding/generate-funding/generate-funding-options";
 export {BadgeKind} from "./badge/badge-kind";
 export {SectionKind} from "./section/section-kind";
 export {ILogger} from "./logger/i-logger";

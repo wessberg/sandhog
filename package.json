@@ -15,7 +15,8 @@
 		"generate:license": "bin/scaffold license --yes",
 		"generate:contributing": "bin/scaffold contributing --yes",
 		"generate:coc": "bin/scaffold coc --yes",
-		"generate:all": "npm run generate:license & npm run generate:contributing & npm run generate:coc & npm run generate:readme && npm run generate:changelog",
+		"generate:funding": "bin/scaffold funding --yes",
+		"generate:all": "bin/scaffold all --yes && npm run generate:changelog",
 		"clean:dist": "rm -rf dist",
 		"clean:compiled": "rm -rf compiled",
 		"clean": "npm run clean:dist && npm run clean:compiled",
@@ -49,17 +50,19 @@
 		"@types/inquirer": "6.0.3",
 		"@types/json5": "0.0.30",
 		"@types/prettier": "1.16.4",
+		"@types/yaml": "1.0.2",
 		"chalk": "2.4.2",
 		"commander": "2.20.0",
 		"eslint": "5.16.0",
 		"inquirer": "6.3.1",
 		"json5": "2.1.0",
+		"yaml": "1.6.0",
 		"markdown-toc": "1.2.0",
 		"prettier": "1.17.1",
 		"tslint": "5.16.0"
 	},
 	"devDependencies": {
-		"@wessberg/rollup-plugin-ts": "1.1.53",
+		"@wessberg/rollup-plugin-ts": "1.1.54",
 		"@wessberg/ts-config": "0.0.39",
 		"ava": "1.4.1",
 		"husky": "2.3.0",
@@ -90,7 +93,8 @@
 			"url": "https://github.com/wessberg",
 			"imageUrl": "https://avatars2.githubusercontent.com/u/20454213?s=460&v=4",
 			"role": "Lead Developer",
-			"twitter": "FredWessberg"
+			"twitter": "FredWessberg",
+			"github": "wessberg"
 		}
 	],
 	"engines": {
