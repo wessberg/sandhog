@@ -1,3 +1,9 @@
+## [1.0.18](https://github.com/wessberg/scaffold/compare/v1.0.17...v1.0.18) (2019-05-29)
+
+### Features
+
+- **funding:** adds two new commands: 'funding', which generates a config-driven .github/FUNDING.yml file for supporting Github Sponsors, as well as the 'all' command, which generates all of the files that scaffold supports in a single command ([dace835](https://github.com/wessberg/scaffold/commit/dace835))
+
 ## [1.0.17](https://github.com/wessberg/scaffold/compare/v1.0.16...v1.0.17) (2019-02-09)
 
 ### Bug Fixes
