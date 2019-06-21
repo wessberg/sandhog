@@ -1,3 +1,5 @@
+## [1.0.19](https://github.com/wessberg/scaffold/compare/v1.0.18...v1.0.19) (2019-06-21)
+
 ## [1.0.18](https://github.com/wessberg/scaffold/compare/v1.0.17...v1.0.18) (2019-05-29)
 
 ### Features
