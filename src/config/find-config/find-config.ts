@@ -43,7 +43,12 @@ export async function findConfig({
  * @param {string} [filename]
  * @returns {Promise<DeepPartial<ScaffoldConfig>?>}
  */
-async function findConfigRecursiveStep(root: string, logger: ILogger, fs: Pick<FileSystem, "existsSync" | "readFileSync">, filename?: string): Promise<DeepPartial<ScaffoldConfig> | undefined> {
+async function findConfigRecursiveStep(
+	root: string,
+	logger: ILogger,
+	fs: Pick<FileSystem, "existsSync" | "readFileSync">,
+	filename?: string
+): Promise<DeepPartial<ScaffoldConfig> | undefined> {
 	const absolutePaths =
 		filename != null
 			? [isAbsolute(filename) ? filename : join(root, filename)]

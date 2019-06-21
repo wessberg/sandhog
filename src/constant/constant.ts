@@ -19,7 +19,12 @@ export const CONSTANT = {
 	ESLINT_AIRBNB_CODE_STYLE_HINT: "eslint-config-airbnb",
 	ESLINT_XO_CODE_STYLE_NAME: "xo",
 	ESLINT_STANDARD_CODE_STYLE_NAME: "standard",
-	ESLINT_STANDARD_CODE_STYLE_HINTS: ["standard/object-curly-even-spacing", "standard/array-bracket-even-spacing", "standard/computed-property-even-spacing", "standard/no-callback-literal"],
+	ESLINT_STANDARD_CODE_STYLE_HINTS: [
+		"standard/object-curly-even-spacing",
+		"standard/array-bracket-even-spacing",
+		"standard/computed-property-even-spacing",
+		"standard/no-callback-literal"
+	],
 	TSLINT_AIRBNB_CODE_STYLE_NAME: "tslint-config-airbnb",
 	TSLINT_STANDARD_CODE_STYLE_NAME: "tslint-config-standard",
 	TSLINT_PRETTIER_CODE_STYLE_NAME: "tslint-config-prettier",

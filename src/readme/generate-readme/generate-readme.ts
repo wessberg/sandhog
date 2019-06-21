@@ -235,7 +235,15 @@ async function generateInstallSection(context: GenerateReadmeContext): Promise<v
 	setSection(
 		context,
 		SectionKind.INSTALL,
-		`## Install\n\n` + `### NPM\n\n` + "```\n" + `$ npm install ${context.pkg.name}\n` + "```\n\n" + `### Yarn\n\n` + "```\n" + `$ yarn add ${context.pkg.name}\n` + "```"
+		`## Install\n\n` +
+			`### NPM\n\n` +
+			"```\n" +
+			`$ npm install ${context.pkg.name}\n` +
+			"```\n\n" +
+			`### Yarn\n\n` +
+			"```\n" +
+			`$ yarn add ${context.pkg.name}\n` +
+			"```"
 	);
 }
 
@@ -258,7 +266,9 @@ async function generateContributingSection(context: GenerateReadmeContext): Prom
 	setSection(
 		context,
 		SectionKind.CONTRIBUTING,
-		!context.fs.existsSync(contributingFilePath) ? "" : `## Contributing\n\n` + `Do you want to contribute? Awesome! Please follow [these recommendations](./${CONSTANT.CONTRIBUTING_FILENAME}).`
+		!context.fs.existsSync(contributingFilePath)
+			? ""
+			: `## Contributing\n\n` + `Do you want to contribute? Awesome! Please follow [these recommendations](./${CONSTANT.CONTRIBUTING_FILENAME}).`
 	);
 }
 
@@ -325,7 +335,9 @@ async function generateBackersSection(context: GenerateReadmeContext): Promise<v
 	if (context.config.donate.patreon.userId != null) {
 		content +=
 			`### Patreon\n\n` +
-			`[Become a backer](${CONSTANT.PATREON_DONATE_URL(context.config.donate.patreon.userId)}) and get your name, avatar, and Twitter handle listed here.\n\n` +
+			`[Become a backer](${CONSTANT.PATREON_DONATE_URL(
+				context.config.donate.patreon.userId
+			)}) and get your name, avatar, and Twitter handle listed here.\n\n` +
 			formatUrl({
 				url: CONSTANT.PATREON_DONATE_URL(context.config.donate.patreon.userId),
 				inner: formatImage({
@@ -340,7 +352,9 @@ async function generateBackersSection(context: GenerateReadmeContext): Promise<v
 	if (context.config.donate.openCollective.project != null) {
 		content +=
 			`### Open Collective\n\n` +
-			`[Become a sponsor/backer](${CONSTANT.OPEN_COLLECTIVE_DONATE_URL(context.config.donate.openCollective.project)}) and get your logo listed here.\n\n` +
+			`[Become a sponsor/backer](${CONSTANT.OPEN_COLLECTIVE_DONATE_URL(
+				context.config.donate.openCollective.project
+			)}) and get your logo listed here.\n\n` +
 			`#### Sponsors\n\n` +
 			formatUrl({
 				url: CONSTANT.OPEN_COLLECTIVE_CONTRIBUTORS_URL(context.config.donate.openCollective.project),
@@ -362,7 +376,11 @@ async function generateBackersSection(context: GenerateReadmeContext): Promise<v
 			"\n\n";
 	}
 
-	setSection(context, SectionKind.BACKERS, context.config.donate.patreon.userId == null && context.config.donate.openCollective.project == null ? "" : `## Backers\n\n` + content);
+	setSection(
+		context,
+		SectionKind.BACKERS,
+		context.config.donate.patreon.userId == null && context.config.donate.openCollective.project == null ? "" : `## Backers\n\n` + content
+	);
 }
 
 /**

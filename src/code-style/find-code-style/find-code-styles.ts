@@ -21,7 +21,12 @@ import {getCodeStyleForCodeStyleKind} from "../get-code-style-for-code-style-kin
  * @param {FindLicenseOptions} options
  * @returns {Promise<CodeStyle[]>}
  */
-export async function findCodeStyles({logger, root = process.cwd(), fs = {existsSync: _existsSync}, pkg}: FindCodeStylesOptions): Promise<CodeStyle[]> {
+export async function findCodeStyles({
+	logger,
+	root = process.cwd(),
+	fs = {existsSync: _existsSync},
+	pkg
+}: FindCodeStylesOptions): Promise<CodeStyle[]> {
 	if (pkg == null) {
 		pkg = (await findPackage({root, logger, fs})).pkg;
 	}
@@ -55,7 +60,11 @@ export async function findCodeStyles({logger, root = process.cwd(), fs = {exists
 
 		// Log the results
 		eslintCodeStyles.length > 0
-			? logger.debug(`Detected ${listFormat(eslintCodeStyles.map(style => `"${style}"`), "and")} as project code style${eslintCodeStyles.length === 1 ? "" : "s"}`)
+			? logger.debug(
+					`Detected ${listFormat(eslintCodeStyles.map(style => `"${style}"`), "and")} as project code style${
+						eslintCodeStyles.length === 1 ? "" : "s"
+					}`
+			  )
 			: logger.debug(`No code styles detected inside ESLint config`);
 
 		codeStyles.push(...eslintCodeStyles);
@@ -68,7 +77,11 @@ export async function findCodeStyles({logger, root = process.cwd(), fs = {exists
 
 		// Log the results
 		tslintCodeStyles.length > 0
-			? logger.debug(`Detected ${listFormat(tslintCodeStyles.map(style => `"${style}"`), "and")} as project code style${tslintCodeStyles.length === 1 ? "" : "s"}`)
+			? logger.debug(
+					`Detected ${listFormat(tslintCodeStyles.map(style => `"${style}"`), "and")} as project code style${
+						tslintCodeStyles.length === 1 ? "" : "s"
+					}`
+			  )
 			: logger.debug(`No code styles detected inside TSLint config`);
 
 		codeStyles.push(...tslintCodeStyles);
@@ -88,7 +101,9 @@ function getCodeStylesFromEslintConfig(config: Linter.Config & {extends?: string
 	const codeStyles: CodeStyleKind[] = [];
 
 	// Check if it contains the Airbnb Style Guide
-	const containsAirbnb = config.extends != null && config.extends.some(element => element === CONSTANT.ESLINT_AIRBNB_CODE_STYLE_NAME || element.includes(CONSTANT.ESLINT_AIRBNB_CODE_STYLE_HINT));
+	const containsAirbnb =
+		config.extends != null &&
+		config.extends.some(element => element === CONSTANT.ESLINT_AIRBNB_CODE_STYLE_NAME || element.includes(CONSTANT.ESLINT_AIRBNB_CODE_STYLE_HINT));
 
 	if (containsAirbnb) {
 		codeStyles.push(CodeStyleKind.AIRBNB);
@@ -255,5 +270,9 @@ async function isXo(pkg: Package): Promise<boolean> {
  * @returns {Promise<boolean>}
  */
 async function isStandard(pkg: Package): Promise<boolean> {
-	return "standard" in pkg || (pkg.dependencies != null && "standard" in pkg.dependencies) || (pkg.devDependencies != null && "standard" in pkg.devDependencies);
+	return (
+		"standard" in pkg ||
+		(pkg.dependencies != null && "standard" in pkg.dependencies) ||
+		(pkg.devDependencies != null && "standard" in pkg.devDependencies)
+	);
 }

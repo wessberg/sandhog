@@ -15,7 +15,12 @@ import {detectLicense} from "../detect-license/detect-license";
  * @param {FindLicenseOptions} options
  * @returns {LicenseName?}
  */
-export async function findLicense({logger, root = process.cwd(), fs = {existsSync: _existsSync, readFileSync: _readFileSync}, pkg}: FindLicenseOptions): Promise<LicenseName | undefined> {
+export async function findLicense({
+	logger,
+	root = process.cwd(),
+	fs = {existsSync: _existsSync, readFileSync: _readFileSync},
+	pkg
+}: FindLicenseOptions): Promise<LicenseName | undefined> {
 	if (pkg == null) {
 		pkg = (await findPackage({root, logger, fs})).pkg;
 	}

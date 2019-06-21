@@ -109,7 +109,12 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 	}
 
 	// Unless explicitly excluded, and if possible, generate a badge for supporting on Patreon
-	if (!excluded.has(BadgeKind.PATREON) && options.config.donate != null && options.config.donate.patreon != null && options.config.donate.patreon.userId != null) {
+	if (
+		!excluded.has(BadgeKind.PATREON) &&
+		options.config.donate != null &&
+		options.config.donate.patreon != null &&
+		options.config.donate.patreon.userId != null
+	) {
 		result[BadgeKind.PATREON] = [
 			formatUrl({
 				url: CONSTANT.PATREON_DONATE_URL(options.config.donate.patreon.userId),
@@ -122,7 +127,12 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 	}
 
 	// Unless explicitly excluded, and if possible, generate a badge for supporting on Open Collective
-	if (!excluded.has(BadgeKind.OPEN_COLLECTIVE_DONATE) && options.config.donate != null && options.config.donate.openCollective != null && options.config.donate.openCollective.project != null) {
+	if (
+		!excluded.has(BadgeKind.OPEN_COLLECTIVE_DONATE) &&
+		options.config.donate != null &&
+		options.config.donate.openCollective != null &&
+		options.config.donate.openCollective.project != null
+	) {
 		result[BadgeKind.OPEN_COLLECTIVE_DONATE] = [
 			formatUrl({
 				url: CONSTANT.OPEN_COLLECTIVE_DONATE_URL(options.config.donate.openCollective.project),
@@ -135,7 +145,12 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 	}
 
 	// Unless explicitly excluded, and if possible, generate a badge for listing the amount of backers on Open Collective
-	if (!excluded.has(BadgeKind.OPEN_COLLECTIVE_BACKERS) && options.config.donate != null && options.config.donate.openCollective != null && options.config.donate.openCollective.project != null) {
+	if (
+		!excluded.has(BadgeKind.OPEN_COLLECTIVE_BACKERS) &&
+		options.config.donate != null &&
+		options.config.donate.openCollective != null &&
+		options.config.donate.openCollective.project != null
+	) {
 		result[BadgeKind.OPEN_COLLECTIVE_BACKERS] = [
 			formatUrl({
 				url: CONSTANT.OPEN_COLLECTIVE_CONTRIBUTORS_URL(options.config.donate.openCollective.project),
@@ -148,7 +163,12 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 	}
 
 	// Unless explicitly excluded, and if possible, generate a badge for listing the amount of sponsors on Open Collective
-	if (!excluded.has(BadgeKind.OPEN_COLLECTIVE_SPONSORS) && options.config.donate != null && options.config.donate.openCollective != null && options.config.donate.openCollective.project != null) {
+	if (
+		!excluded.has(BadgeKind.OPEN_COLLECTIVE_SPONSORS) &&
+		options.config.donate != null &&
+		options.config.donate.openCollective != null &&
+		options.config.donate.openCollective.project != null
+	) {
 		result[BadgeKind.OPEN_COLLECTIVE_SPONSORS] = [
 			formatUrl({
 				url: CONSTANT.OPEN_COLLECTIVE_CONTRIBUTORS_URL(options.config.donate.openCollective.project),

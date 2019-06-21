@@ -34,7 +34,10 @@ export async function getConfig(options: FindConfigOptions): Promise<ScaffoldCon
 		prettier: config.prettier == null ? defaultConfig.prettier : (config.prettier as Options),
 		donate: {
 			patreon: {
-				userId: config.donate == null || config.donate.patreon == null || config.donate.patreon.userId == null ? defaultConfig.donate.patreon.userId : config.donate.patreon.userId
+				userId:
+					config.donate == null || config.donate.patreon == null || config.donate.patreon.userId == null
+						? defaultConfig.donate.patreon.userId
+						: config.donate.patreon.userId
 			},
 			openCollective: {
 				project:
@@ -46,7 +49,9 @@ export async function getConfig(options: FindConfigOptions): Promise<ScaffoldCon
 		readme: {
 			badges: {
 				exclude:
-					config.readme == null || config.readme.badges == null || config.readme.badges.exclude == null ? defaultConfig.readme.badges.exclude : (config.readme.badges.exclude as Iterable<BadgeKind>)
+					config.readme == null || config.readme.badges == null || config.readme.badges.exclude == null
+						? defaultConfig.readme.badges.exclude
+						: (config.readme.badges.exclude as Iterable<BadgeKind>)
 			},
 			sections: {
 				exclude:
