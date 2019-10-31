@@ -34,6 +34,10 @@ export async function getConfig(options: FindConfigOptions): Promise<ScaffoldCon
 		prettier: config.prettier == null ? defaultConfig.prettier : (config.prettier as Options),
 		donate: {
 			patreon: {
+				username:
+					config.donate == null || config.donate.patreon == null || config.donate.patreon.username == null
+						? defaultConfig.donate.patreon.username
+						: config.donate.patreon.username,
 				userId:
 					config.donate == null || config.donate.patreon == null || config.donate.patreon.userId == null
 						? defaultConfig.donate.patreon.userId

@@ -4,6 +4,7 @@ import {Options} from "prettier";
 
 export interface PatreonConfig {
 	userId?: string;
+	username?: string;
 }
 
 export interface OpenCollectiveConfig {

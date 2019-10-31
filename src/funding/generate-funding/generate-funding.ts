@@ -21,8 +21,8 @@ export function generateFunding({contributors, prettier, config}: GenerateFundin
 		yaml += `github: [${githubUserNames.join(", ")}]\n`;
 	}
 
-	if (config.donate.patreon.userId != null) {
-		yaml += `patreon: ${config.donate.patreon.userId}`;
+	if (config.donate.patreon.username != null) {
+		yaml += `patreon: ${config.donate.patreon.username}`;
 	}
 
 	if (config.donate.openCollective.project != null) {
