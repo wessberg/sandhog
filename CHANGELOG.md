@@ -1,28 +1,34 @@
+## [1.0.20](https://github.com/wessberg/scaffold/compare/v1.0.19...v1.0.20) (2019-10-31)
+
+### Features
+
+- **patreon:** accepts patreon username as part of config ([d108ed2](https://github.com/wessberg/scaffold/commit/d108ed2afd7d68aed275177725e3d9a7f1b945c5))
+
 ## [1.0.19](https://github.com/wessberg/scaffold/compare/v1.0.18...v1.0.19) (2019-06-21)
 
 ## [1.0.18](https://github.com/wessberg/scaffold/compare/v1.0.17...v1.0.18) (2019-05-29)
 
 ### Features
 
-- **funding:** adds two new commands: 'funding', which generates a config-driven .github/FUNDING.yml file for supporting Github Sponsors, as well as the 'all' command, which generates all of the files that scaffold supports in a single command ([dace835](https://github.com/wessberg/scaffold/commit/dace835))
+- **funding:** adds two new commands: 'funding', which generates a config-driven .github/FUNDING.yml file for supporting Github Sponsors, as well as the 'all' command, which generates all of the files that scaffold supports in a single command ([dace835](https://github.com/wessberg/scaffold/commit/dace8359c37c316b977ac5f2d6c834b9f369c13d))
 
 ## [1.0.17](https://github.com/wessberg/scaffold/compare/v1.0.16...v1.0.17) (2019-02-09)
 
 ### Bug Fixes
 
-- **readme:** fixes FAQ section heading size ([f2ae74c](https://github.com/wessberg/scaffold/commit/f2ae74c))
+- **readme:** fixes FAQ section heading size ([f2ae74c](https://github.com/wessberg/scaffold/commit/f2ae74c00d03887e869c98c9bd58b018dd75527e))
 
 ## [1.0.16](https://github.com/wessberg/scaffold/compare/v1.0.15...v1.0.16) (2019-02-08)
 
 ### Bug Fixes
 
-- **badge:** fixes an issue where the NPM badge would not be generated ([5e970d9](https://github.com/wessberg/scaffold/commit/5e970d9))
+- **badge:** fixes an issue where the NPM badge would not be generated ([5e970d9](https://github.com/wessberg/scaffold/commit/5e970d968f0db64c96700655ccde23875b3de765))
 
 ## [1.0.15](https://github.com/wessberg/scaffold/compare/v1.0.14...v1.0.15) (2019-02-07)
 
 ### Bug Fixes
 
-- **badges:** fixes an issue where the dependencies badge would be wrong for non-scoped packages ([e6b05fe](https://github.com/wessberg/scaffold/commit/e6b05fe))
+- **badges:** fixes an issue where the dependencies badge would be wrong for non-scoped packages ([e6b05fe](https://github.com/wessberg/scaffold/commit/e6b05fece0c705e940056c1b1f359c43d7019a29))
 
 ## [1.0.14](https://github.com/wessberg/scaffold/compare/v1.0.13...v1.0.14) (2019-02-07)
 
@@ -30,26 +36,26 @@
 
 ### Bug Fixes
 
-- **chore:** updates dependencies ([b181ad8](https://github.com/wessberg/scaffold/commit/b181ad8))
-- **chore:** updates dependencies ([81bea0a](https://github.com/wessberg/scaffold/commit/81bea0a))
-- **readme:** removes emojis from headings which was hard to generate relative links to ([5a1f250](https://github.com/wessberg/scaffold/commit/5a1f250))
+- **chore:** updates dependencies ([b181ad8](https://github.com/wessberg/scaffold/commit/b181ad8111aadec5805a4091d06b571a0a33f060))
+- **chore:** updates dependencies ([81bea0a](https://github.com/wessberg/scaffold/commit/81bea0af29049a0bb0102f43414c0a12985a3d20))
+- **readme:** removes emojis from headings which was hard to generate relative links to ([5a1f250](https://github.com/wessberg/scaffold/commit/5a1f250f2129779417c28a2a73c2a5ae0cf1f463))
 
 ## [1.0.10](https://github.com/wessberg/scaffold/compare/v1.0.9...v1.0.10) (2019-02-05)
 
 ### Bug Fixes
 
-- **readme:** fixes an issue with the generation of the Patreon pledger badge ([22a2149](https://github.com/wessberg/scaffold/commit/22a2149))
+- **readme:** fixes an issue with the generation of the Patreon pledger badge ([22a2149](https://github.com/wessberg/scaffold/commit/22a2149b900ac4a77e2a67f0323dabed4c0b384c))
 
 ## [1.0.9](https://github.com/wessberg/scaffold/compare/v1.0.8...v1.0.9) (2019-02-04)
 
 ### Bug Fixes
 
-- **lint:** fixes lint issues ([8742c98](https://github.com/wessberg/scaffold/commit/8742c98))
+- **lint:** fixes lint issues ([8742c98](https://github.com/wessberg/scaffold/commit/8742c98db7fb08bf91955626032fe1e0afc2946f))
 
 ### Features
 
-- **core:** major rewrite ([f50d7a5](https://github.com/wessberg/scaffold/commit/f50d7a5))
-- **core:** major rewrite ([f510154](https://github.com/wessberg/scaffold/commit/f510154))
+- **core:** major rewrite ([f50d7a5](https://github.com/wessberg/scaffold/commit/f50d7a592e69902931cba65e50fa48522883c117))
+- **core:** major rewrite ([f510154](https://github.com/wessberg/scaffold/commit/f510154f3ad328ca1ee140677694e86933e481e8))
 
 ## [1.0.8](https://github.com/wessberg/scaffold/compare/v1.0.7...v1.0.8) (2019-01-21)
 
@@ -71,7 +77,7 @@
 
 ### Bug Fixes
 
-- Fixed linting errors ([55a8746](https://github.com/wessberg/scaffold/commit/55a8746))
+- Fixed linting errors ([55a8746](https://github.com/wessberg/scaffold/commit/55a87460787f70c2e7245ce2c5009c01575e4ddb))
 
 # [0.1.0](https://github.com/wessberg/scaffold/compare/v0.0.8...v0.1.0) (2018-07-02)
 
