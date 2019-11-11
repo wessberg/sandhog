@@ -1,6 +1,6 @@
 {
 	"name": "@wessberg/scaffold",
-	"version": "1.0.21",
+	"version": "1.0.22",
 	"bin": {
 		"scaffold": "bin/scaffold"
 	},
