@@ -48,7 +48,7 @@
 		"@types/prettier": "1.18.3",
 		"@types/yaml": "1.2.0",
 		"chalk": "3.0.0",
-		"commander": "4.0.0",
+		"commander": "4.0.1",
 		"eslint": "6.6.0",
 		"inquirer": "7.0.0",
 		"json5": "2.1.1",
@@ -58,15 +58,15 @@
 		"tslint": "5.20.1"
 	},
 	"devDependencies": {
-		"@wessberg/rollup-plugin-ts": "1.1.74",
+		"@wessberg/rollup-plugin-ts": "1.1.75",
 		"@wessberg/ts-config": "0.0.42",
 		"ava": "2.4.0",
 		"husky": "3.0.9",
 		"magic-string": "^0.25.4",
 		"np": "5.1.3",
 		"pretty-quick": "2.0.1",
-		"rollup": "1.26.4",
-		"standard-changelog": "2.0.15",
+		"rollup": "1.26.5",
+		"standard-changelog": "2.0.17",
 		"typescript": "3.7.2"
 	},
 	"main": "./dist/index.js",
