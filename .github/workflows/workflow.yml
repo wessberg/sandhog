@@ -27,7 +27,7 @@ jobs:
         id: cache
         with:
           path: node_modules
-          key: ${{ runner.os }}-${{ matrix.node }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-${{ matrix.node }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-${{ matrix.node }}-node-
 
