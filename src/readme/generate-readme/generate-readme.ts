@@ -236,13 +236,17 @@ async function generateInstallSection(context: GenerateReadmeContext): Promise<v
 		context,
 		SectionKind.INSTALL,
 		`## Install\n\n` +
-			`### NPM\n\n` +
+			`### npm\n\n` +
 			"```\n" +
 			`$ npm install ${context.pkg.name}\n` +
 			"```\n\n" +
 			`### Yarn\n\n` +
 			"```\n" +
 			`$ yarn add ${context.pkg.name}\n` +
+			"```\n\n" +
+			`### pnpm\n\n` +
+			"```\n" +
+			`$ pnpm add ${context.pkg.name}\n` +
 			"```"
 	);
 }
@@ -397,6 +401,10 @@ async function generateLicenseSection(context: GenerateReadmeContext): Promise<v
 		SectionKind.LICENSE,
 		license == null || !context.fs.existsSync(licenseFilePath)
 			? ""
-			: `## License\n\n` + `${license} © ${listFormat(contributors.map(contributor => formatContributor(contributor, "markdown")), "and")}`
+			: `## License\n\n` +
+					`${license} © ${listFormat(
+						contributors.map(contributor => formatContributor(contributor, "markdown")),
+						"and"
+					)}`
 	);
 }
