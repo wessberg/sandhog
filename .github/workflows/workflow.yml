@@ -31,8 +31,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-${{ matrix.node }}-node-
 
+      - name: Setup pnpm
+        run: npm install pnpm -g
+
       - name: Install
-        run: npm install pnpm -g && pnpm install
+        run: pnpm install
 
       - name: Lint
         run: pnpm run lint
