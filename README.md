@@ -107,7 +107,7 @@ Scaffold works out of the box without any configuration. Some highlights include
 
 ## Install
 
-### NPM
+### npm
 
 ```
 $ npm install @wessberg/scaffold
@@ -117,6 +117,12 @@ $ npm install @wessberg/scaffold
 
 ```
 $ yarn add @wessberg/scaffold
+```
+
+### pnpm
+
+```
+$ pnpm add @wessberg/scaffold
 ```
 
 <!-- SHADOW_SECTION_INSTALL_END -->
