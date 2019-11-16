@@ -18,7 +18,7 @@ export default {
 	treeshake: true,
 	plugins: [
 		ts({
-			tsconfig: process.env.NODE_ENV === "production" ? "tsconfig.dist.json" : "tsconfig.json"
+			tsconfig: "tsconfig.build.json"
 		})
 	],
 	external: [...Object.keys(packageJSON.dependencies), ...Object.keys(packageJSON.devDependencies), ...builtinModules]

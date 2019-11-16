@@ -2,6 +2,7 @@
 	"extends": "@wessberg/ts-config",
 	"compilerOptions": {
 		"target": "es2017",
-		"lib": ["es5", "es2015", "es6", "es7", "es2016", "es2017", "esnext"]
+		"lib": ["es5", "es2015", "es6", "es7", "es2016", "es2017", "esnext"],
+		"module": "commonjs"
 	}
 }
