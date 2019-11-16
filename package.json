@@ -20,7 +20,7 @@
 		"prettier": "prettier --write '{src,test,documentation}/**/*.{js,ts,json,html,xml,css,md}'",
 		"tsc:test": "tsc --module commonjs",
 		"pretest": "pnpm run clean:compiled && npm run tsc:test",
-		"test": "NODE_ENV=TEST ava",
+		"test": "ava",
 		"posttest": "pnpm run clean:compiled",
 		"prebuild": "npm run clean:dist",
 		"build": "pnpm run rollup",
@@ -103,5 +103,19 @@
 		"hooks": {
 			"pre-commit": "pretty-quick --staged"
 		}
+	},
+	"ava": {
+		"files": [
+			"test/**/**.test.ts"
+		],
+		"verbose": true,
+		"failFast": true,
+		"compileEnhancements": false,
+		"extensions": [
+			"ts"
+		],
+		"require": [
+			"ts-node/register/transpile-only"
+		]
 	}
 }
