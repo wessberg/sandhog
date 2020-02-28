@@ -12,8 +12,9 @@ import yaml from "yaml";
 
 /**
  * Finds a scaffold config if possible
- * @param {FindConfigOptions} options
- * @returns {Promise<DeepPartial<ScaffoldConfig>?>}
+ *
+ * @param options
+ * @returns
  */
 export async function findConfig({
 	filename,
@@ -37,11 +38,12 @@ export async function findConfig({
 
 /**
  * The recursive step of the findConfig algorithm
- * @param {string} root
- * @param {ILogger} logger
- * @param {Pick<FileSystem, "existsSync">} fs
- * @param {string} [filename]
- * @returns {Promise<DeepPartial<ScaffoldConfig>?>}
+ *
+ * @param root
+ * @param logger
+ * @param fs
+ * @param [filename]
+ * @returns
  */
 async function findConfigRecursiveStep(
 	root: string,

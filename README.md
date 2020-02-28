@@ -166,13 +166,24 @@ Scaffold is highly configurable. You can provide a configuration in a variety of
 		url: "",
 		height: 180
 	},
-	// If Patreon and/or Open Collective donation options is given, badges and backer/sponsor shields will be generated and added to generated or updated README files
+	// If Patreon and/or Open Collective donation options is given, badges and backer/sponsor shields will be generated and added to generated or updated README files.
+	// You can also add "other" sponsors manually, for including sponsors you manually enter
 	donate: {
 		patreon: {
 			userId: ""
 		},
 		openCollective: {
 			project: ""
+		},
+		other: {
+			donors: [
+				{
+					name: "",
+					url: "",
+					imageUrl: "",
+					twitter: ""
+				}
+			]
 		}
 	},
 	readme: {
@@ -514,11 +525,13 @@ Do you want to contribute? Awesome! Please follow [these recommendations](./CONT
 
 ## Backers
 
+| <img alt="Bubbles" src="https://uploads-ssl.webflow.com/5d682047c28b217055606673/5e5360be16879c1d0dca6514_icon-thin-128x128%402x.png" height="70"   /> |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [Bubbles](https://usebubbles.com)<br><strong>Twitter</strong>: [@use_bubbles](https://twitter.com/use_bubbles)                                         |
+
 ### Patreon
 
-[Become a backer](https://www.patreon.com/bePatron?u=11315442) and get your name, avatar, and Twitter handle listed here.
-
-<a href="https://www.patreon.com/bePatron?u=11315442"><img alt="Backers on Patreon" src="https://patreon-badge.herokuapp.com/11315442.png"  width="500"  /></a>
+<a href="https://www.patreon.com/bePatron?u=11315442"><img alt="Patrons on Patreon" src="https://img.shields.io/endpoint.svg?url=https://shieldsio-patreon.herokuapp.com/wessberg"  width="200"  /></a>
 
 <!-- SHADOW_SECTION_BACKERS_END -->
 

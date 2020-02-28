@@ -4,8 +4,9 @@ const REGEX = /(http?s?:\/\/?)?(www\.)?github.com\//g;
 
 /**
  * Takes the Github repository name from the given Package
- * @param {Package} pkg
- * @returns {string}
+ *
+ * @param pkg
+ * @returns
  */
 export function takeGithubRepositoryName(pkg: Package): string | undefined {
 	if (pkg.repository == null || pkg.repository.url == null) return undefined;

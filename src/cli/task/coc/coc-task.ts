@@ -7,8 +7,9 @@ import {confirm} from "../../../util/prompt/confirm";
 
 /**
  * Executes the 'coc' task
- * @param {CocTaskOptions} options
- * @returns {Promise<void>}
+ *
+ * @param options
+ * @returns
  */
 export async function cocTask({pkg, logger, prettier, config, root, fs, yes}: CocTaskOptions): Promise<void> {
 	const contributors = getContributorsFromPackage(pkg);

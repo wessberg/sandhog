@@ -2,8 +2,9 @@ import {LicenseName} from "../license-name";
 
 /**
  * Detects the license of the given text, if possible
- * @param {string} text
- * @returns {LicenseName}
+ *
+ * @param text
+ * @returns
  */
 export function detectLicense(text: string): LicenseName | undefined {
 	if (text.includes("GNU AGPL")) return "AGPL-3.0";

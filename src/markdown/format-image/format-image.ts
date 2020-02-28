@@ -2,8 +2,9 @@ import {FormatImageOptions} from "./format-image-options";
 
 /**
  * Generates a Markdown-formatted image based on the given options
- * @param {FormatImageOptions} options
- * @returns {string}
+ *
+ * @param options
+ * @returns
  */
 export function formatImage({alt, url, height, width, kind = "html"}: FormatImageOptions): string {
 	if (kind === "html") {

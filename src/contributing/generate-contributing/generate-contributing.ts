@@ -3,7 +3,8 @@ import {listFormat} from "../../util/list-format/list-format";
 
 /**
  * Generates a CONTRIBUTING.md based on the given options
- * @param {GenerateContributingOptions} options
+ *
+ * @param options
  */
 export function generateContributing({contributors, prettier, config, pkg}: GenerateContributingOptions): string {
 	return prettier.format(

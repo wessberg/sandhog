@@ -12,8 +12,9 @@ import {detectLicense} from "../detect-license/detect-license";
 /**
  * Finds the project license from the given root directory.
  * It may be listed in the package.json file, or it may exist within the root as a LICENSE.md file already
- * @param {FindLicenseOptions} options
- * @returns {LicenseName?}
+ *
+ * @param options
+ * @returns
  */
 export async function findLicense({
 	logger,
@@ -63,10 +64,11 @@ export async function findLicense({
 
 /**
  * The recursive step of the findConfig algorithm
- * @param {string} root
- * @param {ILogger} logger
- * @param {Pick<FileSystem, "existsSync">} fs
- * @returns {[string, string]?}
+ *
+ * @param root
+ * @param logger
+ * @param fs
+ * @returns
  */
 function findLicenseRecursiveStep(root: string, logger: ILogger, fs: Pick<FileSystem, "existsSync" | "readFileSync">): [string, string] | undefined {
 	const absolutePath = join(root, CONSTANT.LICENSE_FILENAME);

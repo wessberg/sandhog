@@ -4,7 +4,8 @@ import {formatContributor} from "../../../contributor/format-contributor";
 
 /**
  * Generates a GPL-3.0 license
- * @param {GenerateLicenseOptions} options
+ *
+ * @param options
  */
 export function generate({contributors, prettier, config, pkg}: GenerateLicenseOptions): string {
 	return prettier.format(
@@ -642,7 +643,10 @@ to attach them to the start of each source file to most effectively
 state the exclusion of warranty; and each file should have at least
 the "copyright" line and a pointer to where the full notice is found.
 
-    Copyright ${new Date().getFullYear()} ${listFormat(contributors.map(contributor => formatContributor(contributor, "markdown")), "and")}
+    Copyright ${new Date().getFullYear()} ${listFormat(
+			contributors.map(contributor => formatContributor(contributor, "markdown")),
+			"and"
+		)}
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

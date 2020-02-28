@@ -3,8 +3,9 @@ import {CONSTANT} from "../../constant/constant";
 
 /**
  * Generates an URL for a badge based on the given options
- * @param {GenerateBadgeOptions} options
- * @returns {string}
+ *
+ * @param options
+ * @returns
  */
 export function generateBadgeUrl({color, status, subject}: GenerateBadgeOptions): string {
 	return `${CONSTANT.SHIELD_REST_ENDPOINT}/${subject}/${status}/${color}.svg`;

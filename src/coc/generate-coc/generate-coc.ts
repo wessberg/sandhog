@@ -4,7 +4,8 @@ import {listFormat} from "../../util/list-format/list-format";
 
 /**
  * Generates a Code Of Conduct based on the given options
- * @param {GenerateCocOptions} options
+ *
+ * @param options
  */
 export function generateCoc({contributors, prettier, config}: GenerateCocOptions): string {
 	return prettier.format(

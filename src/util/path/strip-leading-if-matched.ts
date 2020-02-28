@@ -1,8 +1,9 @@
 /**
  * Strips the leading part of the given string if it is equal to the given match.
- * @param {string} str
- * @param {string} match
- * @returns {string}
+ *
+ * @param str
+ * @param match
+ * @returns
  */
 export function stripLeadingIfMatched(str: string, match: string): string {
 	const encodedMatch = encodeURIComponent(match);

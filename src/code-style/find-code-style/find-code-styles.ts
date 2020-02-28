@@ -18,8 +18,9 @@ import {getCodeStyleForCodeStyleKind} from "../get-code-style-for-code-style-kin
  * Finds the code kind for the current project from the given root directory, if possible.
  * It will use various heuristics to attempt to do so. For example, if there is a prettier config
  * within the project, it is probably a Prettier project.
- * @param {FindLicenseOptions} options
- * @returns {Promise<CodeStyle[]>}
+ *
+ * @param options
+ * @returns
  */
 export async function findCodeStyles({
 	logger,
@@ -61,9 +62,10 @@ export async function findCodeStyles({
 		// Log the results
 		eslintCodeStyles.length > 0
 			? logger.debug(
-					`Detected ${listFormat(eslintCodeStyles.map(style => `"${style}"`), "and")} as project code style${
-						eslintCodeStyles.length === 1 ? "" : "s"
-					}`
+					`Detected ${listFormat(
+						eslintCodeStyles.map(style => `"${style}"`),
+						"and"
+					)} as project code style${eslintCodeStyles.length === 1 ? "" : "s"}`
 			  )
 			: logger.debug(`No code styles detected inside ESLint config`);
 
@@ -78,9 +80,10 @@ export async function findCodeStyles({
 		// Log the results
 		tslintCodeStyles.length > 0
 			? logger.debug(
-					`Detected ${listFormat(tslintCodeStyles.map(style => `"${style}"`), "and")} as project code style${
-						tslintCodeStyles.length === 1 ? "" : "s"
-					}`
+					`Detected ${listFormat(
+						tslintCodeStyles.map(style => `"${style}"`),
+						"and"
+					)} as project code style${tslintCodeStyles.length === 1 ? "" : "s"}`
 			  )
 			: logger.debug(`No code styles detected inside TSLint config`);
 
@@ -93,8 +96,9 @@ export async function findCodeStyles({
 
 /**
  * Parses the given Config for all CodeStyleKinds
- * @param {Linter.Config} config
- * @returns {CodeStyleKind[]}
+ *
+ * @param config
+ * @returns
  */
 function getCodeStylesFromEslintConfig(config: Linter.Config): CodeStyleKind[] {
 	const ruleKeys = config.rules == null ? [] : Object.keys(config.rules);
@@ -152,8 +156,9 @@ function getCodeStylesFromEslintConfig(config: Linter.Config): CodeStyleKind[] {
 
 /**
  * Parses the given Config for all CodeStyleKinds
- * @param {{extends: string[]}} config
- * @returns {CodeStyleKind[]}
+ *
+ * @param config
+ * @returns
  */
 function getCodeStylesFromTslintConfig(config: {extends: string[]}): CodeStyleKind[] {
 	const codeStyles: CodeStyleKind[] = [];
@@ -184,8 +189,9 @@ function getCodeStylesFromTslintConfig(config: {extends: string[]}): CodeStyleKi
 
 /**
  * Finds (and parses) the found ESLint config, if any, from the given root
- * @param {string} root
- * @returns {Linter.Config?}
+ *
+ * @param root
+ * @returns
  */
 function findEslintConfig(root: string): Linter.Config | undefined {
 	const engine = new CLIEngine({});
@@ -199,9 +205,10 @@ function findEslintConfig(root: string): Linter.Config | undefined {
 
 /**
  * Finds (and parses) the found TSLint config, if any, from the given root
- * @param {string} root
- * @param {Pick<FileSystem, "existsSync">} fs
- * @returns {IConfigurationFile?}
+ *
+ * @param root
+ * @param fs
+ * @returns
  */
 function findTslintConfig(root: string, fs: Pick<FileSystem, "existsSync">): {extends: string[]} | undefined {
 	const path = Configuration.findConfigurationPath(null, root);
@@ -214,8 +221,9 @@ function findTslintConfig(root: string, fs: Pick<FileSystem, "existsSync">): {ex
 
 /**
  * Walks TSLint configs recursively from the given input path, trying to resolve all extended configs
- * @param {string} inputPath
- * @param {Pick<FileSystem, "existsSync">} fs
+ *
+ * @param inputPath
+ * @param fs
  */
 function walkTslintConfigs(inputPath: string, fs: Pick<FileSystem, "existsSync">): string[] {
 	const allExtendedConfigs: string[] = [];
@@ -241,8 +249,9 @@ function walkTslintConfigs(inputPath: string, fs: Pick<FileSystem, "existsSync">
 
 /**
  * Returns a Promise that resolves with a boolean value indicating if the project is a Prettier project
- * @param {string} root
- * @returns {Promise<boolean>}
+ *
+ * @param root
+ * @returns
  */
 async function isPrettier(root: string): Promise<boolean> {
 	// It may throw if the config is malformed, so wrap it in a try-catch;
@@ -258,8 +267,9 @@ async function isPrettier(root: string): Promise<boolean> {
 
 /**
  * Returns a Promise that resolves with a boolean value indicating if the project is an XO project
- * @param {Package} pkg
- * @returns {Promise<boolean>}
+ *
+ * @param pkg
+ * @returns
  */
 async function isXo(pkg: Package): Promise<boolean> {
 	return "xo" in pkg || (pkg.dependencies != null && "xo" in pkg.dependencies) || (pkg.devDependencies != null && "xo" in pkg.devDependencies);
@@ -267,8 +277,9 @@ async function isXo(pkg: Package): Promise<boolean> {
 
 /**
  * Returns a Promise that resolves with a boolean value indicating if the project is a Standard project
- * @param {Package} pkg
- * @returns {Promise<boolean>}
+ *
+ * @param pkg
+ * @returns
  */
 async function isStandard(pkg: Package): Promise<boolean> {
 	return (

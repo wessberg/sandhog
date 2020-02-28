@@ -15,7 +15,8 @@ export class Logger implements ILogger {
 
 	/**
 	 * Logs info-related messages
-	 * @param {string[]} messages
+	 *
+	 * @param messages
 	 */
 	public info(...messages: string[]): void {
 		if (this.logLevel < LogLevel.INFO) return;
@@ -24,7 +25,8 @@ export class Logger implements ILogger {
 
 	/**
 	 * Logs verbose-related messages
-	 * @param {string[]} messages
+	 *
+	 * @param messages
 	 */
 	public verbose(...messages: string[]): void {
 		if (this.logLevel < LogLevel.VERBOSE) return;
@@ -33,7 +35,8 @@ export class Logger implements ILogger {
 
 	/**
 	 * Logs debug-related messages
-	 * @param {string[]} messages
+	 *
+	 * @param messages
 	 */
 	public debug(...messages: string[]): void {
 		if (this.logLevel < LogLevel.DEBUG) return;
@@ -42,7 +45,8 @@ export class Logger implements ILogger {
 
 	/**
 	 * Logs warning-related messages
-	 * @param {string[]} messages
+	 *
+	 * @param messages
 	 */
 	public warn(...messages: string[]): void {
 		console.warn(chalk[this.WARNING_COLOR](`(!)`, ...messages));

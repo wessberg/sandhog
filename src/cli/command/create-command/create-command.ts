@@ -5,8 +5,9 @@ import {CommandAction, CommandActionOptions, CommandOptionType, CreateCommandOpt
 
 /**
  * Coerces the given option value into an acceptable data type
- * @param {CommandOptionType} type
- * @param {*} value
+ *
+ * @param type
+ * @param value
  */
 function coerceOptionValue(
 	type: CommandOptionType,
@@ -32,9 +33,10 @@ function coerceOptionValue(
 
 /**
  * Formats the given option flags
- * @param {string} shortHand
- * @param {string} longHand
- * @returns {string}
+ *
+ * @param shortHand
+ * @param longHand
+ * @returns
  */
 function formatOptionFlags(shortHand: string | undefined, longHand: string): string {
 	const formattedLongHand = `${longHand} [arg]`;
@@ -43,8 +45,9 @@ function formatOptionFlags(shortHand: string | undefined, longHand: string): str
 
 /**
  * Formats the given command name, along with its arguments
- * @param {T} options
- * @returns {string}
+ *
+ * @param options
+ * @returns
  */
 function formatCommandNameWithArgs<T extends CreateCommandOptions>(options: T): string {
 	const formattedArgs = Object.entries(options.args)
@@ -63,8 +66,9 @@ function formatCommandNameWithArgs<T extends CreateCommandOptions>(options: T): 
 
 /**
  * Creates a new command
- * @param {T} options
- * @param {CommandAction<T>} action
+ *
+ * @param options
+ * @param action
  */
 export function createCommand<T extends CreateCommandOptions>(options: T, action: CommandAction<T>): void {
 	// Add the command to the program

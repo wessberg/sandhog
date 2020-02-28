@@ -4,8 +4,9 @@ import {getValuesForEnum} from "../../util/enum/get-values-for-enum";
 
 /**
  * Gets all those sections that are relevant in relation to the given options
- * @param {GetRelevantSectionsOptions} options
- * @returns {Set<SectionKind>}
+ *
+ * @param options
+ * @returns
  */
 export function getRelevantSections({config}: GetRelevantSectionsOptions): Set<SectionKind> {
 	const excluded: Set<SectionKind> = new Set(config.readme.sections.exclude != null ? config.readme.sections.exclude : []);

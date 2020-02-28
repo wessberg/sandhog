@@ -7,7 +7,8 @@ const NAME_EMAIL_URL_REGEXP = /([^<]*)<([^>]*)>\s*\(([^)]*\))/;
 
 /**
  * Ensures that the given input is a proper Contributor
- * @param {Contributor} contributor
+ *
+ * @param contributor
  */
 export function ensureContributor(contributor: string | Contributor): Contributor {
 	if (typeof contributor !== "string") return contributor;

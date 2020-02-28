@@ -4,7 +4,8 @@ import {formatContributor} from "../../../contributor/format-contributor";
 
 /**
  * Generates an Apache-2.0 license
- * @param {GenerateLicenseOptions} options
+ *
+ * @param options
  */
 export function generate({contributors, prettier, config}: GenerateLicenseOptions): string {
 	return prettier.format(
@@ -197,7 +198,10 @@ export function generate({contributors, prettier, config}: GenerateLicenseOption
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
-   Copyright ${new Date().getFullYear()} ${listFormat(contributors.map(contributor => formatContributor(contributor, "markdown")), "and")}
+   Copyright ${new Date().getFullYear()} ${listFormat(
+			contributors.map(contributor => formatContributor(contributor, "markdown")),
+			"and"
+		)}
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.

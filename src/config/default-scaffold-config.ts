@@ -13,6 +13,9 @@ export const DEFAULT_SCAFFOLD_CONFIG: Promise<ScaffoldConfig> = (async () => ({
 		height: 180
 	},
 	donate: {
+		other: {
+			donors: []
+		},
 		patreon: {},
 		openCollective: {}
 	},

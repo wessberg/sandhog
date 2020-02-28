@@ -3,8 +3,9 @@ import {License} from "../license";
 
 /**
  * Gets the License for the given LicenseName
- * @param {LicenseName} licenseName
- * @returns {License}
+ *
+ * @param licenseName
+ * @returns
  */
 export function getLicenseForLicenseName(licenseName: LicenseName): License {
 	switch (licenseName) {

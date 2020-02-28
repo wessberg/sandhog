@@ -4,14 +4,18 @@ import {listFormat} from "../../../util/list-format/list-format";
 
 /**
  * Generates a ZLIB license
- * @param {GenerateLicenseOptions} options
+ *
+ * @param options
  */
 export function generate({contributors, prettier, config}: GenerateLicenseOptions): string {
 	return prettier.format(
 		`\
 zlib License
 
-© ${new Date().getFullYear()} ${listFormat(contributors.map(contributor => formatContributor(contributor, "markdown")), "and")}
+© ${new Date().getFullYear()} ${listFormat(
+			contributors.map(contributor => formatContributor(contributor, "markdown")),
+			"and"
+		)}
 
 This software is provided 'as-is', without any express or implied
 warranty.  In no event will the authors be held liable for any damages

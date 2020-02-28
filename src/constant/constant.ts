@@ -30,9 +30,9 @@ export const CONSTANT = {
 	TSLINT_PRETTIER_CODE_STYLE_NAME: "tslint-config-prettier",
 	SHIELD_REST_ENDPOINT: "https://img.shields.io/badge",
 	PATREON_DONATE_URL: (userId: string) => `https://www.patreon.com/bePatron?u=${userId}`,
+	PATREON_BADGE_URL: (username: string) => `https://img.shields.io/endpoint.svg?url=https://shieldsio-patreon.herokuapp.com/${username}`,
 	OPEN_COLLECTIVE_DONATE_URL: (projectName: string) => `https://opencollective.com/${projectName}/contribute/`,
 	OPEN_COLLECTIVE_CONTRIBUTORS_URL: (projectName: string) => `https://opencollective.com/${projectName}/#contributors`,
 	OPEN_COLLECTIVE_SPONSORS_BADGE_URL: (project: string) => `https://opencollective.com/${project}/sponsors.svg?width=500`,
-	OPEN_COLLECTIVE_BACKERS_BADGE_URL: (project: string) => `https://opencollective.com/${project}/backers.svg?width=500`,
-	PATREON_BADGE_URL: (userId: string, extension: string) => `https://patreon-badge.herokuapp.com/${userId}${extension}`
+	OPEN_COLLECTIVE_BACKERS_BADGE_URL: (project: string) => `https://opencollective.com/${project}/backers.svg?width=500`
 };

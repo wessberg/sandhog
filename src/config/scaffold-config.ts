@@ -1,6 +1,7 @@
 import {SectionKind} from "../section/section-kind";
 import {BadgeKind} from "../badge/badge-kind";
 import {Options} from "prettier";
+import {Contributor} from "../contributor/contributor";
 
 export interface PatreonConfig {
 	userId?: string;
@@ -11,9 +12,14 @@ export interface OpenCollectiveConfig {
 	project?: string;
 }
 
+export interface OtherDonorsConfig {
+	donors: Contributor[];
+}
+
 export interface DonateConfig {
 	patreon: PatreonConfig;
 	openCollective: OpenCollectiveConfig;
+	other: OtherDonorsConfig;
 }
 
 export interface ImageConfig {

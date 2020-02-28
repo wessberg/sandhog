@@ -6,7 +6,8 @@ const SECTION_ENUM_VALUES = getValuesForEnum(SectionKind);
 
 /**
  * Ensures that the given input is a proper SectionKind
- * @param {SectionKind|string} sectionKind
+ *
+ * @param sectionKind
  */
 export function ensureSectionKind(sectionKind: SectionKind | string): SectionKind {
 	if (typeof sectionKind !== "string") return sectionKind;

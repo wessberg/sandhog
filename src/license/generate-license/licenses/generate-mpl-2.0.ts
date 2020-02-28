@@ -2,7 +2,8 @@ import {GenerateLicenseOptions} from "../generate-license-options";
 
 /**
  * Generates a MPL-2.0 license
- * @param {GenerateLicenseOptions} options
+ *
+ * @param options
  */
 export function generate({prettier, config}: GenerateLicenseOptions): string {
 	return prettier.format(

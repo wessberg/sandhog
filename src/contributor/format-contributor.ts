@@ -2,8 +2,9 @@ import {Contributor} from "./contributor";
 
 /**
  * Formats the relevant data of the given contributor
- * @param {Contributor} contributor
- * @param {string} [format]
+ *
+ * @param contributor
+ * @param [format]
  */
 export function formatContributor({name, email, twitter, url}: Contributor, format: "html" | "markdown" | "plain" = "plain"): string {
 	switch (format) {

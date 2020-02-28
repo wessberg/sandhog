@@ -6,8 +6,9 @@ import {generateReadme} from "../../../readme/generate-readme/generate-readme";
 
 /**
  * Executes the 'license' task
- * @param {ReadmeTaskOptions} options
- * @returns {Promise<void>}
+ *
+ * @param options
+ * @returns
  */
 export async function readmeTask(options: ReadmeTaskOptions): Promise<void> {
 	// Find all relevant sections for the README

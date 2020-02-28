@@ -6,7 +6,8 @@ const BADGE_ENUM_VALUES = getValuesForEnum(BadgeKind);
 
 /**
  * Ensures that the given input is a proper BadgeKind
- * @param {BadgeKind|string} badgeKind
+ *
+ * @param badgeKind
  */
 export function ensureBadgeKind(badgeKind: BadgeKind | string): BadgeKind {
 	if (typeof badgeKind !== "string") return badgeKind;

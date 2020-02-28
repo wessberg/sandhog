@@ -3,7 +3,8 @@ import {Contributor} from "../../contributor/contributor";
 
 /**
  * Generates a FUNDING.yml based on the given options
- * @param {GenerateFundingOptions} options
+ *
+ * @param options
  */
 export function generateFunding({contributors, prettier, config}: GenerateFundingOptions): string {
 	let yaml = ``;

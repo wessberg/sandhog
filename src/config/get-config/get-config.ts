@@ -5,12 +5,14 @@ import {DEFAULT_SCAFFOLD_CONFIG} from "../default-scaffold-config";
 import {BadgeKind} from "../../badge/badge-kind";
 import {SectionKind} from "../../section/section-kind";
 import {Options} from "prettier";
+import {Contributor} from "../../contributor/contributor";
 
 /**
  * Gets a ScaffoldConfig. Will attempt to resolve a config and fall back to defaults
  * if no such config could be found
+ *
  * @type {FindConfigOptions} options
- * @returns {Promise<ScaffoldConfig>}
+ * @returns
  */
 export async function getConfig(options: FindConfigOptions): Promise<ScaffoldConfig> {
 	// Resolve the config
@@ -33,6 +35,12 @@ export async function getConfig(options: FindConfigOptions): Promise<ScaffoldCon
 		},
 		prettier: config.prettier == null ? defaultConfig.prettier : (config.prettier as Options),
 		donate: {
+			other: {
+				donors:
+					config.donate == null || config.donate.other == null || config.donate.other.donors == null
+						? defaultConfig.donate.other.donors
+						: (config.donate.other.donors as Contributor[])
+			},
 			patreon: {
 				username:
 					config.donate == null || config.donate.patreon == null || config.donate.patreon.username == null

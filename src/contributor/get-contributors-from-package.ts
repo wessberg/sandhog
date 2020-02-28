@@ -4,8 +4,9 @@ import {ensureContributor} from "./ensure-contributor";
 
 /**
  * Gets all Contributors based on the given package.json
- * @param {Package} pkg
- * @returns {Contributor[]}
+ *
+ * @param pkg
+ * @returns
  */
 export function getContributorsFromPackage(pkg: Package): Contributor[] {
 	const all: Contributor[] = [];

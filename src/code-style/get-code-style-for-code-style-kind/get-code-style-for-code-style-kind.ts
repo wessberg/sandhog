@@ -4,8 +4,9 @@ import {generateBadgeUrl} from "../../badge/generate-badge-url/generate-badge-ur
 
 /**
  * Gets the Code Style for the given CodeStyleKind
- * @param {CodeStyleKind} kind
- * @returns {CodeStyle}
+ *
+ * @param kind
+ * @returns
  */
 export function getCodeStyleForCodeStyleKind(kind: CodeStyleKind): CodeStyle {
 	switch (kind) {

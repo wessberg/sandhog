@@ -11,8 +11,9 @@ import {getLicenseForLicenseName} from "../../license/get-license-for-license-na
 
 /**
  * Gets relevant badges based on the given options
- * @param {GetBadgesOptions} options
- * @returns {Promise<GetBadgesResult>}
+ *
+ * @param options
+ * @returns
  */
 export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesResult> {
 	const result: GetBadgesResult = {};

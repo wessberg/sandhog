@@ -7,8 +7,9 @@ import {generateFunding} from "../../../funding/generate-funding/generate-fundin
 
 /**
  * Executes the 'funding' task
- * @param {FundingTaskOptions} options
- * @returns {Promise<void>}
+ *
+ * @param options
+ * @returns
  */
 export async function fundingTask({pkg, logger, prettier, config, root, fs, yes}: FundingTaskOptions): Promise<void> {
 	const contributors = getContributorsFromPackage(pkg);

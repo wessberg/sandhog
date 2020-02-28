@@ -4,14 +4,18 @@ import {formatContributor} from "../../../contributor/format-contributor";
 
 /**
  * Generates a MIT license
- * @param {GenerateLicenseOptions} options
+ *
+ * @param options
  */
 export function generate({contributors, prettier, config}: GenerateLicenseOptions): string {
 	return prettier.format(
 		`\
 The MIT License (MIT)
 
-Copyright © ${new Date().getFullYear()} ${listFormat(contributors.map(contributor => formatContributor(contributor, "markdown")), "and")}
+Copyright © ${new Date().getFullYear()} ${listFormat(
+			contributors.map(contributor => formatContributor(contributor, "markdown")),
+			"and"
+		)}
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -4,14 +4,18 @@ import {formatContributor} from "../../../contributor/format-contributor";
 
 /**
  * Generates a BSD-3-CLAUSE license
- * @param {GenerateLicenseOptions} options
+ *
+ * @param options
  */
 export function generate({contributors, prettier, config}: GenerateLicenseOptions): string {
 	return prettier.format(
 		`\
 BSD 3-Clause License
 
-Copyright © ${new Date().getFullYear()}, ${listFormat(contributors.map(contributor => formatContributor(contributor, "markdown")), "and")}
+Copyright © ${new Date().getFullYear()}, ${listFormat(
+			contributors.map(contributor => formatContributor(contributor, "markdown")),
+			"and"
+		)}
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

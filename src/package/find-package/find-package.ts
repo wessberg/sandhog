@@ -5,8 +5,9 @@ import {FindPackageResult} from "./find-package-result";
 
 /**
  * Finds the nearest package.json from the given root directory
- * @param {FindPackageOptions} options
- * @returns {Promise<FindPackageResult>}
+ *
+ * @param options
+ * @returns
  */
 export async function findPackage({root = process.cwd(), logger, fs = {existsSync: _existsSync}}: FindPackageOptions): Promise<FindPackageResult> {
 	const packageJsonPath = join(root, "package.json");

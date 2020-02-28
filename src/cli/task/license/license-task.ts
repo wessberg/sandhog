@@ -7,8 +7,9 @@ import {confirm} from "../../../util/prompt/confirm";
 
 /**
  * Executes the 'license' task
- * @param {LicenseTaskOptions} options
- * @returns {Promise<void>}
+ *
+ * @param options
+ * @returns
  */
 export async function licenseTask({logger, root, license, prettier, config, pkg, fs, yes}: LicenseTaskOptions): Promise<void> {
 	const contributors = getContributorsFromPackage(pkg);

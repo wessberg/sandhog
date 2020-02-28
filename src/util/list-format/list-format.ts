@@ -1,7 +1,8 @@
 /**
  * Formats the given iterable of strings in a list format (in the English locale)
- * @param {Iterable<string>} elements
- * @param {string} andOrOr
+ *
+ * @param elements
+ * @param andOrOr
  */
 export function listFormat(elements: Iterable<string>, andOrOr: "and" | "or"): string {
 	const arr = [...elements];

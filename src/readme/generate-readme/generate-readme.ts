@@ -13,11 +13,13 @@ import {listFormat} from "../../util/list-format/list-format";
 import {formatUrl} from "../../markdown/format-url/format-url";
 import toc from "markdown-toc";
 import {join} from "path";
+import {Contributor} from "../../contributor/contributor";
 
 /**
  * Generates the text for a README.md based on the given options
- * @param {GenerateReadmeOptions} options
- * @returns {Promise<string>}
+ *
+ * @param options
+ * @returns
  */
 export async function generateReadme(options: GenerateReadmeOptions): Promise<string> {
 	const sections = getRelevantSections(options);
@@ -97,10 +99,11 @@ export async function generateReadme(options: GenerateReadmeOptions): Promise<st
 
 /**
  * Sets the given content with the given content within the context
- * @param {GenerateReadmeContext} context
- * @param {SectionKind} sectionKind
- * @param {string} content
- * @param {string} [outro]
+ *
+ * @param context
+ * @param sectionKind
+ * @param content
+ * @param [outro]
  */
 function setSection(context: GenerateReadmeContext, sectionKind: SectionKind, content: string, outro?: string): void {
 	const startMark = getShadowSectionMark(sectionKind, "start");
@@ -120,7 +123,8 @@ function setSection(context: GenerateReadmeContext, sectionKind: SectionKind, co
 
 /**
  * Generates the logo section of the README
- * @param {GenerateReadmeContext} context
+ *
+ * @param context
  */
 async function generateLogoSection(context: GenerateReadmeContext): Promise<void> {
 	setSection(
@@ -139,7 +143,8 @@ async function generateLogoSection(context: GenerateReadmeContext): Promise<void
 
 /**
  * Generates the feature image section of the README
- * @param {GenerateReadmeContext} context
+ *
+ * @param context
  */
 async function generateFeatureImageSection(context: GenerateReadmeContext): Promise<void> {
 	setSection(
@@ -158,10 +163,11 @@ async function generateFeatureImageSection(context: GenerateReadmeContext): Prom
 
 /**
  * Generates the Table Of Contents section of the README
- * @param {GenerateReadmeContext} context
- * @param {boolean} [reserveOnly=false]
+ *
+ * @param context
+ * @param [reserveOnly=false]
  */
-async function generateTableOfContentsSection(context: GenerateReadmeContext, reserveOnly: boolean = false): Promise<void> {
+async function generateTableOfContentsSection(context: GenerateReadmeContext, reserveOnly = false): Promise<void> {
 	setSection(
 		context,
 		SectionKind.TOC,
@@ -175,7 +181,8 @@ async function generateTableOfContentsSection(context: GenerateReadmeContext, re
 
 /**
  * Generates the badges section of the README
- * @param {GenerateReadmeContext} context
+ *
+ * @param context
  */
 async function generateBadgesSection(context: GenerateReadmeContext): Promise<void> {
 	const badges = await getBadges(context);
@@ -191,7 +198,8 @@ async function generateBadgesSection(context: GenerateReadmeContext): Promise<vo
 
 /**
  * Generates the short description section of the README
- * @param {GenerateReadmeContext} context
+ *
+ * @param context
  */
 async function generateDescriptionShortSection(context: GenerateReadmeContext): Promise<void> {
 	// Don't proceed if the package has no description
@@ -202,7 +210,8 @@ async function generateDescriptionShortSection(context: GenerateReadmeContext): 
 
 /**
  * Generates the long description section of the README
- * @param {GenerateReadmeContext} context
+ *
+ * @param context
  */
 async function generateDescriptionLongSection(context: GenerateReadmeContext): Promise<void> {
 	setSection(context, SectionKind.DESCRIPTION_LONG, `## Description`);
@@ -210,7 +219,8 @@ async function generateDescriptionLongSection(context: GenerateReadmeContext): P
 
 /**
  * Generates the features section of the README
- * @param {GenerateReadmeContext} context
+ *
+ * @param context
  */
 async function generateFeaturesSection(context: GenerateReadmeContext): Promise<void> {
 	setSection(context, SectionKind.FEATURES, `### Features\n\n`);
@@ -218,7 +228,8 @@ async function generateFeaturesSection(context: GenerateReadmeContext): Promise<
 
 /**
  * Generates the FAQ section of the README
- * @param {GenerateReadmeContext} context
+ *
+ * @param context
  */
 async function generateFaqSection(context: GenerateReadmeContext): Promise<void> {
 	setSection(context, SectionKind.FAQ, `## FAQ\n\n`);
@@ -226,7 +237,8 @@ async function generateFaqSection(context: GenerateReadmeContext): Promise<void>
 
 /**
  * Generates the install section of the README
- * @param {GenerateReadmeContext} context
+ *
+ * @param context
  */
 async function generateInstallSection(context: GenerateReadmeContext): Promise<void> {
 	// Don't proceed if the package has no name
@@ -253,7 +265,8 @@ async function generateInstallSection(context: GenerateReadmeContext): Promise<v
 
 /**
  * Generates the usage section of the README
- * @param {GenerateReadmeContext} context
+ *
+ * @param context
  */
 async function generateUsageSection(context: GenerateReadmeContext): Promise<void> {
 	setSection(context, SectionKind.USAGE, `## Usage`);
@@ -261,7 +274,8 @@ async function generateUsageSection(context: GenerateReadmeContext): Promise<voi
 
 /**
  * Generates the contributing section of the README
- * @param {GenerateReadmeContext} context
+ *
+ * @param context
  */
 async function generateContributingSection(context: GenerateReadmeContext): Promise<void> {
 	// Only add the contributing section if a CONTRIBUTING.md file exists
@@ -276,13 +290,7 @@ async function generateContributingSection(context: GenerateReadmeContext): Prom
 	);
 }
 
-/**
- * Generates the maintainers section of the README
- * @param {GenerateReadmeContext} context
- */
-async function generateMaintainersSection(context: GenerateReadmeContext): Promise<void> {
-	const contributors = getContributorsFromPackage(context.pkg);
-
+function generateContributorTable(contributors: Contributor[]): string {
 	let str = "\n|";
 	contributors.forEach(contributor => {
 		str +=
@@ -306,6 +314,8 @@ async function generateMaintainersSection(context: GenerateReadmeContext): Promi
 		if (contributor.name != null) {
 			if (contributor.email != null) {
 				str += `[${contributor.name}](mailto:${contributor.email})`;
+			} else if (contributor.url != null) {
+				str += `[${contributor.name}](${contributor.url})`;
 			} else {
 				str += `${contributor.name}`;
 			}
@@ -326,31 +336,28 @@ async function generateMaintainersSection(context: GenerateReadmeContext): Promi
 		str += "|";
 	});
 
-	setSection(context, SectionKind.MAINTAINERS, contributors.length < 1 ? "" : `## Maintainers\n\n` + str);
+	return str;
+}
+
+/**
+ * Generates the maintainers section of the README
+ *
+ * @param context
+ */
+async function generateMaintainersSection(context: GenerateReadmeContext): Promise<void> {
+	const contributors = getContributorsFromPackage(context.pkg);
+
+	setSection(context, SectionKind.MAINTAINERS, contributors.length < 1 ? "" : `## Maintainers\n\n` + generateContributorTable(contributors));
 }
 
 /**
  * Generates the backers section of the README
- * @param {GenerateReadmeContext} context
  */
 async function generateBackersSection(context: GenerateReadmeContext): Promise<void> {
 	let content = "";
 
-	if (context.config.donate.patreon.userId != null) {
-		content +=
-			`### Patreon\n\n` +
-			`[Become a backer](${CONSTANT.PATREON_DONATE_URL(
-				context.config.donate.patreon.userId
-			)}) and get your name, avatar, and Twitter handle listed here.\n\n` +
-			formatUrl({
-				url: CONSTANT.PATREON_DONATE_URL(context.config.donate.patreon.userId),
-				inner: formatImage({
-					url: CONSTANT.PATREON_BADGE_URL(context.config.donate.patreon.userId, ".png"),
-					alt: "Backers on Patreon",
-					width: 500
-				})
-			}) +
-			"\n\n";
+	if (context.config.donate.other.donors.length > 0) {
+		content += generateContributorTable(context.config.donate.other.donors) + "\n\n";
 	}
 
 	if (context.config.donate.openCollective.project != null) {
@@ -380,6 +387,20 @@ async function generateBackersSection(context: GenerateReadmeContext): Promise<v
 			"\n\n";
 	}
 
+	if (context.config.donate.patreon.userId != null && context.config.donate.patreon.username != null) {
+		content +=
+			`### Patreon\n\n` +
+			formatUrl({
+				url: CONSTANT.PATREON_DONATE_URL(context.config.donate.patreon.userId),
+				inner: formatImage({
+					url: CONSTANT.PATREON_BADGE_URL(context.config.donate.patreon.username),
+					alt: "Patrons on Patreon",
+					width: 200
+				})
+			}) +
+			"\n\n";
+	}
+
 	setSection(
 		context,
 		SectionKind.BACKERS,
@@ -389,7 +410,8 @@ async function generateBackersSection(context: GenerateReadmeContext): Promise<v
 
 /**
  * Generates the license section of the README
- * @param {GenerateReadmeContext} context
+ *
+ * @param context
  */
 async function generateLicenseSection(context: GenerateReadmeContext): Promise<void> {
 	const license = await findLicense(context);

@@ -4,9 +4,10 @@ import {isKnownLicenseName} from "../is-known-license-name";
 
 /**
  * Generates license text for the given license name
- * @param {LicenseName} license
- * @param {GenerateLicenseOptions} options
- * @returns {Promise<string>}
+ *
+ * @param license
+ * @param options
+ * @returns
  */
 export async function generateLicense(license: LicenseName, options: GenerateLicenseOptions): Promise<string> {
 	if (!isKnownLicenseName(license)) {
