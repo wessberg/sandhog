@@ -39,11 +39,7 @@
 		"backers"
 	],
 	"dependencies": {
-		"@types/eslint": "^6.1.8",
-		"@types/inquirer": "^6.5.0",
-		"@types/json5": "^0.0.30",
 		"@types/prettier": "^1.19.0",
-		"@types/yaml": "^1.2.0",
 		"chalk": "^3.0.0",
 		"commander": "^4.1.1",
 		"eslint": "^6.8.0",
@@ -55,6 +51,10 @@
 		"tslint": "^6.0.0"
 	},
 	"devDependencies": {
+		"@types/eslint": "^6.1.8",
+		"@types/inquirer": "^6.5.0",
+		"@types/json5": "^0.0.30",
+		"@types/yaml": "^1.2.0",
 		"@typescript-eslint/eslint-plugin": "^2.21.0",
 		"@typescript-eslint/parser": "^2.21.0",
 		"eslint-config-prettier": "^6.10.0",
