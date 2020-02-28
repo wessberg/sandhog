@@ -1,3 +1,9 @@
+## [1.0.24](https://github.com/wessberg/scaffold/compare/v1.0.23...v1.0.24) (2020-02-28)
+
+### Features
+
+- add support for manual sponsors ([8c53b40](https://github.com/wessberg/scaffold/commit/8c53b4019b49fa31fa900d8c3b4bd2b1701bd0a6))
+
 ## [1.0.23](https://github.com/wessberg/scaffold/compare/v1.0.22...v1.0.23) (2019-11-16)
 
 ## [1.0.22](https://github.com/wessberg/scaffold/compare/v1.0.21...v1.0.22) (2019-11-11)
