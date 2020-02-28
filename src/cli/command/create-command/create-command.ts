@@ -1,13 +1,10 @@
 import commander from "commander";
 import {CommandAction, CommandActionOptions, CommandOptionType, CreateCommandOptions} from "./create-command-options";
 
-// tslint:disable:no-any
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 /**
  * Coerces the given option value into an acceptable data type
- *
- * @param type
- * @param value
  */
 function coerceOptionValue(
 	type: CommandOptionType,
@@ -33,10 +30,6 @@ function coerceOptionValue(
 
 /**
  * Formats the given option flags
- *
- * @param shortHand
- * @param longHand
- * @returns
  */
 function formatOptionFlags(shortHand: string | undefined, longHand: string): string {
 	const formattedLongHand = `${longHand} [arg]`;
@@ -66,9 +59,6 @@ function formatCommandNameWithArgs<T extends CreateCommandOptions>(options: T): 
 
 /**
  * Creates a new command
- *
- * @param options
- * @param action
  */
 export function createCommand<T extends CreateCommandOptions>(options: T, action: CommandAction<T>): void {
 	// Add the command to the program
