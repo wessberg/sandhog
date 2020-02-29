@@ -292,15 +292,27 @@ async function generateContributingSection(context: GenerateReadmeContext): Prom
 
 function generateContributorTable(contributors: Contributor[]): string {
 	let str = "\n|";
+
 	contributors.forEach(contributor => {
-		str +=
+		const inner =
 			contributor.imageUrl == null
-				? ""
+				? undefined
 				: formatImage({
 						alt: contributor.name,
 						url: contributor.imageUrl,
 						height: CONSTANT.CONTRIBUTOR_IMAGE_URL_HEIGHT
 				  });
+
+		const formattedImageWithUrl =
+			inner == null
+				? ""
+				: contributor.email != null
+				? formatUrl({url: `mailto:${contributor.email}`, inner})
+				: contributor.url != null
+				? formatUrl({url: contributor.url, inner})
+				: inner;
+
+		str += formattedImageWithUrl;
 		str += "|";
 	});
 	str += "\n|";
