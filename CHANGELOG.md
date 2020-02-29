@@ -1,3 +1,9 @@
+## [1.0.25](https://github.com/wessberg/scaffold/compare/v1.0.24...v1.0.25) (2020-02-29)
+
+### Features
+
+- Have maintainer and backer badges link to the related URL if any is given ([48fa456](https://github.com/wessberg/scaffold/commit/48fa4560f1e0ddf72f8836e53966c855f6843a7e))
+
 ## [1.0.24](https://github.com/wessberg/scaffold/compare/v1.0.23...v1.0.24) (2020-02-28)
 
 ### Features
