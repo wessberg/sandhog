@@ -66,7 +66,6 @@ Scaffold works out of the box without any configuration. Some highlights include
   - [Yarn](#yarn)
   - [pnpm](#pnpm)
   - [Run once with npx](#run-once-with-npx)
-  - [Peer Dependencies](#peer-dependencies)
 - [Usage](#usage)
   - [Configuration](#configuration)
     - [Configuration options](#configuration-options)
@@ -130,12 +129,8 @@ $ pnpm add @wessberg/scaffold --save-dev
 ### Run once with npx
 
 ```
-$ npx -p typescript -p pnpm -p tslib -p ts-node -p @wessberg/scaffold scaffold
+$ npx -p @wessberg/scaffold scaffold
 ```
-
-### Peer Dependencies
-
-`@wessberg/scaffold` depends on `typescript`, `pnpm`, `tslib`, and `ts-node`, so you need to manually install these as development dependencies as well.
 
 <!-- SHADOW_SECTION_INSTALL_END -->
 

@@ -1,3 +1,9 @@
+## [1.0.26](https://github.com/wessberg/scaffold/compare/v1.0.25...v1.0.26) (2020-03-13)
+
+### Features
+
+- add support for 'isDevelopmentPackage' option that adds '--save-dev' and '--dev' options to generated install commands inside generated READMEs. ([fc14100](https://github.com/wessberg/scaffold/commit/fc14100188e44330b3a9b445d07ab0d531108fe2))
+
 ## [1.0.25](https://github.com/wessberg/scaffold/compare/v1.0.24...v1.0.25) (2020-02-29)
 
 ### Features
