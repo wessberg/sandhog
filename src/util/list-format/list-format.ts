@@ -7,7 +7,7 @@ export function listFormat(elements: Iterable<string>, andOrOr: "and" | "or", ma
 	else if (arr.length === 1) return mapper(arr[0]);
 	else if (arr.length === 2) {
 		const [first, last] = arr;
-		return `${mapper(first)} ${andOrOr} ${last}`;
+		return `${mapper(first)} ${andOrOr} ${mapper(last)}`;
 	} else {
 		const head = arr.slice(0, arr.length - 1).map(mapper);
 		const last = mapper(arr.slice(-1)[0]);
