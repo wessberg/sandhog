@@ -1,3 +1,9 @@
+## [1.0.28](https://github.com/wessberg/scaffold/compare/v1.0.27...v1.0.28) (2020-03-13)
+
+### Bug Fixes
+
+- **formatting:** fix list formatting for arrays with 2 elements ([2c3d930](https://github.com/wessberg/scaffold/commit/2c3d930076306186eb1aa0f0058d3ffda2b4b13c))
+
 ## [1.0.27](https://github.com/wessberg/scaffold/compare/v1.0.26...v1.0.27) (2020-03-13)
 
 ## [1.0.26](https://github.com/wessberg/scaffold/compare/v1.0.25...v1.0.26) (2020-03-13)
