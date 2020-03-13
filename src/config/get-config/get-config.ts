@@ -25,51 +25,34 @@ export async function getConfig(options: FindConfigOptions): Promise<ScaffoldCon
 	const defaultConfig = await DEFAULT_SCAFFOLD_CONFIG;
 
 	return {
+		isDevelopmentPackage: config.isDevelopmentPackage ?? defaultConfig.isDevelopmentPackage,
 		logo: {
-			height: config.logo == null || config.logo.height == null ? defaultConfig.logo.height : config.logo.height,
-			url: config.logo == null || config.logo.url == null ? defaultConfig.logo.url : config.logo.url
+			height: config.logo?.height ?? defaultConfig.logo.height,
+			url: config.logo?.url ?? defaultConfig.logo.url
 		},
 		featureImage: {
-			height: config.featureImage == null || config.featureImage.height == null ? defaultConfig.featureImage.height : config.featureImage.height,
-			url: config.featureImage == null || config.featureImage.url == null ? defaultConfig.featureImage.url : config.featureImage.url
+			height: config.featureImage?.height ?? defaultConfig.featureImage.height,
+			url: config.featureImage?.url ?? defaultConfig.featureImage.url
 		},
-		prettier: config.prettier == null ? defaultConfig.prettier : (config.prettier as Options),
+		prettier: (config.prettier as Options | undefined) ?? defaultConfig.prettier,
 		donate: {
 			other: {
-				donors:
-					config.donate == null || config.donate.other == null || config.donate.other.donors == null
-						? defaultConfig.donate.other.donors
-						: (config.donate.other.donors as Contributor[])
+				donors: (config.donate?.other?.donors as Contributor[] | undefined) ?? defaultConfig.donate.other.donors
 			},
 			patreon: {
-				username:
-					config.donate == null || config.donate.patreon == null || config.donate.patreon.username == null
-						? defaultConfig.donate.patreon.username
-						: config.donate.patreon.username,
-				userId:
-					config.donate == null || config.donate.patreon == null || config.donate.patreon.userId == null
-						? defaultConfig.donate.patreon.userId
-						: config.donate.patreon.userId
+				username: config.donate?.patreon?.username ?? defaultConfig.donate.patreon.username,
+				userId: config.donate?.patreon?.userId ?? defaultConfig.donate.patreon.userId
 			},
 			openCollective: {
-				project:
-					config.donate == null || config.donate.openCollective == null || config.donate.openCollective.project == null
-						? defaultConfig.donate.openCollective.project
-						: config.donate.openCollective.project
+				project: config.donate?.openCollective?.project ?? defaultConfig.donate.openCollective.project
 			}
 		},
 		readme: {
 			badges: {
-				exclude:
-					config.readme == null || config.readme.badges == null || config.readme.badges.exclude == null
-						? defaultConfig.readme.badges.exclude
-						: (config.readme.badges.exclude as Iterable<BadgeKind>)
+				exclude: (config.readme?.badges?.exclude as Iterable<BadgeKind>) ?? defaultConfig.readme.badges.exclude
 			},
 			sections: {
-				exclude:
-					config.readme == null || config.readme.sections == null || config.readme.sections.exclude == null
-						? defaultConfig.readme.sections.exclude
-						: (config.readme.sections.exclude as Iterable<SectionKind>)
+				exclude: (config.readme?.sections?.exclude as Iterable<SectionKind>) ?? defaultConfig.readme.sections.exclude
 			}
 		}
 	};

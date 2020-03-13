@@ -47,8 +47,7 @@
 		"json5": "^2.1.1",
 		"yaml": "^1.7.2",
 		"markdown-toc": "^1.2.0",
-		"prettier": "^1.19.1",
-		"tslint": "^6.0.0"
+		"prettier": "^1.19.1"
 	},
 	"devDependencies": {
 		"@types/eslint": "^6.1.8",
@@ -80,6 +79,10 @@
 	"types": "./dist/index.d.ts",
 	"typings": "./dist/index.d.ts",
 	"es2015": "./dist/index.js",
+	"funding": {
+		"type": "github",
+		"url": "https://github.com/wessberg/scaffold?sponsor=1"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/wessberg/scaffold.git"

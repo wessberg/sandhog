@@ -243,6 +243,8 @@ async function generateFaqSection(context: GenerateReadmeContext): Promise<void>
 async function generateInstallSection(context: GenerateReadmeContext): Promise<void> {
 	// Don't proceed if the package has no name
 	if (context.pkg.name == null) return;
+	const peerDependencies = context.pkg.peerDependencies == null ? [] : Object.keys(context.pkg.peerDependencies);
+	const firstBinName = context.pkg.bin == null ? undefined : Object.keys(context.pkg.bin)[0];
 
 	setSection(
 		context,
@@ -250,16 +252,34 @@ async function generateInstallSection(context: GenerateReadmeContext): Promise<v
 		`## Install\n\n` +
 			`### npm\n\n` +
 			"```\n" +
-			`$ npm install ${context.pkg.name}\n` +
+			`$ npm install ${context.pkg.name}${context.config.isDevelopmentPackage ? ` --save-dev` : ``}\n` +
 			"```\n\n" +
 			`### Yarn\n\n` +
 			"```\n" +
-			`$ yarn add ${context.pkg.name}\n` +
+			`$ yarn add ${context.pkg.name}${context.config.isDevelopmentPackage ? ` --dev` : ``}\n` +
 			"```\n\n" +
 			`### pnpm\n\n` +
 			"```\n" +
-			`$ pnpm add ${context.pkg.name}\n` +
-			"```"
+			`$ pnpm add ${context.pkg.name}${context.config.isDevelopmentPackage ? ` --save-dev` : ``}\n` +
+			"```" +
+			(firstBinName == null
+				? ""
+				: `\n\n` +
+				  `### Run once with npx\n\n` +
+				  "```\n" +
+				  `$ npx${peerDependencies.length === 0 ? "" : peerDependencies.map(peerDependency => ` -p ${peerDependency}`).join("")}${
+						firstBinName === context.pkg.name ? ` ${context.pkg.name}` : ` -p ${context.pkg.name} ${firstBinName}`
+				  }\n` +
+				  "```") +
+			(peerDependencies.length < 1
+				? ""
+				: "\n\n" +
+				  `### Peer Dependencies\n\n` +
+				  `\`${context.pkg.name}\` depends on ${listFormat(
+						peerDependencies,
+						"and",
+						element => `\`${element}\``
+				  )}, so you need to manually install these${context.config.isDevelopmentPackage ? ` as development dependencies` : ``} as well.`)
 	);
 }
 
@@ -353,13 +373,30 @@ function generateContributorTable(contributors: Contributor[]): string {
 
 /**
  * Generates the maintainers section of the README
- *
- * @param context
  */
 async function generateMaintainersSection(context: GenerateReadmeContext): Promise<void> {
 	const contributors = getContributorsFromPackage(context.pkg);
 
 	setSection(context, SectionKind.MAINTAINERS, contributors.length < 1 ? "" : `## Maintainers\n\n` + generateContributorTable(contributors));
+}
+
+function guessPreferredFundingUrlForOtherDonations(context: GenerateReadmeContext): string | undefined {
+	// If a funding url is given, that should take precedence.
+	if (context.config.donate.other.fundingUrl != null) {
+		return context.config.donate.other.fundingUrl;
+	}
+
+	// Otherwise, it might be provided from a "funding" property in the package.json file
+	if (context.pkg.funding != null) {
+		if (typeof context.pkg.funding === "string") {
+			return context.pkg.funding;
+		} else if (context.pkg.funding.url != null) {
+			return context.pkg.funding.url;
+		}
+	}
+
+	// Otherwise, there's no way to know.
+	return undefined;
 }
 
 /**
@@ -369,7 +406,11 @@ async function generateBackersSection(context: GenerateReadmeContext): Promise<v
 	let content = "";
 
 	if (context.config.donate.other.donors.length > 0) {
-		content += generateContributorTable(context.config.donate.other.donors) + "\n\n";
+		const preferredFundingUrl = guessPreferredFundingUrlForOtherDonations(context);
+		content +=
+			(preferredFundingUrl != null ? `[Become a sponsor/backer](${preferredFundingUrl}) and get your logo listed here.\n\n` : "") +
+			generateContributorTable(context.config.donate.other.donors) +
+			"\n\n";
 	}
 
 	if (context.config.donate.openCollective.project != null) {

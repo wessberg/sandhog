@@ -65,7 +65,8 @@ Scaffold works out of the box without any configuration. Some highlights include
   - [npm](#npm)
   - [Yarn](#yarn)
   - [pnpm](#pnpm)
-  - [Run once with NPX](#run-once-with-npx)
+  - [Run once with npx](#run-once-with-npx)
+  - [Peer Dependencies](#peer-dependencies)
 - [Usage](#usage)
   - [Configuration](#configuration)
     - [Configuration options](#configuration-options)
@@ -111,28 +112,32 @@ Scaffold works out of the box without any configuration. Some highlights include
 ### npm
 
 ```
-$ npm install @wessberg/scaffold
+$ npm install @wessberg/scaffold --save-dev
 ```
 
 ### Yarn
 
 ```
-$ yarn add @wessberg/scaffold
+$ yarn add @wessberg/scaffold --dev
 ```
 
 ### pnpm
 
 ```
-$ pnpm add @wessberg/scaffold
+$ pnpm add @wessberg/scaffold --save-dev
 ```
+
+### Run once with npx
+
+```
+$ npx -p typescript -p pnpm -p tslib -p ts-node -p @wessberg/scaffold scaffold
+```
+
+### Peer Dependencies
+
+`@wessberg/scaffold` depends on `typescript`, `pnpm`, `tslib`, and `ts-node`, so you need to manually install these as development dependencies as well.
 
 <!-- SHADOW_SECTION_INSTALL_END -->
-
-### Run once with NPX
-
-```
-$ npx @wessberg/scaffold
-```
 
 <!-- SHADOW_SECTION_USAGE_START -->
 
@@ -154,52 +159,85 @@ Scaffold is highly configurable. You can provide a configuration in a variety of
 
 #### Configuration options
 
-```json5
-{
-	// If an URL to a logo is given, a logo will be placed within generated or updated README files at the very top
+```typescript
+interface ScaffoldOptions {
+	// If true, the install directions inside generated READMEs will suggest installing this package as a development dependency.
+	isDevelopmentPackage: boolean;
+	// If provided, a logo image will be placed in the top of generated or updated README files
 	logo: {
-		url: "",
-		height: 80
-	},
-	// If an URL to a feature image is given, a feature image will be placed within generated or updated README files
+		// An URL to the logo.
+		url: string;
+		// The height of the logo in pixels
+		height: number;
+	};
+
+	// If provided, a feature image will be placed within generated or updated README files
 	featureImage: {
-		url: "",
-		height: 180
-	},
-	// If Patreon and/or Open Collective donation options is given, badges and backer/sponsor shields will be generated and added to generated or updated README files.
-	// You can also add "other" sponsors manually, for including sponsors you manually enter
+		// An URL to the feature image.
+		url: string;
+		// The height of the feature image in pixels
+		height: number;
+	};
+	// If Patreon, Open Collective, and/or other donation options is given, badges and backer/sponsor shields will be generated and added to generated or updated README files.
 	donate: {
 		patreon: {
-			userId: ""
-		},
+			userId: string;
+		};
 		openCollective: {
-			project: ""
-		},
+			project: string;
+		};
 		other: {
+			fundingUrl: string;
 			donors: [
 				{
-					name: "",
-					url: "",
-					imageUrl: "",
-					twitter: ""
+					name: string;
+					url: string;
+					imageUrl: string;
+					twitter: string;
 				}
-			]
-		}
-	},
+			];
+		};
+	};
 	readme: {
 		badges: {
 			// The given iterable of SectionKinds will never be added to generated or updated READMEs
 			// Can be any of the following: 'toc', 'logo', 'badges', 'description_short', 'description_long', 'features', 'feature_image', 'usage', 'install', 'contributing', 'maintainers', 'faq', 'backers', and 'license'
-			exclude: []
-		},
+			exclude: Iterable<
+				| "toc"
+				| "logo"
+				| "badges"
+				| "description_short"
+				| "description_long"
+				| "features"
+				| "feature_image"
+				| "usage"
+				| "install"
+				| "contributing"
+				| "maintainers"
+				| "faq"
+				| "backers"
+				| "license"
+			>;
+		};
 		sections: {
 			// The given iterable of BadgeKinds will never be added to generated or updated READMEs.
 			// Can be any of the following: 'downloads', 'dependencies', 'npm', 'contributors', 'license', 'patreon', 'open_collective_donate', 'open_collective_backers', 'open_collective_sponsors', and 'code_style'
-			exclude: []
-		}
-	},
+			exclude: Iterable<
+				| "downloads"
+				| "dependencies"
+				| "npm"
+				| "contributors"
+				| "license"
+				| "patreon"
+				| "open_collective_donate"
+				| "open_collective_backers"
+				| "open_collective_sponsors"
+				| "code_style"
+			>;
+		};
+	};
 	// By default, Scaffold will try to locate a Prettier config within the project. You can also just provide it or override the Prettier options here
-	prettier: {}
+	prettier: PrettierOptions;
 }
 ```
 
@@ -525,6 +563,8 @@ Do you want to contribute? Awesome! Please follow [these recommendations](./CONT
 
 ## Backers
 
+[Become a sponsor/backer](https://github.com/wessberg/scaffold?sponsor=1) and get your logo listed here.
+
 | <a href="https://usebubbles.com"><img alt="Bubbles" src="https://uploads-ssl.webflow.com/5d682047c28b217055606673/5e5360be16879c1d0dca6514_icon-thin-128x128%402x.png" height="70"   /></a> |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Bubbles](https://usebubbles.com)<br><strong>Twitter</strong>: [@use_bubbles](https://twitter.com/use_bubbles)                                                                              |
@@ -551,7 +591,6 @@ However, you _can_ exclude sections and badges from the README as described [in 
 By looking for several things, including:
 
 - Your project dependencies and general fields in `package.json`
-- The configs that are being extended in your `tslint.json` (if any such file exists) or any of its ancestors.
 - The configs that are being extended in your `eslint.json`/`.eslintrc` (if any such file exists) or any of its ancestors.
 - Whether or not your project has a Prettier config.
 

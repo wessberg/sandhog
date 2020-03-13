@@ -2,13 +2,10 @@ import {FindCodeStylesOptions} from "./find-code-styles-options";
 import {existsSync as _existsSync} from "fs";
 import {CodeStyleKind} from "../code-style-kind";
 import {resolveConfig} from "prettier";
-import {dirname, join} from "path";
+import {join} from "path";
 import {CLIEngine, Linter} from "eslint";
-import {Configuration} from "tslint";
 import {listFormat} from "../../util/list-format/list-format";
 import {CONSTANT} from "../../constant/constant";
-import {isLib} from "../../util/path/is-lib";
-import {FileSystem} from "../../file-system/file-system";
 import {findPackage} from "../../package/find-package/find-package";
 import {Package} from "../../package/package";
 import {CodeStyle} from "./code-style";
@@ -70,24 +67,6 @@ export async function findCodeStyles({
 			: logger.debug(`No code styles detected inside ESLint config`);
 
 		codeStyles.push(...eslintCodeStyles);
-	}
-
-	const tslintConfig = findTslintConfig(root, fs);
-	if (tslintConfig != null) {
-		logger.debug(`Found a TSLint config within the root. Parsing it for code styles`);
-		const tslintCodeStyles = getCodeStylesFromTslintConfig(tslintConfig);
-
-		// Log the results
-		tslintCodeStyles.length > 0
-			? logger.debug(
-					`Detected ${listFormat(
-						tslintCodeStyles.map(style => `"${style}"`),
-						"and"
-					)} as project code style${tslintCodeStyles.length === 1 ? "" : "s"}`
-			  )
-			: logger.debug(`No code styles detected inside TSLint config`);
-
-		codeStyles.push(...tslintCodeStyles);
 	}
 
 	// Dedupe the results
@@ -155,39 +134,6 @@ function getCodeStylesFromEslintConfig(config: Linter.Config): CodeStyleKind[] {
 }
 
 /**
- * Parses the given Config for all CodeStyleKinds
- *
- * @param config
- * @returns
- */
-function getCodeStylesFromTslintConfig(config: {extends: string[]}): CodeStyleKind[] {
-	const codeStyles: CodeStyleKind[] = [];
-
-	// Check if it contains the Airbnb Style Guide
-	const containsAirbnb = config.extends.some(element => element === CONSTANT.TSLINT_AIRBNB_CODE_STYLE_NAME);
-
-	if (containsAirbnb) {
-		codeStyles.push(CodeStyleKind.AIRBNB);
-	}
-
-	// Check if it contains the Standard Style Guide
-	const containsStandard = config.extends.some(element => element === CONSTANT.TSLINT_STANDARD_CODE_STYLE_NAME);
-
-	if (containsStandard) {
-		codeStyles.push(CodeStyleKind.STANDARD);
-	}
-
-	// Check if it contains the Prettier Style Guide
-	const containsPrettier = config.extends.some(element => element === CONSTANT.TSLINT_PRETTIER_CODE_STYLE_NAME);
-
-	if (containsPrettier) {
-		codeStyles.push(CodeStyleKind.PRETTIER);
-	}
-
-	return codeStyles;
-}
-
-/**
  * Finds (and parses) the found ESLint config, if any, from the given root
  *
  * @param root
@@ -201,50 +147,6 @@ function findEslintConfig(root: string): Linter.Config | undefined {
 	} catch {
 		return undefined;
 	}
-}
-
-/**
- * Finds (and parses) the found TSLint config, if any, from the given root
- *
- * @param root
- * @param fs
- * @returns
- */
-function findTslintConfig(root: string, fs: Pick<FileSystem, "existsSync">): {extends: string[]} | undefined {
-	const path = Configuration.findConfigurationPath(null, root);
-	if (path == null) return undefined;
-	return {
-		// Dedupe the results
-		extends: [...new Set(walkTslintConfigs(path, fs))]
-	};
-}
-
-/**
- * Walks TSLint configs recursively from the given input path, trying to resolve all extended configs
- *
- * @param inputPath
- * @param fs
- */
-function walkTslintConfigs(inputPath: string, fs: Pick<FileSystem, "existsSync">): string[] {
-	const allExtendedConfigs: string[] = [];
-
-	const rawConfig = Configuration.readConfigurationFile(inputPath);
-	const extendsField = rawConfig.extends == null ? [] : Array.isArray(rawConfig.extends) ? rawConfig.extends : [rawConfig.extends];
-
-	for (const element of extendsField) {
-		// If it represents an identifier for an extended config (for example 'tslint-config-airbnb'), add it to the Set
-		if (isLib(element)) allExtendedConfigs.push(element);
-		// Otherwise, resolve the config that is referenced and check that config for things
-		else {
-			const absolutePath = join(dirname(inputPath), element);
-			// If that file doesn't exist, don't do anything else
-			if (!fs.existsSync(absolutePath)) continue;
-
-			// Otherwise, load and parse that config recursively
-			allExtendedConfigs.push(...walkTslintConfigs(absolutePath, fs));
-		}
-	}
-	return allExtendedConfigs;
 }
 
 /**

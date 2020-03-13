@@ -14,6 +14,7 @@ export interface OpenCollectiveConfig {
 
 export interface OtherDonorsConfig {
 	donors: Contributor[];
+	fundingUrl?: string;
 }
 
 export interface DonateConfig {
@@ -41,6 +42,7 @@ export interface ReadmeConfig {
 }
 
 export interface ScaffoldConfig {
+	isDevelopmentPackage: boolean;
 	donate: DonateConfig;
 	logo: ImageConfig;
 	featureImage: ImageConfig;

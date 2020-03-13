@@ -25,9 +25,6 @@ export const CONSTANT = {
 		"standard/computed-property-even-spacing",
 		"standard/no-callback-literal"
 	],
-	TSLINT_AIRBNB_CODE_STYLE_NAME: "tslint-config-airbnb",
-	TSLINT_STANDARD_CODE_STYLE_NAME: "tslint-config-standard",
-	TSLINT_PRETTIER_CODE_STYLE_NAME: "tslint-config-prettier",
 	SHIELD_REST_ENDPOINT: "https://img.shields.io/badge",
 	PATREON_DONATE_URL: (userId: string) => `https://www.patreon.com/bePatron?u=${userId}`,
 	PATREON_BADGE_URL: (username: string) => `https://img.shields.io/endpoint.svg?url=https://shieldsio-patreon.herokuapp.com/${username}`,

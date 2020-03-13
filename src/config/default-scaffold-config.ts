@@ -6,6 +6,7 @@ import {Options, resolveConfig} from "prettier";
  * @type {Promise<ScaffoldConfig>}
  */
 export const DEFAULT_SCAFFOLD_CONFIG: Promise<ScaffoldConfig> = (async () => ({
+	isDevelopmentPackage: false,
 	logo: {
 		height: 80
 	},
