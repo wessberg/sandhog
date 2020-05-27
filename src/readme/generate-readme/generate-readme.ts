@@ -275,11 +275,13 @@ async function generateInstallSection(context: GenerateReadmeContext): Promise<v
 				? ""
 				: "\n\n" +
 				  `### Peer Dependencies\n\n` +
-				  `\`${context.pkg.name}\` depends on ${listFormat(
-						peerDependencies,
-						"and",
-						element => `\`${element}\``
-				  )}, so you need to manually install these${context.config.isDevelopmentPackage ? ` as development dependencies` : ``} as well.`)
+				  `\`${context.pkg.name}\` depends on ${listFormat(peerDependencies, "and", element => `\`${element}\``)}, so you need to manually install ${
+						peerDependencies.length === 1 ? "this" : "these"
+				  }${
+						context.config.isDevelopmentPackage
+							? ` as ${peerDependencies.length === 1 ? "a development dependency" : "development dependencies"}`
+							: ``
+				  } as well.`)
 	);
 }
 
