@@ -19,12 +19,7 @@ import {getCodeStyleForCodeStyleKind} from "../get-code-style-for-code-style-kin
  * @param options
  * @returns
  */
-export async function findCodeStyles({
-	logger,
-	root = process.cwd(),
-	fs = {existsSync: _existsSync},
-	pkg
-}: FindCodeStylesOptions): Promise<CodeStyle[]> {
+export async function findCodeStyles({logger, root = process.cwd(), fs = {existsSync: _existsSync}, pkg}: FindCodeStylesOptions): Promise<CodeStyle[]> {
 	if (pkg == null) {
 		pkg = (await findPackage({root, logger, fs})).pkg;
 	}
@@ -86,29 +81,28 @@ function getCodeStylesFromEslintConfig(config: Linter.Config): CodeStyleKind[] {
 
 	// Check if it contains the Airbnb Style Guide
 	const containsAirbnb =
-		extendsValue != null &&
-		extendsValue.some(element => element === CONSTANT.ESLINT_AIRBNB_CODE_STYLE_NAME || element.includes(CONSTANT.ESLINT_AIRBNB_CODE_STYLE_HINT));
+		extendsValue != null && extendsValue.some(element => element === CONSTANT.eslintAirbnbCodeStyleName || element.includes(CONSTANT.eslintAirbnbCodeStyleHint));
 
 	if (containsAirbnb) {
 		codeStyles.push(CodeStyleKind.AIRBNB);
 	}
 
 	// Check if it contains the Google Javascript Style Guide
-	const containsGoogle = extendsValue != null && extendsValue.some(element => element === CONSTANT.ESLINT_GOOGLE_CODE_STYLE_NAME);
+	const containsGoogle = extendsValue != null && extendsValue.some(element => element === CONSTANT.eslintGoogleCodeStyleName);
 
 	if (containsGoogle) {
 		codeStyles.push(CodeStyleKind.GOOGLE);
 	}
 
 	// Check if it contains Prettier
-	const containsPrettier = extendsValue != null && extendsValue.some(element => element === CONSTANT.ESLINT_PRETTIER_CODE_STYLE_NAME);
+	const containsPrettier = extendsValue != null && extendsValue.some(element => element === CONSTANT.eslintPrettierCodeStyleName);
 
 	if (containsPrettier) {
 		codeStyles.push(CodeStyleKind.PRETTIER);
 	}
 
 	// Check if it contains Idiomatic
-	const containsIdiomatic = extendsValue != null && extendsValue.some(element => element === CONSTANT.ESLINT_IDIOMATIC_CODE_STYLE_NAME);
+	const containsIdiomatic = extendsValue != null && extendsValue.some(element => element === CONSTANT.eslintIdiomaticCodeStyleName);
 
 	if (containsIdiomatic) {
 		codeStyles.push(CodeStyleKind.IDIOMATIC);
@@ -116,15 +110,15 @@ function getCodeStylesFromEslintConfig(config: Linter.Config): CodeStyleKind[] {
 
 	// Check if it contains Standard
 	const containsStandard =
-		(extendsValue != null && extendsValue.some(element => element === CONSTANT.ESLINT_STANDARD_CODE_STYLE_NAME)) ||
-		ruleKeys.some(key => CONSTANT.ESLINT_STANDARD_CODE_STYLE_HINTS.some(hint => key === hint));
+		(extendsValue != null && extendsValue.some(element => element === CONSTANT.eslintStandardCodeStyleName)) ||
+		ruleKeys.some(key => CONSTANT.eslintStandardCodeStyleHints.some(hint => key === hint));
 
 	if (containsStandard) {
 		codeStyles.push(CodeStyleKind.STANDARD);
 	}
 
 	// Check if it contains XO
-	const containsXo = extendsValue != null && extendsValue.some(element => element === CONSTANT.ESLINT_XO_CODE_STYLE_NAME);
+	const containsXo = extendsValue != null && extendsValue.some(element => element === CONSTANT.eslintXoCodeStyleName);
 
 	if (containsXo) {
 		codeStyles.push(CodeStyleKind.XO);
@@ -184,9 +178,5 @@ async function isXo(pkg: Package): Promise<boolean> {
  * @returns
  */
 async function isStandard(pkg: Package): Promise<boolean> {
-	return (
-		"standard" in pkg ||
-		(pkg.dependencies != null && "standard" in pkg.dependencies) ||
-		(pkg.devDependencies != null && "standard" in pkg.devDependencies)
-	);
+	return "standard" in pkg || (pkg.dependencies != null && "standard" in pkg.dependencies) || (pkg.devDependencies != null && "standard" in pkg.devDependencies);
 }

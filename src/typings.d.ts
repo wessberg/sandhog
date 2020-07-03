@@ -3,5 +3,5 @@ declare module "markdown-toc" {
 		content: string;
 	}
 
-	export default function(content: string): Result;
+	export default function (content: string): Result;
 }

@@ -6,7 +6,7 @@ import {CONSTANT} from "../../../constant/constant";
 createCommand(
 	{
 		name: "coc",
-		description: `Generates a ${CONSTANT.CODE_OF_CONDUCT_FILENAME} file`,
+		description: `Generates a ${CONSTANT.codeOfConductFilename} file`,
 		args: {},
 		options: {
 			...SHARED_OPTIONS

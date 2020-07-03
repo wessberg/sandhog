@@ -71,7 +71,7 @@ export async function findLicense({
  * @returns
  */
 function findLicenseRecursiveStep(root: string, logger: ILogger, fs: Pick<FileSystem, "existsSync" | "readFileSync">): [string, string] | undefined {
-	const absolutePath = join(root, CONSTANT.LICENSE_FILENAME);
+	const absolutePath = join(root, CONSTANT.licenseFilename);
 
 	logger.debug(`Checking path for license: ${absolutePath}`);
 	if (fs.existsSync(absolutePath)) {

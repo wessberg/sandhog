@@ -20,9 +20,7 @@ ${
 	contributors.every(contributor => contributor.twitter == null)
 		? ""
 		: `- Reaching out to ${listFormat(
-				contributors
-					.filter(contributor => contributor.twitter != null)
-					.map(contributor => `[@${contributor.twitter}](https://twitter.com/${contributor.twitter})`),
+				contributors.filter(contributor => contributor.twitter != null).map(contributor => `[@${contributor.twitter}](https://twitter.com/${contributor.twitter})`),
 				"or"
 		  )} on Twitter`
 }

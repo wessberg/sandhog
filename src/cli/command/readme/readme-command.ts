@@ -8,16 +8,16 @@ import {ensureBadgeKind} from "../../../badge/ensure-badge-kind/ensure-badge-kin
 createCommand(
 	{
 		name: "readme",
-		description: `Generates a ${CONSTANT.README_FILENAME} file`,
+		description: `Generates a ${CONSTANT.readmeFilename} file`,
 		args: {},
 		options: {
 			...SHARED_OPTIONS,
 			"section.exclude": {
-				description: `The comma-separated sections to exclude from the generated ${CONSTANT.README_FILENAME}`,
+				description: `The comma-separated sections to exclude from the generated ${CONSTANT.readmeFilename}`,
 				type: "string"
 			},
 			"badge.exclude": {
-				description: `The comma-separated badges to exclude from the generated ${CONSTANT.README_FILENAME}`,
+				description: `The comma-separated badges to exclude from the generated ${CONSTANT.readmeFilename}`,
 				type: "string"
 			}
 		}

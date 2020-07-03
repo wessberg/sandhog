@@ -277,11 +277,7 @@ async function generateInstallSection(context: GenerateReadmeContext): Promise<v
 				  `### Peer Dependencies\n\n` +
 				  `\`${context.pkg.name}\` depends on ${listFormat(peerDependencies, "and", element => `\`${element}\``)}, so you need to manually install ${
 						peerDependencies.length === 1 ? "this" : "these"
-				  }${
-						context.config.isDevelopmentPackage
-							? ` as ${peerDependencies.length === 1 ? "a development dependency" : "development dependencies"}`
-							: ``
-				  } as well.`)
+				  }${context.config.isDevelopmentPackage ? ` as ${peerDependencies.length === 1 ? "a development dependency" : "development dependencies"}` : ``} as well.`)
 	);
 }
 
@@ -301,14 +297,14 @@ async function generateUsageSection(context: GenerateReadmeContext): Promise<voi
  */
 async function generateContributingSection(context: GenerateReadmeContext): Promise<void> {
 	// Only add the contributing section if a CONTRIBUTING.md file exists
-	const contributingFilePath = join(context.root, CONSTANT.CODE_OF_CONDUCT_FILENAME);
+	const contributingFilePath = join(context.root, CONSTANT.codeOfConductFilename);
 
 	setSection(
 		context,
 		SectionKind.CONTRIBUTING,
 		!context.fs.existsSync(contributingFilePath)
 			? ""
-			: `## Contributing\n\n` + `Do you want to contribute? Awesome! Please follow [these recommendations](./${CONSTANT.CONTRIBUTING_FILENAME}).`
+			: `## Contributing\n\n` + `Do you want to contribute? Awesome! Please follow [these recommendations](./${CONSTANT.contributingFilename}).`
 	);
 }
 
@@ -322,7 +318,7 @@ function generateContributorTable(contributors: Contributor[]): string {
 				: formatImage({
 						alt: contributor.name,
 						url: contributor.imageUrl,
-						height: CONSTANT.CONTRIBUTOR_IMAGE_URL_HEIGHT
+						height: CONSTANT.contributorImageUrlHeight
 				  });
 
 		const formattedImageWithUrl =
@@ -418,14 +414,12 @@ async function generateBackersSection(context: GenerateReadmeContext): Promise<v
 	if (context.config.donate.openCollective.project != null) {
 		content +=
 			`### Open Collective\n\n` +
-			`[Become a sponsor/backer](${CONSTANT.OPEN_COLLECTIVE_DONATE_URL(
-				context.config.donate.openCollective.project
-			)}) and get your logo listed here.\n\n` +
+			`[Become a sponsor/backer](${CONSTANT.openCollectiveDonateUrl(context.config.donate.openCollective.project)}) and get your logo listed here.\n\n` +
 			`#### Sponsors\n\n` +
 			formatUrl({
-				url: CONSTANT.OPEN_COLLECTIVE_CONTRIBUTORS_URL(context.config.donate.openCollective.project),
+				url: CONSTANT.openCollectiveContributorsUrl(context.config.donate.openCollective.project),
 				inner: formatImage({
-					url: CONSTANT.OPEN_COLLECTIVE_SPONSORS_BADGE_URL(context.config.donate.openCollective.project),
+					url: CONSTANT.openCollectiveSponsorsBadgeUrl(context.config.donate.openCollective.project),
 					alt: "Sponsors on Open Collective",
 					width: 500
 				})
@@ -433,9 +427,9 @@ async function generateBackersSection(context: GenerateReadmeContext): Promise<v
 			"\n\n" +
 			`#### Backers\n\n` +
 			formatUrl({
-				url: CONSTANT.OPEN_COLLECTIVE_CONTRIBUTORS_URL(context.config.donate.openCollective.project),
+				url: CONSTANT.openCollectiveContributorsUrl(context.config.donate.openCollective.project),
 				inner: formatImage({
-					url: CONSTANT.OPEN_COLLECTIVE_BACKERS_BADGE_URL(context.config.donate.openCollective.project),
+					url: CONSTANT.openCollectiveBackersBadgeUrl(context.config.donate.openCollective.project),
 					alt: "Backers on Open Collective"
 				})
 			}) +
@@ -446,9 +440,9 @@ async function generateBackersSection(context: GenerateReadmeContext): Promise<v
 		content +=
 			`### Patreon\n\n` +
 			formatUrl({
-				url: CONSTANT.PATREON_DONATE_URL(context.config.donate.patreon.userId),
+				url: CONSTANT.patreonDonateUrl(context.config.donate.patreon.userId),
 				inner: formatImage({
-					url: CONSTANT.PATREON_BADGE_URL(context.config.donate.patreon.username),
+					url: CONSTANT.patreonBadgeUrl(context.config.donate.patreon.username),
 					alt: "Patrons on Patreon",
 					width: 200
 				})
@@ -456,11 +450,7 @@ async function generateBackersSection(context: GenerateReadmeContext): Promise<v
 			"\n\n";
 	}
 
-	setSection(
-		context,
-		SectionKind.BACKERS,
-		context.config.donate.patreon.userId == null && context.config.donate.openCollective.project == null ? "" : `## Backers\n\n` + content
-	);
+	setSection(context, SectionKind.BACKERS, context.config.donate.patreon.userId == null && context.config.donate.openCollective.project == null ? "" : `## Backers\n\n` + content);
 }
 
 /**
@@ -471,7 +461,7 @@ async function generateBackersSection(context: GenerateReadmeContext): Promise<v
 async function generateLicenseSection(context: GenerateReadmeContext): Promise<void> {
 	const license = await findLicense(context);
 	const contributors = getContributorsFromPackage(context.pkg);
-	const licenseFilePath = join(context.root, CONSTANT.LICENSE_FILENAME);
+	const licenseFilePath = join(context.root, CONSTANT.licenseFilename);
 
 	setSection(
 		context,

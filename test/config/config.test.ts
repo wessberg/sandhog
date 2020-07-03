@@ -1,12 +1,12 @@
 import test from "ava";
 import {getConfig} from "../../src/config/get-config/get-config";
 import {Logger} from "../../src/logger/logger";
-import {LogLevel} from "../../src/logger/log-level";
+import {LogLevelKind} from "../../src/logger/log-level-kind";
 
 test("Can sanitize a ScaffoldConfig", async t => {
 	const config = await getConfig({
 		root: process.cwd(),
-		logger: new Logger(LogLevel.NONE)
+		logger: new Logger(LogLevelKind.NONE)
 	});
 
 	// Verify that it has no optional keys

@@ -8,7 +8,7 @@ import {getLicense} from "../../../license/get-license/get-license";
 createCommand(
 	{
 		name: "license",
-		description: `Generates a ${CONSTANT.LICENSE_FILENAME} file`,
+		description: `Generates a ${CONSTANT.licenseFilename} file`,
 		args: {},
 		options: {
 			...SHARED_OPTIONS,

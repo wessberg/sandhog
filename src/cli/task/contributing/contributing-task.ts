@@ -14,14 +14,14 @@ import {confirm} from "../../../util/prompt/confirm";
 export async function contributingTask({pkg, logger, prettier, config, root, fs, yes}: ContributingTaskOptions): Promise<void> {
 	const contributors = getContributorsFromPackage(pkg);
 	const contributingText = generateContributing({contributors, config, prettier, pkg});
-	const path = join(root, CONSTANT.CONTRIBUTING_FILENAME);
+	const path = join(root, CONSTANT.contributingFilename);
 
 	// If all prompts shouldn't be auto-accepted, request permission to overwrite it
 	const writePermission =
 		yes ||
 		!fs.existsSync(path) ||
 		fs.readFileSync(path, "utf8") === contributingText ||
-		(await confirm(`A ${CONSTANT.CONTRIBUTING_FILENAME} file already exists at path: ${path}. Do you wish to overwrite it?`, false));
+		(await confirm(`A ${CONSTANT.contributingFilename} file already exists at path: ${path}. Do you wish to overwrite it?`, false));
 
 	if (writePermission) {
 		// Write the CONTRIBUTING.md to disk

@@ -14,14 +14,14 @@ import {confirm} from "../../../util/prompt/confirm";
 export async function licenseTask({logger, root, license, prettier, config, pkg, fs, yes}: LicenseTaskOptions): Promise<void> {
 	const contributors = getContributorsFromPackage(pkg);
 	const licenseText = await generateLicense(license, {contributors, config, prettier, pkg});
-	const path = join(root, CONSTANT.LICENSE_FILENAME);
+	const path = join(root, CONSTANT.licenseFilename);
 
 	// If all prompts shouldn't be auto-accepted, request permission to overwrite it
 	const writePermission =
 		yes ||
 		!fs.existsSync(path) ||
 		fs.readFileSync(path, "utf8") === licenseText ||
-		(await confirm(`A ${CONSTANT.LICENSE_FILENAME} file already exists at path: ${path}. Do you wish to overwrite it?`, false));
+		(await confirm(`A ${CONSTANT.licenseFilename} file already exists at path: ${path}. Do you wish to overwrite it?`, false));
 
 	if (writePermission) {
 		// Write the LICENSE.md to disk

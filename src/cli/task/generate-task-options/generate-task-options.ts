@@ -6,7 +6,7 @@ import {selectLogLevel} from "./select-log-level/select-log-level";
 import {findPackage} from "../../../package/find-package/find-package";
 import prettier from "prettier";
 import fs from "fs";
-import {LogLevel} from "../../../logger/log-level";
+import {LogLevelKind} from "../../../logger/log-level-kind";
 
 /**
  * Generates the task options that are shared across all commands
@@ -20,8 +20,8 @@ export async function generateTaskOptions(options: SanitizedSharedOptions): Prom
 	const logger = new Logger(logLevel);
 
 	// Inform about the log level (if applicable)
-	if (logLevel === LogLevel.VERBOSE) logger.verbose(`Logging mode: VERBOSE`);
-	else if (logLevel === LogLevel.DEBUG) logger.debug(`Logging mode: DEBUG`);
+	if (logLevel === LogLevelKind.VERBOSE) logger.verbose(`Logging mode: VERBOSE`);
+	else if (logLevel === LogLevelKind.DEBUG) logger.debug(`Logging mode: DEBUG`);
 
 	// Resolve the package.json file
 	const {pkg, root} = await findPackage({

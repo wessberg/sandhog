@@ -55,12 +55,12 @@ async function findConfigRecursiveStep(
 		filename != null
 			? [isAbsolute(filename) ? filename : join(root, filename)]
 			: [
-					join(root, CONSTANT.CONFIG_FILENAME_JS),
-					join(root, CONSTANT.CONFIG_FILENAME_JSON),
-					join(root, CONSTANT.CONFIG_FILENAME_JSON5),
-					join(root, CONSTANT.CONFIG_FILENAME_YAML),
-					join(root, CONSTANT.CONFIG_FILENAME_YML),
-					join(root, CONSTANT.CONFIG_FILENAME_RC)
+					join(root, CONSTANT.configFilenameJs),
+					join(root, CONSTANT.configFilenameJson),
+					join(root, CONSTANT.configFilenameJson5),
+					join(root, CONSTANT.configFilenameYaml),
+					join(root, CONSTANT.configFilenameYml),
+					join(root, CONSTANT.configFilenameRc)
 			  ];
 
 	for (const path of absolutePaths) {

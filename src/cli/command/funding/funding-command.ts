@@ -6,7 +6,7 @@ import {CONSTANT} from "../../../constant/constant";
 createCommand(
 	{
 		name: "funding",
-		description: `Generates a ${CONSTANT.FUNDING_FILENAME} file`,
+		description: `Generates a ${CONSTANT.fundingFilename} file`,
 		args: {},
 		options: {
 			...SHARED_OPTIONS

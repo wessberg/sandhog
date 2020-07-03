@@ -8,5 +8,5 @@ import {CONSTANT} from "../../constant/constant";
  * @returns
  */
 export function generateBadgeUrl({color, status, subject}: GenerateBadgeOptions): string {
-	return `${CONSTANT.SHIELD_REST_ENDPOINT}/${subject}/${status}/${color}.svg`;
+	return `${CONSTANT.shieldRestEndpoint}/${subject}/${status}/${color}.svg`;
 }

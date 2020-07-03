@@ -14,15 +14,15 @@ import {generateFunding} from "../../../funding/generate-funding/generate-fundin
 export async function fundingTask({pkg, logger, prettier, config, root, fs, yes}: FundingTaskOptions): Promise<void> {
 	const contributors = getContributorsFromPackage(pkg);
 	const cocText = generateFunding({contributors, config, prettier});
-	const dir = join(root, CONSTANT.GITHUB_DIR_NAME);
-	const path = join(dir, CONSTANT.FUNDING_FILENAME);
+	const dir = join(root, CONSTANT.githubDirName);
+	const path = join(dir, CONSTANT.fundingFilename);
 
 	// If all prompts shouldn't be auto-accepted, request permission to overwrite it
 	const writePermission =
 		yes ||
 		!fs.existsSync(path) ||
 		fs.readFileSync(path, "utf8") === cocText ||
-		(await confirm(`A ${CONSTANT.FUNDING_FILENAME} file already exists at path: ${path}. Do you wish to overwrite it?`, false));
+		(await confirm(`A ${CONSTANT.fundingFilename} file already exists at path: ${path}. Do you wish to overwrite it?`, false));
 
 	if (writePermission) {
 		// Ensure that the .github directory exists

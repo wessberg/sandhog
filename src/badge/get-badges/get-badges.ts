@@ -110,15 +110,10 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 	}
 
 	// Unless explicitly excluded, and if possible, generate a badge for supporting on Patreon
-	if (
-		!excluded.has(BadgeKind.PATREON) &&
-		options.config.donate != null &&
-		options.config.donate.patreon != null &&
-		options.config.donate.patreon.userId != null
-	) {
+	if (!excluded.has(BadgeKind.PATREON) && options.config.donate != null && options.config.donate.patreon != null && options.config.donate.patreon.userId != null) {
 		result[BadgeKind.PATREON] = [
 			formatUrl({
-				url: CONSTANT.PATREON_DONATE_URL(options.config.donate.patreon.userId),
+				url: CONSTANT.patreonDonateUrl(options.config.donate.patreon.userId),
 				inner: formatImage({
 					alt: `Support on Patreon`,
 					url: `https://img.shields.io/badge/patreon-donate-green.svg`
@@ -136,7 +131,7 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 	) {
 		result[BadgeKind.OPEN_COLLECTIVE_DONATE] = [
 			formatUrl({
-				url: CONSTANT.OPEN_COLLECTIVE_DONATE_URL(options.config.donate.openCollective.project),
+				url: CONSTANT.openCollectiveDonateUrl(options.config.donate.openCollective.project),
 				inner: formatImage({
 					alt: `Support on Open Collective`,
 					url: `https://img.shields.io/badge/opencollective-donate-green.svg`
@@ -154,7 +149,7 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 	) {
 		result[BadgeKind.OPEN_COLLECTIVE_BACKERS] = [
 			formatUrl({
-				url: CONSTANT.OPEN_COLLECTIVE_CONTRIBUTORS_URL(options.config.donate.openCollective.project),
+				url: CONSTANT.openCollectiveContributorsUrl(options.config.donate.openCollective.project),
 				inner: formatImage({
 					alt: `Backers on Open Collective`,
 					url: `https://opencollective.com/${options.config.donate.openCollective.project}/backers/badge.svg`
@@ -172,7 +167,7 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 	) {
 		result[BadgeKind.OPEN_COLLECTIVE_SPONSORS] = [
 			formatUrl({
-				url: CONSTANT.OPEN_COLLECTIVE_CONTRIBUTORS_URL(options.config.donate.openCollective.project),
+				url: CONSTANT.openCollectiveContributorsUrl(options.config.donate.openCollective.project),
 				inner: formatImage({
 					alt: `Sponsors on Open Collective`,
 					url: `https://opencollective.com/${options.config.donate.openCollective.project}/sponsors/badge.svg`
