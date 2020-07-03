@@ -1,3 +1,10 @@
+## [1.0.30](https://github.com/wessberg/scaffold/compare/v1.0.29...v1.0.30) (2020-07-03)
+
+### Bug Fixes
+
+- **readme:** fix singular variant of peer dependencies install instructions ([9514f82](https://github.com/wessberg/scaffold/commit/9514f820b5cea55f138955049b001a8e6f8452d7))
+- fix singular formatting of peer dependencies ([1e4e553](https://github.com/wessberg/scaffold/commit/1e4e55355dca408b5e5842be86dfdae479567694))
+
 ## [1.0.29](https://github.com/wessberg/scaffold/compare/v1.0.28...v1.0.29) (2020-03-13)
 
 ### Bug Fixes
