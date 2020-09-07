@@ -13,14 +13,14 @@ export function getCodeStyleForCodeStyleKind(kind: CodeStyleKind): CodeStyle {
 		case CodeStyleKind.PRETTIER:
 			return {
 				kind,
-				badgeUrl: "https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square",
+				badgeUrl: "https://img.shields.io/badge/code_style-prettier-ff69b4.svg",
 				url: "https://github.com/prettier/prettier"
 			};
 
 		case CodeStyleKind.STANDARD:
 			return {
 				kind,
-				badgeUrl: "https://img.shields.io/badge/code%20style-standard-green.svg?style=flat-square",
+				badgeUrl: "https://img.shields.io/badge/code%20style-standard-green.svg",
 				url: "https://github.com/feross/standard"
 			};
 
