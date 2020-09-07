@@ -1,3 +1,9 @@
+## [1.0.31](https://github.com/wessberg/scaffold/compare/v1.0.30...v1.0.31) (2020-09-07)
+
+### Bug Fixes
+
+- **badges:** ensure that all badges are rounded ([7fa4ac6](https://github.com/wessberg/scaffold/commit/7fa4ac673223bbd0a8b2af61139371858c6d5c08))
+
 ## [1.0.30](https://github.com/wessberg/scaffold/compare/v1.0.29...v1.0.30) (2020-07-03)
 
 ### Bug Fixes
