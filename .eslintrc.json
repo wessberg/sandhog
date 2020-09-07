@@ -4,8 +4,5 @@
 		"shared-node-browser": true,
 		"node": true
 	},
-	"extends": "./node_modules/@wessberg/ts-config/.eslintrc.json",
-	"rules": {
-		"no-shadow": "off"
-	}
+	"extends": "./node_modules/@wessberg/ts-config/.eslintrc.json"
 }
