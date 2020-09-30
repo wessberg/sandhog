@@ -1,3 +1,5 @@
+## [1.0.32](https://github.com/wessberg/scaffold/compare/v1.0.31...v1.0.32) (2020-09-30)
+
 ## [1.0.31](https://github.com/wessberg/scaffold/compare/v1.0.30...v1.0.31) (2020-09-07)
 
 ### Bug Fixes
