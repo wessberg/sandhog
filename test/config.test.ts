@@ -1,7 +1,7 @@
 import test from "ava";
-import {getConfig} from "../../src/config/get-config/get-config";
-import {Logger} from "../../src/logger/logger";
-import {LogLevelKind} from "../../src/logger/log-level-kind";
+import {Logger} from "../src/logger/logger";
+import {LogLevelKind} from "../src/logger/log-level-kind";
+import {getConfig} from "../src/config/get-config/get-config";
 
 test("Can sanitize a ScaffoldConfig", async t => {
 	const config = await getConfig({
