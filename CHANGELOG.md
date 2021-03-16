@@ -1,3 +1,12 @@
+## [1.0.36](https://github.com/wessberg/scaffold/compare/v1.0.34...v1.0.36) (2021-03-16)
+
+
+### Bug Fixes
+
+* **style:** don't match the Standard code style if the relevant ESLint rules are turned off ([7f58766](https://github.com/wessberg/scaffold/commit/7f5876633e20079c4711ba76fc3d5f7d58a8d485))
+
+
+
 ## [1.0.34](https://github.com/wessberg/scaffold/compare/v1.0.33...v1.0.34) (2021-03-16)
 
 
