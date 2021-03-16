@@ -70,12 +70,9 @@ export async function findCodeStyles({logger, root = process.cwd(), fs = {exists
 
 /**
  * Parses the given Config for all CodeStyleKinds
- *
- * @param config
- * @returns
  */
 function getCodeStylesFromEslintConfig(config: Linter.Config): CodeStyleKind[] {
-	const ruleKeys = config.rules == null ? [] : Object.keys(config.rules);
+	const ruleEntries = config.rules == null ? [] : Object.entries(config.rules);
 	const codeStyles: CodeStyleKind[] = [];
 	const extendsValue = config.extends == null ? undefined : Array.isArray(config.extends) ? config.extends : [config.extends];
 
@@ -111,7 +108,7 @@ function getCodeStylesFromEslintConfig(config: Linter.Config): CodeStyleKind[] {
 	// Check if it contains Standard
 	const containsStandard =
 		(extendsValue != null && extendsValue.some(element => element === CONSTANT.eslintStandardCodeStyleName)) ||
-		ruleKeys.some(key => CONSTANT.eslintStandardCodeStyleHints.some(hint => key === hint));
+		ruleEntries.some(([key, value]) => CONSTANT.eslintStandardCodeStyleHints.some(hint => key === hint && value !== "off" && JSON.stringify(value) !== JSON.stringify(["off"])));
 
 	if (containsStandard) {
 		codeStyles.push(CodeStyleKind.STANDARD);

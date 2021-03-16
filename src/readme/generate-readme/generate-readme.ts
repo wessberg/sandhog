@@ -190,7 +190,7 @@ async function generateBadgesSection(context: GenerateReadmeContext): Promise<vo
 	const content = Object.values(badges)
 		.map(value => {
 			if (value == null) return "";
-			return value.join("");
+			return value.join("\n");
 		})
 		.join("\n");
 	setSection(context, SectionKind.BADGES, content);
