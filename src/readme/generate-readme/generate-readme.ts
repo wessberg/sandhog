@@ -54,6 +54,10 @@ export async function generateReadme(options: GenerateReadmeOptions): Promise<st
 		await generateFeatureImageSection(context);
 	}
 
+	if (sections.has(SectionKind.BACKERS)) {
+		await generateBackersSection(context);
+	}
+
 	if (sections.has(SectionKind.TOC)) {
 		await generateTableOfContentsSection(context, true);
 	}
@@ -72,10 +76,6 @@ export async function generateReadme(options: GenerateReadmeOptions): Promise<st
 
 	if (sections.has(SectionKind.MAINTAINERS)) {
 		await generateMaintainersSection(context);
-	}
-
-	if (sections.has(SectionKind.BACKERS)) {
-		await generateBackersSection(context);
 	}
 
 	if (sections.has(SectionKind.FAQ)) {
