@@ -1,3 +1,12 @@
+## [1.0.34](https://github.com/wessberg/scaffold/compare/v1.0.33...v1.0.34) (2021-03-16)
+
+
+### Features
+
+* **backers:** move backers section up in the README template ([1d1f609](https://github.com/wessberg/scaffold/commit/1d1f6094ee82c0b5421b021f10f506a450a49d59))
+
+
+
 ## [1.0.33](https://github.com/wessberg/scaffold/compare/v1.0.32...v1.0.33) (2021-03-16)
 
 
