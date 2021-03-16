@@ -1,6 +1,6 @@
 {
 	"name": "@wessberg/scaffold",
-	"version": "1.0.32",
+	"version": "1.0.33",
 	"bin": {
 		"scaffold": "bin/scaffold"
 	},
@@ -47,7 +47,6 @@
 		"json5": "^2.2.0",
 		"markdown-toc": "^1.2.0",
 		"prettier": "^2.2.1",
-
 		"yaml": "^1.10.2"
 	},
 	"devDependencies": {
