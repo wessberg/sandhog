@@ -27,7 +27,7 @@ export const CONSTANT = {
 	],
 	shieldRestEndpoint: "https://img.shields.io/badge",
 	patreonDonateUrl: (userId: string) => `https://www.patreon.com/bePatron?u=${userId}`,
-	patreonBadgeUrl: (username: string) => `https://img.shields.io/endpoint.svg?url=https://shieldsio-patreon.herokuapp.com/${username}`,
+	patreonBadgeUrl: (username: string) => `https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3D${username}%26type%3Dpatrons`,
 	openCollectiveDonateUrl: (projectName: string) => `https://opencollective.com/${projectName}/contribute/`,
 	openCollectiveContributorsUrl: (projectName: string) => `https://opencollective.com/${projectName}/#contributors`,
 	openCollectiveSponsorsBadgeUrl: (project: string) => `https://opencollective.com/${project}/sponsors.svg?width=500`,
