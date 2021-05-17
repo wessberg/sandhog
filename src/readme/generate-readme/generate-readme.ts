@@ -268,7 +268,7 @@ async function generateInstallSection(context: GenerateReadmeContext): Promise<v
 				  `### Run once with npx\n\n` +
 				  "```\n" +
 				  `$ npx${peerDependencies.length === 0 ? "" : peerDependencies.map(peerDependency => ` -p ${peerDependency}`).join("")}${
-						firstBinName === context.pkg.name ? ` ${context.pkg.name}` : ` -p ${context.pkg.name} ${firstBinName}`
+						firstBinName === context.pkg.name && peerDependencies.length === 0 ? ` ${context.pkg.name}` : ` -p ${context.pkg.name} ${firstBinName}`
 				  }\n` +
 				  "```") +
 			(peerDependencies.length < 1

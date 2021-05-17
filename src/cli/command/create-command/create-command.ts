@@ -1,5 +1,5 @@
 import commander from "commander";
-import {CommandAction, CommandActionOptions, CommandOptionType, CreateCommandOptions} from "./create-command-options";
+import {CommandAction, CommandOptionType, CreateCommandOptions} from "./create-command-options";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -35,9 +35,6 @@ function formatOptionFlags(shortHand: string | undefined, longHand: string): str
 
 /**
  * Formats the given command name, along with its arguments
- *
- * @param options
- * @returns
  */
 function formatCommandNameWithArgs<T extends CreateCommandOptions>(options: T): string {
 	const formattedArgs = Object.entries(options.args)
@@ -67,23 +64,5 @@ export function createCommand<T extends CreateCommandOptions>(options: T, action
 	});
 
 	// Add the action to the command
-	result.action((...args: unknown[]) => {
-		const argKeys = Object.keys(options.args);
-		const optionKeys = Object.keys(options.options);
-		const actionOptions = {} as CommandActionOptions<T>;
-		for (let i = 0; i < args.length; i++) {
-			if (argKeys[i] == null) continue;
-			actionOptions[argKeys[i] as keyof typeof actionOptions] = args[i] as any;
-		}
-
-		// Take the last argument
-		const lastArg = args[args.length - 1];
-		// Apply all option values
-		for (const key of optionKeys) {
-			actionOptions[key as keyof typeof actionOptions] = (lastArg as any)[key];
-		}
-
-		// Invoke the action
-		action(actionOptions);
-	});
+	result.action(action);
 }
