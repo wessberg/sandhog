@@ -14,14 +14,14 @@ function coerceOptionValue(type: CommandOptionType, value: unknown): typeof type
 			return String(value);
 
 		case "number":
-			if (typeof value === "number") return (value as unknown) as string;
-			else if (value === true) return (1 as unknown) as string;
-			else if (value === false) return (0 as unknown) as string;
-			return (parseFloat(value as string) as unknown) as string;
+			if (typeof value === "number") return value as unknown as string;
+			else if (value === true) return 1 as unknown as string;
+			else if (value === false) return 0 as unknown as string;
+			return parseFloat(value as string) as unknown as string;
 		case "boolean":
-			if (value === "true" || value === "" || value === "1" || value === 1) return (true as unknown) as string;
-			else if (value === "false" || value === "0" || value === 0) return (false as unknown) as string;
-			return (Boolean(value) as unknown) as string;
+			if (value === "true" || value === "" || value === "1" || value === 1) return true as unknown as string;
+			else if (value === "false" || value === "0" || value === 0) return false as unknown as string;
+			return Boolean(value) as unknown as string;
 	}
 }
 
