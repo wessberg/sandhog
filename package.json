@@ -25,8 +25,8 @@
 		"preversion": "pnpm run lint && pnpm run build",
 		"version": "pnpm run generate:all && git add .",
 		"release": "np --no-cleanup --no-yarn",
-		"update:check": "pnpx npm-check-updates -x np --dep dev,prod",
-		"update:commit": "pnpx npm-check-updates -u -x np --dep dev,prod && pnpm update && pnpm install"
+		"update:check": "pnpx npm-check-updates --dep dev,prod",
+		"update:commit": "pnpx npm-check-updates -u --dep dev,prod && pnpm update && pnpm install"
 	},
 	"keywords": [
 		"open source",
@@ -64,7 +64,7 @@
 		"eslint-plugin-jsdoc": "^34.7.0",
 		"husky": "^6.0.0",
 		"magic-string": "^0.25.7",
-		"np": "5.2.1",
+		"np": "7.5.0",
 		"pnpm": "^6.3.0",
 		"pretty-quick": "^3.1.0",
 		"rollup": "^2.48.0",
