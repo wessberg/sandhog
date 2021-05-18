@@ -1,6 +1,6 @@
 <!-- SHADOW_SECTION_LOGO_START -->
 
-<div><img alt="Logo" src="https://raw.githubusercontent.com/wessberg/sandhog/master/documentation/asset/logo.png" height="80"   /></div>
+<div><img alt="Logo" src="https://raw.githubusercontent.com/wessberg/sandhog/master/documentation/asset/logo.png" height="200"   /></div>
 
 <!-- SHADOW_SECTION_LOGO_END -->
 
@@ -50,7 +50,7 @@ Sandhog works out of the box without any configuration. Some highlights include:
 
 <!-- SHADOW_SECTION_FEATURE_IMAGE_START -->
 
-<div><img alt="Feature image" src="https://raw.githubusercontent.com/wessberg/sandhog/master/documentation/asset/feature.svg" height="180"   /></div><br>
+<div><img alt="Feature image" src="https://raw.githubusercontent.com/wessberg/sandhog/master/documentation/asset/feature.svg" height="300"   /></div><br>
 
 <!-- SHADOW_SECTION_FEATURE_IMAGE_END -->
 
