@@ -1,4 +1,4 @@
-# [0.0.0](https://github.com/wessberg/sandhog/compare/v1.0.36...v0.0.0) (2021-05-18)
+## [1.0.37](https://github.com/wessberg/sandhog/compare/v1.0.36...v1.0.37) (2021-05-18)
 
 ### Bug Fixes
 
