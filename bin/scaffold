@@ -1,5 +1,0 @@
-#!/usr/bin/env node
-'use strict';
-
-process.title = 'scaffold';
-require("../dist/cli.js");

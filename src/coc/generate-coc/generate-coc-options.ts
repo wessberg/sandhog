@@ -1,9 +1,9 @@
 import {Contributor} from "../../contributor/contributor";
 import prettier from "prettier";
-import {ScaffoldConfig} from "../../config/scaffold-config";
+import {SandhogConfig} from "../../config/sandhog-config";
 
 export interface GenerateCocOptions {
 	prettier: typeof prettier;
-	config: ScaffoldConfig;
+	config: SandhogConfig;
 	contributors: Contributor[];
 }

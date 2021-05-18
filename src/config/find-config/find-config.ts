@@ -1,4 +1,4 @@
-import {ScaffoldConfig} from "../scaffold-config";
+import {SandhogConfig} from "../sandhog-config";
 import {existsSync as _existsSync, readFileSync as _readFileSync} from "fs";
 import {CONSTANT} from "../../constant/constant";
 import {extname, isAbsolute, join} from "path";
@@ -11,10 +11,7 @@ import json5 from "json5";
 import yaml from "yaml";
 
 /**
- * Finds a scaffold config if possible
- *
- * @param options
- * @returns
+ * Finds a sandhog config if possible
  */
 export async function findConfig({
 	filename,
@@ -22,14 +19,14 @@ export async function findConfig({
 	root = process.cwd(),
 	fs = {existsSync: _existsSync, readFileSync: _readFileSync},
 	pkg
-}: FindConfigOptions): Promise<DeepPartial<ScaffoldConfig> | undefined> {
+}: FindConfigOptions): Promise<DeepPartial<SandhogConfig> | undefined> {
 	if (pkg == null) {
 		pkg = (await findPackage({root, logger, fs})).pkg;
 	}
 	logger.debug(`Checking package.json for config`);
-	if (pkg.scaffold != null) {
+	if (pkg.sandhog != null) {
 		logger.debug(`Matched config in package.json`);
-		return pkg.scaffold;
+		return pkg.sandhog;
 	}
 
 	// If it wasn't matched in the package, attempt to resolve a config file
@@ -50,7 +47,7 @@ async function findConfigRecursiveStep(
 	logger: ILogger,
 	fs: Pick<FileSystem, "existsSync" | "readFileSync">,
 	filename?: string
-): Promise<DeepPartial<ScaffoldConfig> | undefined> {
+): Promise<DeepPartial<SandhogConfig> | undefined> {
 	const absolutePaths =
 		filename != null
 			? [isAbsolute(filename) ? filename : join(root, filename)]

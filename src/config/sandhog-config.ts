@@ -41,7 +41,7 @@ export interface ReadmeConfig {
 	badges: BadgeConfig;
 }
 
-export interface ScaffoldConfig {
+export interface SandhogConfig {
 	isDevelopmentPackage: boolean;
 	donate: DonateConfig;
 	logo: ImageConfig;

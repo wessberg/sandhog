@@ -1,5 +1,5 @@
 import prettier from "prettier";
-import {ScaffoldConfig} from "../../config/scaffold-config";
+import {SandhogConfig} from "../../config/sandhog-config";
 import {Package} from "../../package/package";
 import {ILogger} from "../../logger/i-logger";
 import {FileSystem} from "../../file-system/file-system";
@@ -10,6 +10,6 @@ export interface GenerateReadmeOptions {
 	logger: ILogger;
 	root: string;
 	fs: Pick<FileSystem, "existsSync" | "readFileSync">;
-	config: ScaffoldConfig;
+	config: SandhogConfig;
 	existingReadme?: string;
 }

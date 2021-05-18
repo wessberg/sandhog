@@ -1,20 +1,20 @@
 import {FindConfigOptions} from "../find-config/find-config-options";
-import {ScaffoldConfig} from "../scaffold-config";
+import {SandhogConfig} from "../sandhog-config";
 import {findConfig} from "../find-config/find-config";
-import {DEFAULT_SCAFFOLD_CONFIG} from "../default-scaffold-config";
+import {DEFAULT_SANDHOG_CONFIG} from "../default-sandhog-config";
 import {BadgeKind} from "../../badge/badge-kind";
 import {SectionKind} from "../../section/section-kind";
 import {Options} from "prettier";
 import {Contributor} from "../../contributor/contributor";
 
 /**
- * Gets a ScaffoldConfig. Will attempt to resolve a config and fall back to defaults
+ * Gets a SandhogConfig. Will attempt to resolve a config and fall back to defaults
  * if no such config could be found
  *
  * @type {FindConfigOptions} options
  * @returns
  */
-export async function getConfig(options: FindConfigOptions): Promise<ScaffoldConfig> {
+export async function getConfig(options: FindConfigOptions): Promise<SandhogConfig> {
 	// Resolve the config
 	let config = await findConfig(options);
 	// If no config could be found, initialize to an empty record
@@ -22,7 +22,7 @@ export async function getConfig(options: FindConfigOptions): Promise<ScaffoldCon
 		config = {};
 	}
 
-	const defaultConfig = await DEFAULT_SCAFFOLD_CONFIG;
+	const defaultConfig = await DEFAULT_SANDHOG_CONFIG;
 
 	return {
 		isDevelopmentPackage: config.isDevelopmentPackage ?? defaultConfig.isDevelopmentPackage,

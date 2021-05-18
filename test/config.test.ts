@@ -3,7 +3,7 @@ import {Logger} from "../src/logger/logger";
 import {LogLevelKind} from "../src/logger/log-level-kind";
 import {getConfig} from "../src/config/get-config/get-config";
 
-test("Can sanitize a ScaffoldConfig", async t => {
+test("Can sanitize a SandhogConfig", async t => {
 	const config = await getConfig({
 		root: process.cwd(),
 		logger: new Logger(LogLevelKind.NONE)

@@ -1,11 +1,11 @@
-import {ScaffoldConfig} from "./scaffold-config";
+import {SandhogConfig} from "./sandhog-config";
 import {Options, resolveConfig} from "prettier";
 
 /**
- * This object holds all of the default config options for a ScaffoldConfig
- * @type {Promise<ScaffoldConfig>}
+ * This object holds all of the default config options for a SandhogConfig
+ * @type {Promise<SandhogConfig>}
  */
-export const DEFAULT_SCAFFOLD_CONFIG: Promise<ScaffoldConfig> = (async () => ({
+export const DEFAULT_SANDHOG_CONFIG: Promise<SandhogConfig> = (async () => ({
 	isDevelopmentPackage: false,
 	logo: {
 		height: 80

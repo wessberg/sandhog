@@ -2,7 +2,7 @@ export const SHARED_OPTIONS = {
 	config: {
 		shortHand: "c",
 		type: "string",
-		description: "An (optional) path to the scaffold config to use"
+		description: "An (optional) path to the sandhog config to use"
 	},
 	debug: {
 		shortHand: "d",

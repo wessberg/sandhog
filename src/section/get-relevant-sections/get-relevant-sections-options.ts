@@ -1,5 +1,5 @@
-import {ScaffoldConfig} from "../../config/scaffold-config";
+import {SandhogConfig} from "../../config/sandhog-config";
 
 export interface GetRelevantSectionsOptions {
-	config: ScaffoldConfig;
+	config: SandhogConfig;
 }

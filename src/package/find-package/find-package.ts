@@ -25,7 +25,7 @@ export async function findPackage({root = process.cwd(), logger, fs = {existsSyn
 
 	// If there is no more parent directories to look in, no config exists
 	if (newRoot === root || newRoot === "/" || newRoot === "") {
-		throw new ReferenceError(`Could not find a package.json. Are you sure you are running Scaffold inside an NPM project?`);
+		throw new ReferenceError(`Could not find a package.json. Are you sure you are running sandhog inside an NPM project?`);
 	}
 
 	// Call recursively

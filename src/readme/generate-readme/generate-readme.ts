@@ -235,10 +235,34 @@ async function generateFaqSection(context: GenerateReadmeContext): Promise<void>
 	setSection(context, SectionKind.FAQ, `## FAQ\n\n`);
 }
 
+function generateNpxStep(binName: string, peerDependencies: string[], context: GenerateReadmeContext): string {
+	const canUseShorthand = binName === context.pkg.name;
+	const simpleCommand = "```\n" + `$ npx ${canUseShorthand ? `${context.pkg.name}` : `-p ${context.pkg.name} ${binName}`}\n` + "```";
+	if (peerDependencies.length < 1) {
+		return simpleCommand;
+	} else if (canUseShorthand) {
+		return (
+			`First, add ${peerDependencies.length === 1 ? "the peer dependency" : "the peer dependencies"} ${listFormat(peerDependencies, "and", element => `\`${element}\``)} as${
+				peerDependencies.length === 1 ? " a" : ""
+			}${context.config.isDevelopmentPackage ? " development " : ""}${
+				peerDependencies.length === 1 ? " dependency" : "dependencies"
+			} to the package(s) from which you're going to run \`${binName}\`. Alternatively, if you want to run it from _anywhere_, you can also install ${
+				peerDependencies.length === 1 ? "it" : "them"
+			} globally: \`npm i -g ${peerDependencies.join(" ")}\`. Now, you can simply run:\n` +
+			simpleCommand +
+			"\n" +
+			`You can also run \`${binName}\` along with its peer dependencies in one combined command:\n` +
+			"```\n" +
+			`$ npx${peerDependencies.map(peerDependency => ` -p ${peerDependency}`).join("")} -p ${context.pkg.name} ${binName}\n` +
+			"```\n"
+		);
+	} else {
+		return "```\n" + `$ npx${peerDependencies.map(peerDependency => ` -p ${peerDependency}`).join("")} -p ${context.pkg.name} ${binName}\n` + "```\n";
+	}
+}
+
 /**
  * Generates the install section of the README
- *
- * @param context
  */
 async function generateInstallSection(context: GenerateReadmeContext): Promise<void> {
 	// Don't proceed if the package has no name
@@ -262,15 +286,7 @@ async function generateInstallSection(context: GenerateReadmeContext): Promise<v
 			"```\n" +
 			`$ pnpm add ${context.pkg.name}${context.config.isDevelopmentPackage ? ` --save-dev` : ``}\n` +
 			"```" +
-			(firstBinName == null
-				? ""
-				: `\n\n` +
-				  `### Run once with npx\n\n` +
-				  "```\n" +
-				  `$ npx${peerDependencies.length === 0 ? "" : peerDependencies.map(peerDependency => ` -p ${peerDependency}`).join("")}${
-						firstBinName === context.pkg.name && peerDependencies.length === 0 ? ` ${context.pkg.name}` : ` -p ${context.pkg.name} ${firstBinName}`
-				  }\n` +
-				  "```") +
+			(firstBinName == null ? "" : `\n\n` + `### Run once with npx\n\n` + generateNpxStep(firstBinName, peerDependencies, context)) +
 			(peerDependencies.length < 1
 				? ""
 				: "\n\n" +

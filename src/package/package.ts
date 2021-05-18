@@ -1,4 +1,4 @@
-import {ScaffoldConfig} from "../config/scaffold-config";
+import {SandhogConfig} from "../config/sandhog-config";
 import {DeepPartial} from "../util/type/deep-partial";
 
 interface Author {
@@ -16,7 +16,7 @@ export interface Package {
 	};
 	funding?: string | Partial<{type: string; url: string}>;
 	license?: string;
-	scaffold?: DeepPartial<ScaffoldConfig>;
+	sandhog?: DeepPartial<SandhogConfig>;
 	author?: Partial<Author> | string;
 	authors?: (Partial<Author> | string)[];
 	contributors?: (Partial<Author> | string)[];

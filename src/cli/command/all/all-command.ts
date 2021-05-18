@@ -6,7 +6,7 @@ import {getLicense} from "../../../license/get-license/get-license";
 createCommand(
 	{
 		name: "all",
-		description: `Generates all of the files Scaffold supports in one command`,
+		description: `Generates all of the files sandhog supports in one command`,
 		args: {},
 		options: {
 			...SHARED_OPTIONS
