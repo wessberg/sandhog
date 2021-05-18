@@ -1,6 +1,6 @@
 {
 	"name": "sandhog",
-	"version": "0.0.0",
+	"version": "1.0.36",
 	"bin": {
 		"sandhog": "bin/sandhog"
 	},
