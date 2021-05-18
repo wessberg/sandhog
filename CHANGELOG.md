@@ -1,4 +1,4 @@
-# [0.0.0](https://github.com/wessberg/sandhog/compare/v1.0.36...v0.0.0) (2021-05-17)
+# [0.0.0](https://github.com/wessberg/sandhog/compare/v1.0.36...v0.0.0) (2021-05-18)
 
 ### Bug Fixes
 
@@ -87,7 +87,7 @@
 
 ### Features
 
-- **funding:** adds two new commands: 'funding', which generates a config-driven .github/FUNDING.yml file for supporting Github Sponsors, as well as the 'all' command, which generates all of the files that Sandhog supports in a single command ([dace835](https://github.com/wessberg/sandhog/commit/dace8359c37c316b977ac5f2d6c834b9f369c13d))
+- **funding:** adds two new commands: 'funding', which generates a config-driven .github/FUNDING.yml file for supporting Github Sponsors, as well as the 'all' command, which generates all of the files that scaffold supports in a single command ([dace835](https://github.com/wessberg/sandhog/commit/dace8359c37c316b977ac5f2d6c834b9f369c13d))
 
 ## [1.0.17](https://github.com/wessberg/sandhog/compare/v1.0.16...v1.0.17) (2019-02-09)
 
