@@ -1,6 +1,6 @@
 {
 	"name": "sandhog",
-	"version": "1.0.38",
+	"version": "1.0.39",
 	"bin": {
 		"sandhog": "bin/sandhog"
 	},
@@ -11,7 +11,7 @@
 	"description": "A virtual Open Source project maintainer",
 	"scripts": {
 		"generate:changelog": "standard-changelog --first-release",
-		"generate:sandhog": "node dist/cli.js all --yes",
+		"generate:sandhog": "node dist/cli/index.js all --yes",
 		"generate:all": "pnpm run generate:sandhog && pnpm run generate:changelog",
 		"clean": "rimraf dist",
 		"lint": "tsc --noEmit && eslint \"src/**/*.ts\" --color",
