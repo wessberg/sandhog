@@ -1,3 +1,5 @@
+## [1.0.40](https://github.com/wessberg/sandhog/compare/v1.0.38...v1.0.40) (2021-05-26)
+
 ## [1.0.38](https://github.com/wessberg/sandhog/compare/v1.0.37...v1.0.38) (2021-05-18)
 
 ## [1.0.37](https://github.com/wessberg/sandhog/compare/v1.0.36...v1.0.37) (2021-05-18)
