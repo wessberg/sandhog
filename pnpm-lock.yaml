@@ -37,6 +37,7 @@ dependencies:
   chalk: 4.1.1
   commander: 7.2.0
   eslint: 7.27.0
+  helpertypes: 0.0.1
   inquirer: 8.1.0
   json5: 2.2.0
   markdown-toc: 1.2.0
@@ -54,7 +55,6 @@ devDependencies:
   eslint-config-prettier: 8.3.0_eslint@7.27.0
   eslint-plugin-import: 2.23.3_eslint@7.27.0
   eslint-plugin-jsdoc: 35.0.0_eslint@7.27.0
-  helpertypes: 0.0.1
   husky: 6.0.0
   np: 7.5.0
   pnpm: 6.4.0
@@ -3349,7 +3349,7 @@ packages:
   /helpertypes/0.0.1:
     resolution: {integrity: sha512-aNME00V4Q1qn1cWG+cM65W6C+sZoUvk+qR1sfGkYRDvDDqfT9xD6/+I1dry3h4mq76BQTl/8oWq/mY/jueOhbg==}
     engines: {node: ">=10.0.0"}
-    dev: true
+    dev: false
 
   /hosted-git-info/2.8.9:
     resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==}
