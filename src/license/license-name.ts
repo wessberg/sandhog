@@ -1,7 +1,6 @@
-import {ElementOf} from "../util/type/element-of";
-import {stringTuple} from "../util/type/string-tuple";
+import {ElementOf} from "helpertypes";
 
-export const LICENSE_NAMES = stringTuple(
+export const LICENSE_NAMES = [
 	"APACHE-2.0",
 	"BSD-2-CLAUSE",
 	"BSD-3-CLAUSE",
@@ -16,6 +15,6 @@ export const LICENSE_NAMES = stringTuple(
 	"MPL-2.0",
 	"ARTISTIC-2.0",
 	"ZLIB"
-);
+] as const;
 
 export type LicenseName = ElementOf<typeof LICENSE_NAMES>;

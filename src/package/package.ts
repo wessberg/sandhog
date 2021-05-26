@@ -1,5 +1,5 @@
 import {SandhogConfig} from "../config/sandhog-config";
-import {DeepPartial} from "../util/type/deep-partial";
+import {PartialDeep} from "helpertypes";
 
 interface Author {
 	name: string;
@@ -16,7 +16,7 @@ export interface Package {
 	};
 	funding?: string | Partial<{type: string; url: string}>;
 	license?: string;
-	sandhog?: DeepPartial<SandhogConfig>;
+	sandhog?: PartialDeep<SandhogConfig>;
 	author?: Partial<Author> | string;
 	authors?: (Partial<Author> | string)[];
 	contributors?: (Partial<Author> | string)[];

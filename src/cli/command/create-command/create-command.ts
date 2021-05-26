@@ -1,5 +1,5 @@
 import commander from "commander";
-import {CommandAction, CommandOptionType, CreateCommandOptions} from "./create-command-options";
+import {CommandAction, CommandActionOptions, CommandOptionType, CreateCommandOptions} from "./create-command-options";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -64,5 +64,19 @@ export function createCommand<T extends CreateCommandOptions>(options: T, action
 	});
 
 	// Add the action to the command
-	result.action(action);
+	// Add the action to the command
+	result.action((...args: unknown[]) => {
+		const actionOptions = {} as CommandActionOptions<T>;
+
+		let offset = 0;
+
+		for (const key of Object.keys(options.args)) {
+			actionOptions[key as keyof CommandActionOptions<T>] = args[offset++] as never;
+		}
+
+		Object.assign(actionOptions, args[offset]);
+
+		// Invoke the action
+		action(actionOptions);
+	});
 }

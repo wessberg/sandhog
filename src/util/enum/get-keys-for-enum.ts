@@ -1,8 +1,5 @@
 /**
  * A function that extracts all property names from the given enumeration.
- *
- * @param enumeration
- * @returns
  */
 export function getKeysForEnum<T>(enumeration: T): (keyof T)[] {
 	// Take all keys that doesn't start with a digit

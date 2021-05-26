@@ -1,13 +1,23 @@
 import {LicenseName} from "../license-name";
 import {GenerateLicenseOptions} from "./generate-license-options";
 import {isKnownLicenseName} from "../is-known-license-name";
+import {generate as apache2} from "./licenses/generate-apache-2.0";
+import {generate as agpl} from "./licenses/generate-agpl-3.0";
+import {generate as mit} from "./licenses/generate-mit";
+import {generate as artistic2} from "./licenses/generate-artistic-2.0";
+import {generate as bsd2} from "./licenses/generate-bsd-2-clause";
+import {generate as bsd3} from "./licenses/generate-bsd-3-clause";
+import {generate as ccby4} from "./licenses/generate-cc-by-4.0";
+import {generate as ccbysa4} from "./licenses/generate-cc-by-sa-4.0";
+import {generate as epl1} from "./licenses/generate-epl-1.0";
+import {generate as gpl2} from "./licenses/generate-gpl-2.0";
+import {generate as gpl3} from "./licenses/generate-gpl-3.0";
+import {generate as lgpl3} from "./licenses/generate-lgpl-3.0";
+import {generate as mpl2} from "./licenses/generate-mpl-2.0";
+import {generate as zlib} from "./licenses/generate-zlib";
 
 /**
  * Generates license text for the given license name
- *
- * @param license
- * @param options
- * @returns
  */
 export async function generateLicense(license: LicenseName, options: GenerateLicenseOptions): Promise<string> {
 	if (!isKnownLicenseName(license)) {
@@ -15,49 +25,49 @@ export async function generateLicense(license: LicenseName, options: GenerateLic
 	}
 
 	// Lazy-load the generate function to use
-	const {generate} = await (async () => {
+	const generate = await (async () => {
 		switch (license) {
 			case "APACHE-2.0":
-				return await import("./licenses/generate-apache-2.0");
+				return apache2;
 
 			case "AGPL-3.0":
-				return await import("./licenses/generate-agpl-3.0");
+				return agpl;
 
 			case "MIT":
-				return await import("./licenses/generate-mit");
+				return mit;
 
 			case "ARTISTIC-2.0":
-				return await import("./licenses/generate-artistic-2.0");
+				return artistic2;
 
 			case "BSD-2-CLAUSE":
-				return await import("./licenses/generate-bsd-2-clause");
+				return bsd2;
 
 			case "BSD-3-CLAUSE":
-				return await import("./licenses/generate-bsd-3-clause");
+				return bsd3;
 
 			case "CC-BY-4.0":
-				return await import("./licenses/generate-cc-by-4.0");
+				return ccby4;
 
 			case "CC-BY-SA-4.0":
-				return await import("./licenses/generate-cc-by-sa-4.0");
+				return ccbysa4;
 
 			case "EPL-1.0":
-				return await import("./licenses/generate-epl-1.0");
+				return epl1;
 
 			case "GPL-2.0":
-				return await import("./licenses/generate-gpl-2.0");
+				return gpl2;
 
 			case "GPL-3.0":
-				return await import("./licenses/generate-gpl-3.0");
+				return gpl3;
 
 			case "LGPL-3.0":
-				return await import("./licenses/generate-lgpl-3.0");
+				return lgpl3;
 
 			case "MPL-2.0":
-				return await import("./licenses/generate-mpl-2.0");
+				return mpl2;
 
 			case "ZLIB":
-				return await import("./licenses/generate-zlib");
+				return zlib;
 		}
 	})();
 

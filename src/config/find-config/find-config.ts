@@ -3,12 +3,12 @@ import {existsSync as _existsSync, readFileSync as _readFileSync} from "fs";
 import {CONSTANT} from "../../constant/constant";
 import {extname, isAbsolute, join} from "path";
 import {FindConfigOptions} from "./find-config-options";
-import {DeepPartial} from "../../util/type/deep-partial";
 import {findPackage} from "../../package/find-package/find-package";
 import {ILogger} from "../../logger/i-logger";
 import {FileSystem} from "../../file-system/file-system";
 import json5 from "json5";
 import yaml from "yaml";
+import {PartialDeep} from "helpertypes";
 
 /**
  * Finds a sandhog config if possible
@@ -19,7 +19,7 @@ export async function findConfig({
 	root = process.cwd(),
 	fs = {existsSync: _existsSync, readFileSync: _readFileSync},
 	pkg
-}: FindConfigOptions): Promise<DeepPartial<SandhogConfig> | undefined> {
+}: FindConfigOptions): Promise<PartialDeep<SandhogConfig> | undefined> {
 	if (pkg == null) {
 		pkg = (await findPackage({root, logger, fs})).pkg;
 	}
@@ -35,19 +35,13 @@ export async function findConfig({
 
 /**
  * The recursive step of the findConfig algorithm
- *
- * @param root
- * @param logger
- * @param fs
- * @param [filename]
- * @returns
  */
 async function findConfigRecursiveStep(
 	root: string,
 	logger: ILogger,
 	fs: Pick<FileSystem, "existsSync" | "readFileSync">,
 	filename?: string
-): Promise<DeepPartial<SandhogConfig> | undefined> {
+): Promise<PartialDeep<SandhogConfig> | undefined> {
 	const absolutePaths =
 		filename != null
 			? [isAbsolute(filename) ? filename : join(root, filename)]

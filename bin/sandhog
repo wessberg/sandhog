@@ -2,4 +2,4 @@
 "use strict";
 
 process.title = "sandhog";
-require("../dist/cli.js");
+require("../dist/cli/index.js");
