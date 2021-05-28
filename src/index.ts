@@ -16,3 +16,4 @@ export {Package} from "./package/package";
 export {FileSystem} from "./file-system/file-system";
 export {findConfig} from "./config/find-config/find-config";
 export {getConfig} from "./config/get-config/get-config";
+export {SandhogConfig} from "./config/sandhog-config";
