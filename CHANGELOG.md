@@ -1,3 +1,9 @@
+## [1.0.41](https://github.com/wessberg/sandhog/compare/v1.0.40...v1.0.41) (2021-05-28)
+
+### Features
+
+- export 'SandhogConfig' interface ([6616d2c](https://github.com/wessberg/sandhog/commit/6616d2c44a1ad92805a4a0ed4ace12335d57a663))
+
 ## [1.0.40](https://github.com/wessberg/sandhog/compare/v1.0.38...v1.0.40) (2021-05-26)
 
 ## [1.0.38](https://github.com/wessberg/sandhog/compare/v1.0.37...v1.0.38) (2021-05-18)
