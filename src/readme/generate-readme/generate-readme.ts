@@ -219,8 +219,6 @@ async function generateDescriptionLongSection(context: GenerateReadmeContext): P
 
 /**
  * Generates the features section of the README
- *
- * @param context
  */
 async function generateFeaturesSection(context: GenerateReadmeContext): Promise<void> {
 	setSection(context, SectionKind.FEATURES, `### Features\n\n`);
@@ -228,36 +226,37 @@ async function generateFeaturesSection(context: GenerateReadmeContext): Promise<
 
 /**
  * Generates the FAQ section of the README
- *
- * @param context
  */
 async function generateFaqSection(context: GenerateReadmeContext): Promise<void> {
 	setSection(context, SectionKind.FAQ, `## FAQ\n\n`);
 }
 
-function generateNpxStep(binName: string, peerDependencies: string[], context: GenerateReadmeContext): string {
+function generateNpxStep(binName: string, requiredPeerDependencies: string[], context: GenerateReadmeContext): string {
 	const canUseShorthand = binName === context.pkg.name;
 	const simpleCommand = "```\n" + `$ npx ${canUseShorthand ? `${context.pkg.name}` : `-p ${context.pkg.name} ${binName}`}\n` + "```";
-	if (peerDependencies.length < 1) {
+
+	if (requiredPeerDependencies.length < 1) {
 		return simpleCommand;
 	} else if (canUseShorthand) {
 		return (
-			`First, add ${peerDependencies.length === 1 ? "the peer dependency" : "the peer dependencies"} ${listFormat(peerDependencies, "and", element => `\`${element}\``)} as${
-				peerDependencies.length === 1 ? " a" : ""
-			}${context.config.isDevelopmentPackage ? " development " : ""}${
-				peerDependencies.length === 1 ? " dependency" : "dependencies"
-			} to the package(s) from which you're going to run \`${binName}\`. Alternatively, if you want to run it from _anywhere_, you can also install ${
-				peerDependencies.length === 1 ? "it" : "them"
-			} globally: \`npm i -g ${peerDependencies.join(" ")}\`. Now, you can simply run:\n` +
+			`First, add ${requiredPeerDependencies.length === 1 ? "the peer dependency" : "the peer dependencies"} ${listFormat(
+				requiredPeerDependencies,
+				"and",
+				element => `\`${element}\``
+			)} as${requiredPeerDependencies.length === 1 ? " a" : ""}${context.config.isDevelopmentPackage ? " development " : ""}${
+				requiredPeerDependencies.length === 1 ? " dependency" : "dependencies"
+			} to the package from which you're going to run \`${binName}\`. Alternatively, if you want to run it from _anywhere_, you can also install ${
+				requiredPeerDependencies.length === 1 ? "it" : "them"
+			} globally: \`npm i -g ${requiredPeerDependencies.join(" ")}\`. Now, you can simply run:\n` +
 			simpleCommand +
 			"\n" +
 			`You can also run \`${binName}\` along with its peer dependencies in one combined command:\n` +
 			"```\n" +
-			`$ npx${peerDependencies.map(peerDependency => ` -p ${peerDependency}`).join("")} -p ${context.pkg.name} ${binName}\n` +
+			`$ npx${requiredPeerDependencies.map(requiredPeerDependency => ` -p ${requiredPeerDependency}`).join("")} -p ${context.pkg.name} ${binName}\n` +
 			"```\n"
 		);
 	} else {
-		return "```\n" + `$ npx${peerDependencies.map(peerDependency => ` -p ${peerDependency}`).join("")} -p ${context.pkg.name} ${binName}\n` + "```\n";
+		return "```\n" + `$ npx${requiredPeerDependencies.map(requiredPeerDependency => ` -p ${requiredPeerDependency}`).join("")} -p ${context.pkg.name} ${binName}\n` + "```\n";
 	}
 }
 
@@ -267,7 +266,17 @@ function generateNpxStep(binName: string, peerDependencies: string[], context: G
 async function generateInstallSection(context: GenerateReadmeContext): Promise<void> {
 	// Don't proceed if the package has no name
 	if (context.pkg.name == null) return;
-	const peerDependencies = context.pkg.peerDependencies == null ? [] : Object.keys(context.pkg.peerDependencies);
+	const peerDependencies =
+		context.pkg.peerDependencies == null
+			? []
+			: Object.keys(context.pkg.peerDependencies).map(peerDependency => ({
+					peerDependency,
+					optional: Boolean(context.pkg.peerDependenciesMeta?.[peerDependency]?.optional)
+			  }));
+
+	const requiredPeerDependencies = peerDependencies.filter(({optional}) => !optional).map(({peerDependency}) => peerDependency);
+	const optionalPeerDependencies = peerDependencies.filter(({optional}) => optional).map(({peerDependency}) => peerDependency);
+
 	const firstBinName = context.pkg.bin == null ? undefined : Object.keys(context.pkg.bin)[0];
 
 	setSection(
@@ -286,14 +295,24 @@ async function generateInstallSection(context: GenerateReadmeContext): Promise<v
 			"```\n" +
 			`$ pnpm add ${context.pkg.name}${context.config.isDevelopmentPackage ? ` --save-dev` : ``}\n` +
 			"```" +
-			(firstBinName == null ? "" : `\n\n` + `### Run once with npx\n\n` + generateNpxStep(firstBinName, peerDependencies, context)) +
+			(firstBinName == null ? "" : `\n\n` + `### Run once with npx\n\n` + generateNpxStep(firstBinName, requiredPeerDependencies, context)) +
 			(peerDependencies.length < 1
 				? ""
 				: "\n\n" +
 				  `### Peer Dependencies\n\n` +
-				  `\`${context.pkg.name}\` depends on ${listFormat(peerDependencies, "and", element => `\`${element}\``)}, so you need to manually install ${
-						peerDependencies.length === 1 ? "this" : "these"
-				  }${context.config.isDevelopmentPackage ? ` as ${peerDependencies.length === 1 ? "a development dependency" : "development dependencies"}` : ``} as well.`)
+				  (requiredPeerDependencies.length < 1
+						? ""
+						: `\`${context.pkg.name}\` depends on ${listFormat(requiredPeerDependencies, "and", element => `\`${element}\``)}, so you need to manually install ${
+								requiredPeerDependencies.length === 1 ? "this" : "these"
+						  }${context.config.isDevelopmentPackage ? ` as ${requiredPeerDependencies.length === 1 ? "a development dependency" : "development dependencies"}` : ``} as well.`) +
+				  (optionalPeerDependencies.length < 1
+						? ""
+						: (requiredPeerDependencies.length < 1 ? `You may` : `\n\nYou may also`) +
+						  ` need to install ${
+								optionalPeerDependencies.length < 2
+									? `\`${optionalPeerDependencies[0]}\``
+									: `${requiredPeerDependencies.length < 1 ? "" : "additional "}peer dependencies such as ${listFormat(optionalPeerDependencies, "or", element => `\`${element}\``)}`
+						  } depending on the features you are going to use. Refer to the documentation for the specific cases where ${optionalPeerDependencies.length < 2 ? "it" : "any of these"} may be relevant.`))
 	);
 }
 

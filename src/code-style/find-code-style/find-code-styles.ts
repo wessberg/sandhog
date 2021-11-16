@@ -3,7 +3,7 @@ import {existsSync as _existsSync} from "fs";
 import {CodeStyleKind} from "../code-style-kind";
 import {resolveConfig} from "prettier";
 import {join} from "path";
-import {CLIEngine, Linter} from "eslint";
+import {ESLint, Linter} from "eslint";
 import {listFormat} from "../../util/list-format/list-format";
 import {CONSTANT} from "../../constant/constant";
 import {findPackage} from "../../package/find-package/find-package";
@@ -15,9 +15,6 @@ import {getCodeStyleForCodeStyleKind} from "../get-code-style-for-code-style-kin
  * Finds the code kind for the current project from the given root directory, if possible.
  * It will use various heuristics to attempt to do so. For example, if there is a prettier config
  * within the project, it is probably a Prettier project.
- *
- * @param options
- * @returns
  */
 export async function findCodeStyles({logger, root = process.cwd(), fs = {existsSync: _existsSync}, pkg}: FindCodeStylesOptions): Promise<CodeStyle[]> {
 	if (pkg == null) {
@@ -46,7 +43,7 @@ export async function findCodeStyles({logger, root = process.cwd(), fs = {exists
 
 	// Try to resolve an ESLint config from the root. It may contain some rules or
 	// extended configs we can extract code styles from
-	const eslintConfig = findEslintConfig(root);
+	const eslintConfig = await findEslintConfig(root);
 	if (eslintConfig != null) {
 		logger.debug(`Found an ESLint config within the root. Parsing it for code styles`);
 		const eslintCodeStyles = getCodeStylesFromEslintConfig(eslintConfig);
@@ -74,32 +71,35 @@ export async function findCodeStyles({logger, root = process.cwd(), fs = {exists
 function getCodeStylesFromEslintConfig(config: Linter.Config): CodeStyleKind[] {
 	const ruleEntries = config.rules == null ? [] : Object.entries(config.rules);
 	const codeStyles: CodeStyleKind[] = [];
-	const extendsValue = config.extends == null ? undefined : Array.isArray(config.extends) ? config.extends : [config.extends];
+	const extendsValue = config.extends == null ? [] : Array.isArray(config.extends) ? config.extends : [config.extends];
+	const pluginsValue = config.plugins == null ? [] : Array.isArray(config.plugins) ? config.plugins : [config.plugins];
+	const combinedValue = [...extendsValue, ...pluginsValue];
+	
 
 	// Check if it contains the Airbnb Style Guide
 	const containsAirbnb =
-		extendsValue != null && extendsValue.some(element => element === CONSTANT.eslintAirbnbCodeStyleName || element.includes(CONSTANT.eslintAirbnbCodeStyleHint));
+	combinedValue.some(element => element === CONSTANT.eslintAirbnbCodeStyleName || element.includes(CONSTANT.eslintAirbnbCodeStyleHint));
 
 	if (containsAirbnb) {
 		codeStyles.push(CodeStyleKind.AIRBNB);
 	}
 
 	// Check if it contains the Google Javascript Style Guide
-	const containsGoogle = extendsValue != null && extendsValue.some(element => element === CONSTANT.eslintGoogleCodeStyleName);
+	const containsGoogle = combinedValue.some(element => element === CONSTANT.eslintGoogleCodeStyleName);
 
 	if (containsGoogle) {
 		codeStyles.push(CodeStyleKind.GOOGLE);
 	}
 
 	// Check if it contains Prettier
-	const containsPrettier = extendsValue != null && extendsValue.some(element => element === CONSTANT.eslintPrettierCodeStyleName);
+	const containsPrettier = combinedValue.some(element => element === CONSTANT.eslintPrettierCodeStyleName);
 
 	if (containsPrettier) {
 		codeStyles.push(CodeStyleKind.PRETTIER);
 	}
 
 	// Check if it contains Idiomatic
-	const containsIdiomatic = extendsValue != null && extendsValue.some(element => element === CONSTANT.eslintIdiomaticCodeStyleName);
+	const containsIdiomatic = combinedValue.some(element => element === CONSTANT.eslintIdiomaticCodeStyleName);
 
 	if (containsIdiomatic) {
 		codeStyles.push(CodeStyleKind.IDIOMATIC);
@@ -107,7 +107,7 @@ function getCodeStylesFromEslintConfig(config: Linter.Config): CodeStyleKind[] {
 
 	// Check if it contains Standard
 	const containsStandard =
-		(extendsValue != null && extendsValue.some(element => element === CONSTANT.eslintStandardCodeStyleName)) ||
+		(combinedValue.some(element => element === CONSTANT.eslintStandardCodeStyleName)) ||
 		ruleEntries.some(([key, value]) => CONSTANT.eslintStandardCodeStyleHints.some(hint => key === hint && value !== "off" && JSON.stringify(value) !== JSON.stringify(["off"])));
 
 	if (containsStandard) {
@@ -115,7 +115,7 @@ function getCodeStylesFromEslintConfig(config: Linter.Config): CodeStyleKind[] {
 	}
 
 	// Check if it contains XO
-	const containsXo = extendsValue != null && extendsValue.some(element => element === CONSTANT.eslintXoCodeStyleName);
+	const containsXo = combinedValue.some(element => element === CONSTANT.eslintXoCodeStyleName);
 
 	if (containsXo) {
 		codeStyles.push(CodeStyleKind.XO);
@@ -126,15 +126,13 @@ function getCodeStylesFromEslintConfig(config: Linter.Config): CodeStyleKind[] {
 
 /**
  * Finds (and parses) the found ESLint config, if any, from the given root
- *
- * @param root
- * @returns
  */
-function findEslintConfig(root: string): Linter.Config | undefined {
-	const engine = new CLIEngine({});
+async function findEslintConfig(root: string): Promise<Linter.Config | undefined> {
+	const eslint = new ESLint({});
 	// The config must be resolved for a specific file, so start from the package.json file (if it exists)
 	try {
-		return engine.getConfigForFile(join(root, "package.json"));
+		return await eslint.calculateConfigForFile(join(root, "package.json"));
+		return undefined;
 	} catch {
 		return undefined;
 	}
@@ -142,9 +140,6 @@ function findEslintConfig(root: string): Linter.Config | undefined {
 
 /**
  * Returns a Promise that resolves with a boolean value indicating if the project is a Prettier project
- *
- * @param root
- * @returns
  */
 async function isPrettier(root: string): Promise<boolean> {
 	// It may throw if the config is malformed, so wrap it in a try-catch;

@@ -1,4 +1,4 @@
-import commander from "commander";
+import {Command} from "commander";
 import {CommandAction, CommandActionOptions, CommandOptionType, CreateCommandOptions} from "./create-command-options";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -54,9 +54,9 @@ function formatCommandNameWithArgs<T extends CreateCommandOptions>(options: T): 
 /**
  * Creates a new command
  */
-export function createCommand<T extends CreateCommandOptions>(options: T, action: CommandAction<T>): void {
+export function createCommand<T extends CreateCommandOptions>(program: Command, options: T, action: CommandAction<T>): void {
 	// Add the command to the program
-	const result = commander.command(formatCommandNameWithArgs(options)).description(options.description);
+	const result = program.command(formatCommandNameWithArgs(options)).description(options.description);
 
 	// Add options to the command
 	Object.entries(options.options).forEach(([longhand, {shortHand, description, type, defaultValue}]) => {

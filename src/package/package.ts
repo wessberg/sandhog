@@ -24,4 +24,5 @@ export interface Package {
 	devDependencies?: Record<string, string>;
 	dependencies?: Record<string, string>;
 	peerDependencies?: Record<string, string>;
+	peerDependenciesMeta?: Record<string, Partial<{optional: boolean}>>;
 }
