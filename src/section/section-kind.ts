@@ -1,16 +1,20 @@
-export enum SectionKind {
-	TOC = "toc",
-	LOGO = "logo",
-	BADGES = "badges",
-	DESCRIPTION_SHORT = "description_short",
-	DESCRIPTION_LONG = "description_long",
-	FEATURES = "features",
-	FEATURE_IMAGE = "feature_image",
-	USAGE = "usage",
-	INSTALL = "install",
-	CONTRIBUTING = "contributing",
-	MAINTAINERS = "maintainers",
-	FAQ = "faq",
-	BACKERS = "backers",
-	LICENSE = "license"
-}
+import {ElementOf} from "helpertypes";
+
+export const SECTION_KINDS = [
+	"toc",
+	"logo",
+	"badges",
+	"description_short",
+	"description_long",
+	"features",
+	"feature_image",
+	"usage",
+	"install",
+	"contributing",
+	"maintainers",
+	"faq",
+	"backers",
+	"license"
+] as const;
+
+export type SectionKind = ElementOf<typeof SECTION_KINDS>;

@@ -1,12 +1,15 @@
-export enum BadgeKind {
-	DOWNLOADS = "downloads",
-	DEPENDENCIES = "dependencies",
-	NPM = "npm",
-	CONTRIBUTORS = "contributors",
-	LICENSE = "license",
-	PATREON = "patreon",
-	OPEN_COLLECTIVE_DONATE = "open_collective_donate",
-	OPEN_COLLECTIVE_BACKERS = "open_collective_backers",
-	OPEN_COLLECTIVE_SPONSORS = "open_collective_sponsors",
-	CODE_STYLE = "code_style"
-}
+import {ElementOf} from "helpertypes";
+
+export const BADGE_KINDS = [
+	"downloads",
+	"dependencies",
+	"npm",
+	"contributors",
+	"license",
+	"patreon",
+	"open_collective_donate",
+	"open_collective_backers",
+	"open_collective_sponsors",
+	"code_style"
+] as const;
+export type BadgeKind = ElementOf<typeof BADGE_KINDS>;

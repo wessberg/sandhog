@@ -30,63 +30,63 @@ export async function generateReadme(options: GenerateReadmeOptions): Promise<st
 		str: options.existingReadme != null ? options.existingReadme : ""
 	};
 
-	if (sections.has(SectionKind.LOGO)) {
+	if (sections.has("logo")) {
 		await generateLogoSection(context);
 	}
 
-	if (sections.has(SectionKind.DESCRIPTION_SHORT)) {
+	if (sections.has("description_short")) {
 		await generateDescriptionShortSection(context);
 	}
 
-	if (sections.has(SectionKind.BADGES)) {
+	if (sections.has("badges")) {
 		await generateBadgesSection(context);
 	}
 
-	if (sections.has(SectionKind.DESCRIPTION_LONG)) {
+	if (sections.has("description_long")) {
 		await generateDescriptionLongSection(context);
 	}
 
-	if (sections.has(SectionKind.FEATURES)) {
+	if (sections.has("features")) {
 		await generateFeaturesSection(context);
 	}
 
-	if (sections.has(SectionKind.FEATURE_IMAGE)) {
+	if (sections.has("feature_image")) {
 		await generateFeatureImageSection(context);
 	}
 
-	if (sections.has(SectionKind.BACKERS)) {
+	if (sections.has("backers")) {
 		await generateBackersSection(context);
 	}
 
-	if (sections.has(SectionKind.TOC)) {
+	if (sections.has("toc")) {
 		await generateTableOfContentsSection(context, true);
 	}
 
-	if (sections.has(SectionKind.INSTALL)) {
+	if (sections.has("install")) {
 		await generateInstallSection(context);
 	}
 
-	if (sections.has(SectionKind.USAGE)) {
+	if (sections.has("usage")) {
 		await generateUsageSection(context);
 	}
 
-	if (sections.has(SectionKind.CONTRIBUTING)) {
+	if (sections.has("contributing")) {
 		await generateContributingSection(context);
 	}
 
-	if (sections.has(SectionKind.MAINTAINERS)) {
+	if (sections.has("maintainers")) {
 		await generateMaintainersSection(context);
 	}
 
-	if (sections.has(SectionKind.FAQ)) {
+	if (sections.has("faq")) {
 		await generateFaqSection(context);
 	}
 
-	if (sections.has(SectionKind.LICENSE)) {
+	if (sections.has("license")) {
 		await generateLicenseSection(context);
 	}
 
-	if (sections.has(SectionKind.TOC)) {
+	if (sections.has("toc")) {
 		await generateTableOfContentsSection(context, false);
 	}
 
@@ -99,11 +99,6 @@ export async function generateReadme(options: GenerateReadmeOptions): Promise<st
 
 /**
  * Sets the given content with the given content within the context
- *
- * @param context
- * @param sectionKind
- * @param content
- * @param [outro]
  */
 function setSection(context: GenerateReadmeContext, sectionKind: SectionKind, content: string, outro?: string): void {
 	const startMark = getShadowSectionMark(sectionKind, "start");
@@ -129,7 +124,7 @@ function setSection(context: GenerateReadmeContext, sectionKind: SectionKind, co
 async function generateLogoSection(context: GenerateReadmeContext): Promise<void> {
 	setSection(
 		context,
-		SectionKind.LOGO,
+		"logo",
 		// Don't proceed if there is no logo to generate an image for
 		context.config.logo.url == null
 			? ""
@@ -143,13 +138,11 @@ async function generateLogoSection(context: GenerateReadmeContext): Promise<void
 
 /**
  * Generates the feature image section of the README
- *
- * @param context
  */
 async function generateFeatureImageSection(context: GenerateReadmeContext): Promise<void> {
 	setSection(
 		context,
-		SectionKind.FEATURE_IMAGE,
+		"feature_image",
 		// Don't proceed if there is no feature image to generate an image for
 		context.config.featureImage.url == null
 			? ""
@@ -163,14 +156,11 @@ async function generateFeatureImageSection(context: GenerateReadmeContext): Prom
 
 /**
  * Generates the Table Of Contents section of the README
- *
- * @param context
- * @param [reserveOnly=false]
  */
 async function generateTableOfContentsSection(context: GenerateReadmeContext, reserveOnly = false): Promise<void> {
 	setSection(
 		context,
-		SectionKind.TOC,
+		"toc",
 		`## Table of Contents\n\n` +
 			(reserveOnly
 				? // Only reserve the spot within the README with an empty placeholder that can be replaced later on
@@ -181,8 +171,6 @@ async function generateTableOfContentsSection(context: GenerateReadmeContext, re
 
 /**
  * Generates the badges section of the README
- *
- * @param context
  */
 async function generateBadgesSection(context: GenerateReadmeContext): Promise<void> {
 	const badges = await getBadges(context);
@@ -193,42 +181,38 @@ async function generateBadgesSection(context: GenerateReadmeContext): Promise<vo
 			return value.join("\n");
 		})
 		.join("\n");
-	setSection(context, SectionKind.BADGES, content);
+	setSection(context, "badges", content);
 }
 
 /**
  * Generates the short description section of the README
- *
- * @param context
  */
 async function generateDescriptionShortSection(context: GenerateReadmeContext): Promise<void> {
 	// Don't proceed if the package has no description
 	if (context.pkg.description == null) return;
 
-	setSection(context, SectionKind.DESCRIPTION_SHORT, `> ${context.pkg.description}`);
+	setSection(context, "description_short", `> ${context.pkg.description}`);
 }
 
 /**
  * Generates the long description section of the README
- *
- * @param context
  */
 async function generateDescriptionLongSection(context: GenerateReadmeContext): Promise<void> {
-	setSection(context, SectionKind.DESCRIPTION_LONG, `## Description`);
+	setSection(context, "description_long", `## Description`);
 }
 
 /**
  * Generates the features section of the README
  */
 async function generateFeaturesSection(context: GenerateReadmeContext): Promise<void> {
-	setSection(context, SectionKind.FEATURES, `### Features\n\n`);
+	setSection(context, "features", `### Features\n\n`);
 }
 
 /**
  * Generates the FAQ section of the README
  */
 async function generateFaqSection(context: GenerateReadmeContext): Promise<void> {
-	setSection(context, SectionKind.FAQ, `## FAQ\n\n`);
+	setSection(context, "faq", `## FAQ\n\n`);
 }
 
 function generateNpxStep(binName: string, requiredPeerDependencies: string[], context: GenerateReadmeContext): string {
@@ -281,7 +265,7 @@ async function generateInstallSection(context: GenerateReadmeContext): Promise<v
 
 	setSection(
 		context,
-		SectionKind.INSTALL,
+		"install",
 		`## Install\n\n` +
 			`### npm\n\n` +
 			"```\n" +
@@ -318,17 +302,13 @@ async function generateInstallSection(context: GenerateReadmeContext): Promise<v
 
 /**
  * Generates the usage section of the README
- *
- * @param context
  */
 async function generateUsageSection(context: GenerateReadmeContext): Promise<void> {
-	setSection(context, SectionKind.USAGE, `## Usage`);
+	setSection(context, "usage", `## Usage`);
 }
 
 /**
  * Generates the contributing section of the README
- *
- * @param context
  */
 async function generateContributingSection(context: GenerateReadmeContext): Promise<void> {
 	// Only add the contributing section if a CONTRIBUTING.md file exists
@@ -336,7 +316,7 @@ async function generateContributingSection(context: GenerateReadmeContext): Prom
 
 	setSection(
 		context,
-		SectionKind.CONTRIBUTING,
+		"contributing",
 		!context.fs.existsSync(contributingFilePath)
 			? ""
 			: `## Contributing\n\n` + `Do you want to contribute? Awesome! Please follow [these recommendations](./${CONSTANT.contributingFilename}).`
@@ -410,7 +390,7 @@ function generateContributorTable(contributors: Contributor[]): string {
 async function generateMaintainersSection(context: GenerateReadmeContext): Promise<void> {
 	const contributors = getContributorsFromPackage(context.pkg);
 
-	setSection(context, SectionKind.MAINTAINERS, contributors.length < 1 ? "" : `## Maintainers\n\n` + generateContributorTable(contributors));
+	setSection(context, "maintainers", contributors.length < 1 ? "" : `## Maintainers\n\n` + generateContributorTable(contributors));
 }
 
 function guessPreferredFundingUrlForOtherDonations(context: GenerateReadmeContext): string | undefined {
@@ -485,13 +465,10 @@ async function generateBackersSection(context: GenerateReadmeContext): Promise<v
 			"\n\n";
 	}
 
-	setSection(context, SectionKind.BACKERS, context.config.donate.patreon.userId == null && context.config.donate.openCollective.project == null ? "" : `## Backers\n\n` + content);
+	setSection(context, "backers", context.config.donate.patreon.userId == null && context.config.donate.openCollective.project == null ? "" : `## Backers\n\n` + content);
 }
 
 /**
- * Generates the license section of the README
- *
- * @param context
  */
 async function generateLicenseSection(context: GenerateReadmeContext): Promise<void> {
 	const license = await findLicense(context);
@@ -500,7 +477,7 @@ async function generateLicenseSection(context: GenerateReadmeContext): Promise<v
 
 	setSection(
 		context,
-		SectionKind.LICENSE,
+		"license",
 		license == null || !context.fs.existsSync(licenseFilePath)
 			? ""
 			: `## License\n\n` +

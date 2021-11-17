@@ -1,6 +1,5 @@
 import {GetBadgesOptions} from "./get-badges-options";
 import {GetBadgesResult} from "./get-badges-result";
-import {BadgeKind} from "../badge-kind";
 import {findCodeStyles} from "../../code-style/find-code-style/find-code-styles";
 import {CONSTANT} from "../../constant/constant";
 import {formatUrl} from "../../markdown/format-url/format-url";
@@ -11,9 +10,6 @@ import {getLicenseForLicenseName} from "../../license/get-license-for-license-na
 
 /**
  * Gets relevant badges based on the given options
- *
- * @param options
- * @returns
  */
 export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesResult> {
 	const result: GetBadgesResult = {};
@@ -25,8 +21,8 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 	const encodedRepoUrl = repoUrl == null ? undefined : encodeURIComponent(repoUrl);
 
 	// Unless explicitly excluded, and if possible, generate a badge for the amount of downloads for the project
-	if (!excluded.has(BadgeKind.DOWNLOADS) && encodedName != null) {
-		result[BadgeKind.DOWNLOADS] = [
+	if (!excluded.has("downloads") && encodedName != null) {
+		result.downloads = [
 			formatUrl({
 				url: `https://npmcharts.com/compare/${encodedName}?minimal=true`,
 				inner: formatImage({
@@ -38,8 +34,8 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 	}
 
 	// Unless explicitly excluded, and if possible, generate a badge for the NPM version
-	if (!excluded.has(BadgeKind.NPM) && encodedName != null) {
-		result[BadgeKind.NPM] = [
+	if (!excluded.has("npm") && encodedName != null) {
+		result.npm = [
 			formatUrl({
 				url: `https://www.npmjs.com/package/${encodedName}`,
 				inner: formatImage({
@@ -51,8 +47,8 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 	}
 
 	// Unless explicitly excluded, and if possible, generate a badge for the package dependencies
-	if (!excluded.has(BadgeKind.DEPENDENCIES) && repoUrl != null && encodedRepoUrl != null) {
-		result[BadgeKind.DEPENDENCIES] = [
+	if (!excluded.has("dependencies") && repoUrl != null && encodedRepoUrl != null) {
+		result.dependencies = [
 			formatUrl({
 				url: `https://david-dm.org/${repoUrl}`,
 				inner: formatImage({
@@ -64,8 +60,8 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 	}
 
 	// Unless explicitly excluded, and if possible, generate a badge for the package dependencies
-	if (!excluded.has(BadgeKind.CONTRIBUTORS) && encodedName != null && repoUrl != null && encodedRepoUrl != null) {
-		result[BadgeKind.CONTRIBUTORS] = [
+	if (!excluded.has("contributors") && encodedName != null && repoUrl != null && encodedRepoUrl != null) {
+		result.contributors = [
 			formatUrl({
 				url: `https://github.com/${repoUrl}/graphs/contributors`,
 				inner: formatImage({
@@ -77,10 +73,10 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 	}
 
 	// Unless explicitly excluded, and if possible, generate a badge for the project code style(s).
-	if (!excluded.has(BadgeKind.CODE_STYLE)) {
+	if (!excluded.has("code_style")) {
 		const codeStyles = await findCodeStyles(options);
 		if (codeStyles.length > 0) {
-			result[BadgeKind.CODE_STYLE] = codeStyles.map(({kind, url, badgeUrl}) =>
+			result.code_style = codeStyles.map(({kind, url, badgeUrl}) =>
 				formatUrl({
 					url,
 					inner: formatImage({
@@ -93,11 +89,11 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 	}
 
 	// Unless explicitly excluded, and if possible, generate a badge for the project license
-	if (!excluded.has(BadgeKind.LICENSE)) {
+	if (!excluded.has("license")) {
 		const licenseName = await findLicense(options);
 		if (licenseName != null) {
 			const {badgeUrl, url} = getLicenseForLicenseName(licenseName);
-			result[BadgeKind.LICENSE] = [
+			result.license = [
 				formatUrl({
 					url,
 					inner: formatImage({
@@ -110,8 +106,8 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 	}
 
 	// Unless explicitly excluded, and if possible, generate a badge for supporting on Patreon
-	if (!excluded.has(BadgeKind.PATREON) && options.config.donate != null && options.config.donate.patreon != null && options.config.donate.patreon.userId != null) {
-		result[BadgeKind.PATREON] = [
+	if (!excluded.has("patreon") && options.config.donate != null && options.config.donate.patreon != null && options.config.donate.patreon.userId != null) {
+		result.patreon = [
 			formatUrl({
 				url: CONSTANT.patreonDonateUrl(options.config.donate.patreon.userId),
 				inner: formatImage({
@@ -124,12 +120,12 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 
 	// Unless explicitly excluded, and if possible, generate a badge for supporting on Open Collective
 	if (
-		!excluded.has(BadgeKind.OPEN_COLLECTIVE_DONATE) &&
+		!excluded.has("open_collective_donate") &&
 		options.config.donate != null &&
 		options.config.donate.openCollective != null &&
 		options.config.donate.openCollective.project != null
 	) {
-		result[BadgeKind.OPEN_COLLECTIVE_DONATE] = [
+		result.open_collective_donate = [
 			formatUrl({
 				url: CONSTANT.openCollectiveDonateUrl(options.config.donate.openCollective.project),
 				inner: formatImage({
@@ -142,12 +138,12 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 
 	// Unless explicitly excluded, and if possible, generate a badge for listing the amount of backers on Open Collective
 	if (
-		!excluded.has(BadgeKind.OPEN_COLLECTIVE_BACKERS) &&
+		!excluded.has("open_collective_backers") &&
 		options.config.donate != null &&
 		options.config.donate.openCollective != null &&
 		options.config.donate.openCollective.project != null
 	) {
-		result[BadgeKind.OPEN_COLLECTIVE_BACKERS] = [
+		result.open_collective_backers = [
 			formatUrl({
 				url: CONSTANT.openCollectiveContributorsUrl(options.config.donate.openCollective.project),
 				inner: formatImage({
@@ -160,12 +156,12 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 
 	// Unless explicitly excluded, and if possible, generate a badge for listing the amount of sponsors on Open Collective
 	if (
-		!excluded.has(BadgeKind.OPEN_COLLECTIVE_SPONSORS) &&
+		!excluded.has("open_collective_sponsors") &&
 		options.config.donate != null &&
 		options.config.donate.openCollective != null &&
 		options.config.donate.openCollective.project != null
 	) {
-		result[BadgeKind.OPEN_COLLECTIVE_SPONSORS] = [
+		result.open_collective_sponsors = [
 			formatUrl({
 				url: CONSTANT.openCollectiveContributorsUrl(options.config.donate.openCollective.project),
 				inner: formatImage({
