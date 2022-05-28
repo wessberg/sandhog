@@ -47,6 +47,8 @@ async function findConfigRecursiveStep(
 			? [isAbsolute(filename) ? filename : join(root, filename)]
 			: [
 					join(root, CONSTANT.configFilenameJs),
+					join(root, CONSTANT.configFilenameCjs),
+					join(root, CONSTANT.configFilenameMjs),
 					join(root, CONSTANT.configFilenameJson),
 					join(root, CONSTANT.configFilenameJson5),
 					join(root, CONSTANT.configFilenameYaml),

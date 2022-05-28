@@ -1,5 +1,7 @@
 export const CONSTANT = {
 	configFilenameJs: "sandhog.config.js",
+	configFilenameCjs: "sandhog.config.cjs",
+	configFilenameMjs: "sandhog.config.mjs",
 	configFilenameJson: "sandhog.config.json",
 	configFilenameJson5: "sandhog.config.json5",
 	configFilenameYaml: "sandhog.config.yaml",
