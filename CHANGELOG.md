@@ -1,3 +1,12 @@
+## [1.0.44](https://github.com/wessberg/sandhog/compare/v1.0.43...v1.0.44) (2022-05-28)
+
+
+### Features
+
+* support .cjs and .mjs configs ([6a4208f](https://github.com/wessberg/sandhog/commit/6a4208f08a65b05005dac570281a06625a47adab))
+
+
+
 ## [1.0.43](https://github.com/wessberg/sandhog/compare/v1.0.42...v1.0.43) (2021-11-17)
 
 
