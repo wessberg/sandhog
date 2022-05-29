@@ -1,5 +1,5 @@
-import {SandhogConfig} from "./sandhog-config";
-import {Options, resolveConfig} from "prettier";
+import {SandhogConfig} from "./sandhog-config.js";
+import prettier, {type Options} from "prettier"
 
 /**
  * This object holds all of the default config options for a SandhogConfig
@@ -43,7 +43,7 @@ export const DEFAULT_SANDHOG_CONFIG: Promise<SandhogConfig> = (async () => ({
 
 		// resolveConfig may throw, so wrap it in a try-catch
 		try {
-			const prettierConfig = await resolveConfig(process.cwd());
+			const prettierConfig = await prettier.resolveConfig(process.cwd());
 			if (prettierConfig != null) {
 				return prettierConfig;
 			}

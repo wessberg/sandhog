@@ -1,10 +1,10 @@
 import {Command} from "commander";
-import {createCommand} from "../create-command/create-command";
-import {SHARED_OPTIONS} from "../shared/shared-options";
-import {generateTaskOptions} from "../../task/generate-task-options/generate-task-options";
-import {CONSTANT} from "../../../constant/constant";
-import {isKnownLicenseName} from "../../../license/is-known-license-name";
-import {getLicense} from "../../../license/get-license/get-license";
+import {createCommand} from "../create-command/create-command.js";
+import {SHARED_OPTIONS} from "../shared/shared-options.js";
+import {generateTaskOptions} from "../../task/generate-task-options/generate-task-options.js";
+import {CONSTANT} from "../../../constant/constant.js";
+import {isKnownLicenseName} from "../../../license/is-known-license-name.js";
+import {getLicense} from "../../../license/get-license/get-license.js";
 
 export function createLicenseCommand(program: Command) {
 	return createCommand(
@@ -24,7 +24,7 @@ export function createLicenseCommand(program: Command) {
 		},
 		async args => {
 			// Load the task
-			const {licenseTask} = await import("../../task/license/license-task");
+			const {licenseTask} = await import("../../task/license/license-task.js");
 
 			// Prepare base options
 			const taskOptions = await generateTaskOptions(args);

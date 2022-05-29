@@ -1,7 +1,7 @@
-import {GetLicenseOptions} from "./get-license-options";
-import {LICENSE_NAMES, LicenseName} from "../license-name";
-import {radio} from "../../util/prompt/radio";
-import {findLicense} from "../find-license/find-license";
+import {GetLicenseOptions} from "./get-license-options.js";
+import {LICENSE_NAMES, LicenseName} from "../license-name.js";
+import {radio} from "../../util/prompt/radio.js";
+import {findLicense} from "../find-license/find-license.js";
 
 /**
  * Finds the project license from the given root directory.

@@ -1,5 +1,5 @@
-import {SectionKind, SECTION_KINDS} from "../section-kind";
-import {listFormat} from "../../util/list-format/list-format";
+import {SectionKind, SECTION_KINDS} from "../section-kind.js";
+import {listFormat} from "../../util/list-format/list-format.js";
 
 /**
  * Ensures that the given input is a proper SectionKind

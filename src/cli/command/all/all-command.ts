@@ -1,8 +1,8 @@
 import {Command} from "commander";
-import {createCommand} from "../create-command/create-command";
-import {SHARED_OPTIONS} from "../shared/shared-options";
-import {generateTaskOptions} from "../../task/generate-task-options/generate-task-options";
-import {getLicense} from "../../../license/get-license/get-license";
+import {createCommand} from "../create-command/create-command.js";
+import {SHARED_OPTIONS} from "../shared/shared-options.js";
+import {generateTaskOptions} from "../../task/generate-task-options/generate-task-options.js";
+import {getLicense} from "../../../license/get-license/get-license.js";
 
 export function createAllCommand(program: Command) {
 	return createCommand(
@@ -17,11 +17,11 @@ export function createAllCommand(program: Command) {
 		},
 		async args => {
 			// Load the task
-			const {cocTask} = await import("../../task/coc/coc-task");
-			const {contributingTask} = await import("../../task/contributing/contributing-task");
-			const {fundingTask} = await import("../../task/funding/funding-task");
-			const {licenseTask} = await import("../../task/license/license-task");
-			const {readmeTask} = await import("../../task/readme/readme-task");
+			const {cocTask} = await import("../../task/coc/coc-task.js");
+			const {contributingTask} = await import("../../task/contributing/contributing-task.js");
+			const {fundingTask} = await import("../../task/funding/funding-task.js");
+			const {licenseTask} = await import("../../task/license/license-task.js");
+			const {readmeTask} = await import("../../task/readme/readme-task.js");
 
 			// Prepare base options
 			const taskOptions = await generateTaskOptions(args);

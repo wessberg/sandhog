@@ -1,5 +1,5 @@
-import {GenerateContributingOptions} from "./generate-contributing-options";
-import {listFormat} from "../../util/list-format/list-format";
+import {GenerateContributingOptions} from "./generate-contributing-options.js";
+import {listFormat} from "../../util/list-format/list-format.js";
 
 /**
  * Generates a CONTRIBUTING.md based on the given options

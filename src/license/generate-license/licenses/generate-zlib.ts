@@ -1,6 +1,6 @@
-import {GenerateLicenseOptions} from "../generate-license-options";
-import {formatContributor} from "../../../contributor/format-contributor";
-import {listFormat} from "../../../util/list-format/list-format";
+import {GenerateLicenseOptions} from "../generate-license-options.js";
+import {formatContributor} from "../../../contributor/format-contributor.js";
+import {listFormat} from "../../../util/list-format/list-format.js";
 
 /**
  * Generates a ZLIB license

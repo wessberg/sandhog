@@ -1,5 +1,5 @@
-import {GetRelevantSectionsOptions} from "./get-relevant-sections-options";
-import {SectionKind, SECTION_KINDS} from "../section-kind";
+import {GetRelevantSectionsOptions} from "./get-relevant-sections-options.js";
+import {SectionKind, SECTION_KINDS} from "../section-kind.js";
 
 /**
  * Gets all those sections that are relevant in relation to the given options

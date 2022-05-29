@@ -1,5 +1,5 @@
-import {listFormat} from "../../util/list-format/list-format";
-import {BadgeKind, BADGE_KINDS} from "../badge-kind";
+import {listFormat} from "../../util/list-format/list-format.js";
+import {BadgeKind, BADGE_KINDS} from "../badge-kind.js";
 
 /**
  * Ensures that the given input is a proper BadgeKind

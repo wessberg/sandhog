@@ -1,8 +1,8 @@
-import {existsSync, readFileSync, writeFileSync, mkdirSync} from "fs";
+import fs from "fs";
 
 export interface FileSystem {
-	writeFileSync: typeof writeFileSync;
-	readFileSync: typeof readFileSync;
-	existsSync: typeof existsSync;
-	mkdirSync: typeof mkdirSync;
+	writeFileSync: typeof fs.writeFileSync;
+	readFileSync: typeof fs.readFileSync;
+	existsSync: typeof fs.existsSync;
+	mkdirSync: typeof fs.mkdirSync;
 }

@@ -1,6 +1,6 @@
-import {GenerateLicenseOptions} from "../generate-license-options";
-import {listFormat} from "../../../util/list-format/list-format";
-import {formatContributor} from "../../../contributor/format-contributor";
+import {GenerateLicenseOptions} from "../generate-license-options.js";
+import {listFormat} from "../../../util/list-format/list-format.js";
+import {formatContributor} from "../../../contributor/format-contributor.js";
 
 /**
  * Generates a MIT license

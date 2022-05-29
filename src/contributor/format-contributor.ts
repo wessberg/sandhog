@@ -1,4 +1,4 @@
-import {Contributor} from "./contributor";
+import {Contributor} from "./contributor.js";
 
 /**
  * Formats the relevant data of the given contributor

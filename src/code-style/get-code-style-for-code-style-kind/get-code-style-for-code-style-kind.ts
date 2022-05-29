@@ -1,6 +1,6 @@
-import {CodeStyleKind} from "../code-style-kind";
-import {CodeStyle} from "../find-code-style/code-style";
-import {generateBadgeUrl} from "../../badge/generate-badge-url/generate-badge-url";
+import {CodeStyleKind} from "../code-style-kind.js";
+import {CodeStyle} from "../find-code-style/code-style.js";
+import {generateBadgeUrl} from "../../badge/generate-badge-url/generate-badge-url.js";
 
 /**
  * Gets the Code Style for the given CodeStyleKind

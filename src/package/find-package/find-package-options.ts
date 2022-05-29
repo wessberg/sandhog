@@ -1,5 +1,5 @@
-import {ILogger} from "../../logger/i-logger";
-import {FileSystem} from "../../file-system/file-system";
+import {ILogger} from "../../logger/i-logger.js";
+import {FileSystem} from "../../file-system/file-system.js";
 
 export interface FindPackageOptions {
 	root?: string;

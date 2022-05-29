@@ -1,6 +1,6 @@
-import {GenerateCocOptions} from "./generate-coc-options";
-import {formatContributor} from "../../contributor/format-contributor";
-import {listFormat} from "../../util/list-format/list-format";
+import {GenerateCocOptions} from "./generate-coc-options.js";
+import {formatContributor} from "../../contributor/format-contributor.js";
+import {listFormat} from "../../util/list-format/list-format.js";
 
 /**
  * Generates a Code Of Conduct based on the given options

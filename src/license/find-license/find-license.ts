@@ -1,25 +1,22 @@
-import {FindLicenseOptions} from "./find-license-options";
-import {join} from "path";
-import {existsSync as _existsSync, readFileSync as _readFileSync} from "fs";
-import {LicenseName} from "../license-name";
-import {isKnownLicenseName} from "../is-known-license-name";
-import {CONSTANT} from "../../constant/constant";
-import {ILogger} from "../../logger/i-logger";
-import {findPackage} from "../../package/find-package/find-package";
-import {FileSystem} from "../../file-system/file-system";
-import {detectLicense} from "../detect-license/detect-license";
+import path from "crosspath";
+import _fs from "fs";
+import {FindLicenseOptions} from "./find-license-options.js";
+import {LicenseName} from "../license-name.js";
+import {isKnownLicenseName} from "../is-known-license-name.js";
+import {CONSTANT} from "../../constant/constant.js";
+import {ILogger} from "../../logger/i-logger.js";
+import {findPackage} from "../../package/find-package/find-package.js";
+import {FileSystem} from "../../file-system/file-system.js";
+import {detectLicense} from "../detect-license/detect-license.js";
 
 /**
  * Finds the project license from the given root directory.
  * It may be listed in the package.json file, or it may exist within the root as a LICENSE.md file already
- *
- * @param options
- * @returns
  */
 export async function findLicense({
 	logger,
 	root = process.cwd(),
-	fs = {existsSync: _existsSync, readFileSync: _readFileSync},
+	fs = {existsSync: _fs.existsSync, readFileSync: _fs.readFileSync},
 	pkg
 }: FindLicenseOptions): Promise<LicenseName | undefined> {
 	if (pkg == null) {
@@ -46,41 +43,38 @@ export async function findLicense({
 		return undefined;
 	}
 
-	const [text, path] = license;
+	const [text, p] = license;
+	const nativePath = path.native.normalize(p);
 
 	// Otherwise, try to parse it to determine the license
-	logger.verbose(`Detecting license for file: ${path}`);
+	logger.verbose(`Detecting license for file: ${nativePath}`);
 
 	const name = detectLicense(text);
 
 	// Ensure that it is valid and supported
 	if (name == null || !isKnownLicenseName(name)) {
-		throw new TypeError(`The license found on path: '${path}' is not valid or not supported`);
+		throw new TypeError(`The license found on path: '${nativePath}' is not valid or not supported`);
 	}
 
-	logger.verbose(`Detected license: '${name}' for file: ${path}`);
+	logger.verbose(`Detected license: '${name}' for file: ${nativePath}`);
 	return name;
 }
 
 /**
  * The recursive step of the findConfig algorithm
- *
- * @param root
- * @param logger
- * @param fs
- * @returns
  */
 function findLicenseRecursiveStep(root: string, logger: ILogger, fs: Pick<FileSystem, "existsSync" | "readFileSync">): [string, string] | undefined {
-	const absolutePath = join(root, CONSTANT.licenseFilename);
+	const absolutePath = path.join(root, CONSTANT.licenseFilename);
+	const nativeAbsolutePath = path.native.normalize(absolutePath);
 
-	logger.debug(`Checking path for license: ${absolutePath}`);
-	if (fs.existsSync(absolutePath)) {
-		logger.debug(`Matched license at path: ${absolutePath}`);
-		return [fs.readFileSync(absolutePath).toString(), absolutePath];
+	logger.debug(`Checking path for license: ${nativeAbsolutePath}`);
+	if (fs.existsSync(nativeAbsolutePath)) {
+		logger.debug(`Matched license at path: ${nativeAbsolutePath}`);
+		return [fs.readFileSync(nativeAbsolutePath).toString(), absolutePath];
 	}
 
 	// Rewrite the root to check the parent directory
-	const newRoot = join(root, "../");
+	const newRoot = path.join(root, "../");
 
 	// If there is no more parent directories to look in, no config exists
 	if (newRoot === root || newRoot === "/" || newRoot === "") return undefined;

@@ -1,31 +1,29 @@
-import {ContributingTaskOptions} from "./contributing-task-options";
-import {getContributorsFromPackage} from "../../../contributor/get-contributors-from-package";
-import {join} from "path";
-import {CONSTANT} from "../../../constant/constant";
-import {generateContributing} from "../../../contributing/generate-contributing/generate-contributing";
-import {confirm} from "../../../util/prompt/confirm";
+import {ContributingTaskOptions} from "./contributing-task-options.js";
+import {getContributorsFromPackage} from "../../../contributor/get-contributors-from-package.js";
+import path from "crosspath";
+import {CONSTANT} from "../../../constant/constant.js";
+import {generateContributing} from "../../../contributing/generate-contributing/generate-contributing.js";
+import {confirm} from "../../../util/prompt/confirm.js";
 
 /**
  * Executes the 'coc' task
- *
- * @param options
- * @returns
  */
 export async function contributingTask({pkg, logger, prettier, config, root, fs, yes}: ContributingTaskOptions): Promise<void> {
 	const contributors = getContributorsFromPackage(pkg);
 	const contributingText = generateContributing({contributors, config, prettier, pkg});
-	const path = join(root, CONSTANT.contributingFilename);
+	const pathFromRoot = path.join(root, CONSTANT.contributingFilename);
+	const nativePath = path.native.normalize(pathFromRoot);
 
 	// If all prompts shouldn't be auto-accepted, request permission to overwrite it
 	const writePermission =
 		yes ||
-		!fs.existsSync(path) ||
-		fs.readFileSync(path, "utf8") === contributingText ||
-		(await confirm(`A ${CONSTANT.contributingFilename} file already exists at path: ${path}. Do you wish to overwrite it?`, false));
+		!fs.existsSync(nativePath) ||
+		fs.readFileSync(nativePath, "utf8") === contributingText ||
+		(await confirm(`A ${CONSTANT.contributingFilename} file already exists at path: ${nativePath}. Do you wish to overwrite it?`, false));
 
 	if (writePermission) {
 		// Write the CONTRIBUTING.md to disk
-		logger.info(`Writing '${path}'`);
-		fs.writeFileSync(path, contributingText);
+		logger.info(`Writing '${nativePath}'`);
+		fs.writeFileSync(nativePath, contributingText);
 	}
 }

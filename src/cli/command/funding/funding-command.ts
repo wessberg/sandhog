@@ -1,8 +1,8 @@
 import {Command} from "commander";
-import {createCommand} from "../create-command/create-command";
-import {SHARED_OPTIONS} from "../shared/shared-options";
-import {generateTaskOptions} from "../../task/generate-task-options/generate-task-options";
-import {CONSTANT} from "../../../constant/constant";
+import {createCommand} from "../create-command/create-command.js";
+import {SHARED_OPTIONS} from "../shared/shared-options.js";
+import {generateTaskOptions} from "../../task/generate-task-options/generate-task-options.js";
+import {CONSTANT} from "../../../constant/constant.js";
 
 export function createFundingCommand(program: Command) {
 	return createCommand(
@@ -17,7 +17,7 @@ export function createFundingCommand(program: Command) {
 		},
 		async args => {
 			// Load the task
-			const {fundingTask} = await import("../../task/funding/funding-task");
+			const {fundingTask} = await import("../../task/funding/funding-task.js");
 			// Execute it
 			fundingTask({
 				...(await generateTaskOptions(args))

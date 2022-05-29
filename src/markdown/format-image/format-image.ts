@@ -1,4 +1,4 @@
-import {FormatImageOptions} from "./format-image-options";
+import {FormatImageOptions} from "./format-image-options.js";
 
 /**
  * Generates a Markdown-formatted image based on the given options

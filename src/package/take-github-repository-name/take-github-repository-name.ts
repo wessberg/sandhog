@@ -1,4 +1,4 @@
-import {Package} from "../package";
+import {Package} from "../package.js";
 
 const REGEX = /(http?s?:\/\/?)?(www\.)?github.com\//g;
 

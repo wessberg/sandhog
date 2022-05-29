@@ -1,5 +1,5 @@
 import {Command} from "commander";
-import {CommandAction, CommandActionOptions, CommandOptionType, CreateCommandOptions} from "./create-command-options";
+import {CommandAction, CommandActionOptions, CommandOptionType, CreateCommandOptions} from "./create-command-options.js";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 

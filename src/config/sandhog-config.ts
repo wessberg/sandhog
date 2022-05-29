@@ -1,7 +1,7 @@
-import {SectionKind} from "../section/section-kind";
-import {BadgeKind} from "../badge/badge-kind";
+import {SectionKind} from "../section/section-kind.js";
+import {BadgeKind} from "../badge/badge-kind.js";
 import {Options} from "prettier";
-import {Contributor} from "../contributor/contributor";
+import {Contributor} from "../contributor/contributor.js";
 
 export interface PatreonConfig {
 	userId?: string;

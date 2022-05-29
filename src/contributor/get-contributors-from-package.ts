@@ -1,6 +1,6 @@
-import {Package} from "../package/package";
-import {Contributor} from "./contributor";
-import {ensureContributor} from "./ensure-contributor";
+import {Package} from "../package/package.js";
+import {Contributor} from "./contributor.js";
+import {ensureContributor} from "./ensure-contributor.js";
 
 /**
  * Gets all Contributors based on the given package.json

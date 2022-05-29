@@ -1,12 +1,12 @@
 import {GetBadgesOptions} from "./get-badges-options";
 import {GetBadgesResult} from "./get-badges-result";
-import {findCodeStyles} from "../../code-style/find-code-style/find-code-styles";
-import {CONSTANT} from "../../constant/constant";
-import {formatUrl} from "../../markdown/format-url/format-url";
-import {formatImage} from "../../markdown/format-image/format-image";
-import {takeGithubRepositoryName} from "../../package/take-github-repository-name/take-github-repository-name";
-import {findLicense} from "../../license/find-license/find-license";
-import {getLicenseForLicenseName} from "../../license/get-license-for-license-name/get-license-for-license-name";
+import {findCodeStyles} from "../../code-style/find-code-style/find-code-styles.js";
+import {CONSTANT} from "../../constant/constant.js";
+import {formatUrl} from "../../markdown/format-url/format-url.js";
+import {formatImage} from "../../markdown/format-image/format-image.js";
+import {takeGithubRepositoryName} from "../../package/take-github-repository-name/take-github-repository-name.js";
+import {findLicense} from "../../license/find-license/find-license.js";
+import {getLicenseForLicenseName} from "../../license/get-license-for-license-name/get-license-for-license-name.js";
 
 /**
  * Gets relevant badges based on the given options
@@ -49,12 +49,9 @@ export async function getBadges(options: GetBadgesOptions): Promise<GetBadgesRes
 	// Unless explicitly excluded, and if possible, generate a badge for the package dependencies
 	if (!excluded.has("dependencies") && repoUrl != null && encodedRepoUrl != null) {
 		result.dependencies = [
-			formatUrl({
-				url: `https://david-dm.org/${repoUrl}`,
-				inner: formatImage({
-					alt: `Dependencies`,
-					url: `https://img.shields.io/david/${encodedRepoUrl}.svg`
-				})
+			formatImage({
+				alt: `Dependencies`,
+				url: `https://img.shields.io/librariesio/github/${encodedRepoUrl}.svg`
 			})
 		];
 	}

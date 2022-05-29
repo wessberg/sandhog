@@ -1,8 +1,8 @@
-import {Package} from "../../package/package";
-import {SandhogConfig} from "../../config/sandhog-config";
-import {ILogger} from "../../logger/i-logger";
+import {Package} from "../../package/package.js";
+import {SandhogConfig} from "../../config/sandhog-config.js";
+import {ILogger} from "../../logger/i-logger.js";
 import prettier from "prettier";
-import {FileSystem} from "../../file-system/file-system";
+import {FileSystem} from "../../file-system/file-system.js";
 
 export interface TaskOptions {
 	yes: boolean;

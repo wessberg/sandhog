@@ -1,7 +1,7 @@
-import {Contributor} from "../../contributor/contributor";
+import {Contributor} from "../../contributor/contributor.js";
 import prettier from "prettier";
-import {SandhogConfig} from "../../config/sandhog-config";
-import {Package} from "../../package/package";
+import {SandhogConfig} from "../../config/sandhog-config.js";
+import {Package} from "../../package/package.js";
 
 export interface GenerateContributingOptions {
 	prettier: typeof prettier;

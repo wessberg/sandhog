@@ -1,4 +1,4 @@
-import {Contributor} from "./contributor";
+import {Contributor} from "./contributor.js";
 
 const NAME_REGEXP = /([^<]*)/;
 const NAME_EMAIL_REGEXP = /([^<]*)<([^>]*)>/;

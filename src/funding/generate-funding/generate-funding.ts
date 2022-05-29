@@ -1,5 +1,5 @@
-import {GenerateFundingOptions} from "./generate-funding-options";
-import {Contributor} from "../../contributor/contributor";
+import {GenerateFundingOptions} from "./generate-funding-options.js";
+import {Contributor} from "../../contributor/contributor.js";
 
 /**
  * Generates a FUNDING.yml based on the given options

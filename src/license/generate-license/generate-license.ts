@@ -1,20 +1,20 @@
-import {LicenseName} from "../license-name";
-import {GenerateLicenseOptions} from "./generate-license-options";
-import {isKnownLicenseName} from "../is-known-license-name";
-import {generate as apache2} from "./licenses/generate-apache-2.0";
-import {generate as agpl} from "./licenses/generate-agpl-3.0";
-import {generate as mit} from "./licenses/generate-mit";
-import {generate as artistic2} from "./licenses/generate-artistic-2.0";
-import {generate as bsd2} from "./licenses/generate-bsd-2-clause";
-import {generate as bsd3} from "./licenses/generate-bsd-3-clause";
-import {generate as ccby4} from "./licenses/generate-cc-by-4.0";
-import {generate as ccbysa4} from "./licenses/generate-cc-by-sa-4.0";
-import {generate as epl1} from "./licenses/generate-epl-1.0";
-import {generate as gpl2} from "./licenses/generate-gpl-2.0";
-import {generate as gpl3} from "./licenses/generate-gpl-3.0";
-import {generate as lgpl3} from "./licenses/generate-lgpl-3.0";
-import {generate as mpl2} from "./licenses/generate-mpl-2.0";
-import {generate as zlib} from "./licenses/generate-zlib";
+import {LicenseName} from "../license-name.js";
+import {GenerateLicenseOptions} from "./generate-license-options.js";
+import {isKnownLicenseName} from "../is-known-license-name.js";
+import {generate as apache2} from "./licenses/generate-apache-2.0.js";
+import {generate as agpl} from "./licenses/generate-agpl-3.0.js";
+import {generate as mit} from "./licenses/generate-mit.js";
+import {generate as artistic2} from "./licenses/generate-artistic-2.0.js";
+import {generate as bsd2} from "./licenses/generate-bsd-2-clause.js";
+import {generate as bsd3} from "./licenses/generate-bsd-3-clause.js";
+import {generate as ccby4} from "./licenses/generate-cc-by-4.0.js";
+import {generate as ccbysa4} from "./licenses/generate-cc-by-sa-4.0.js";
+import {generate as epl1} from "./licenses/generate-epl-1.0.js";
+import {generate as gpl2} from "./licenses/generate-gpl-2.0.js";
+import {generate as gpl3} from "./licenses/generate-gpl-3.0.js";
+import {generate as lgpl3} from "./licenses/generate-lgpl-3.0.js";
+import {generate as mpl2} from "./licenses/generate-mpl-2.0.js";
+import {generate as zlib} from "./licenses/generate-zlib.js";
 
 /**
  * Generates license text for the given license name

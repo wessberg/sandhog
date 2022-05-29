@@ -1,5 +1,0 @@
-#!/usr/bin/env node
-"use strict";
-
-process.title = "sandhog";
-require("../dist/cli/index.js");

@@ -1,4 +1,4 @@
-import {SectionKind} from "../../section/section-kind";
+import {SectionKind} from "../../section/section-kind.js";
 
 /**
  * Gets a Section mark.

@@ -1,4 +1,4 @@
-import {LicenseName} from "./license-name";
+import {LicenseName} from "./license-name.js";
 
 export interface License {
 	licenseName: LicenseName;

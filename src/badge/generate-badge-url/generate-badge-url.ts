@@ -1,5 +1,5 @@
-import {GenerateBadgeOptions} from "./generate-badge-options";
-import {CONSTANT} from "../../constant/constant";
+import {GenerateBadgeOptions} from "./generate-badge-options.js";
+import {CONSTANT} from "../../constant/constant.js";
 
 /**
  * Generates an URL for a badge based on the given options

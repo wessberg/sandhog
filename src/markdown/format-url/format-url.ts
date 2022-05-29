@@ -1,4 +1,4 @@
-import {FormatUrlOptions} from "./format-url-options";
+import {FormatUrlOptions} from "./format-url-options.js";
 
 /**
  * Generates an Markdown-formatted URL based on the given options

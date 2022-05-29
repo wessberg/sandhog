@@ -1,19 +1,19 @@
-import {GenerateReadmeOptions} from "./generate-readme-options";
-import {SectionKind} from "../../section/section-kind";
-import {GenerateReadmeContext} from "./generate-readme-context";
-import {getBadges} from "../../badge/get-badges/get-badges";
-import {getRelevantSections} from "../../section/get-relevant-sections/get-relevant-sections";
-import {formatImage} from "../../markdown/format-image/format-image";
-import {getShadowSectionMark} from "../get-shadow-section-mark/get-shadow-section-mark";
-import {getContributorsFromPackage} from "../../contributor/get-contributors-from-package";
-import {CONSTANT} from "../../constant/constant";
-import {findLicense} from "../../license/find-license/find-license";
-import {formatContributor} from "../../contributor/format-contributor";
-import {listFormat} from "../../util/list-format/list-format";
-import {formatUrl} from "../../markdown/format-url/format-url";
+import {GenerateReadmeOptions} from "./generate-readme-options.js";
+import {SectionKind} from "../../section/section-kind.js";
+import {GenerateReadmeContext} from "./generate-readme-context.js";
+import {getBadges} from "../../badge/get-badges/get-badges.js";
+import {getRelevantSections} from "../../section/get-relevant-sections/get-relevant-sections.js";
+import {formatImage} from "../../markdown/format-image/format-image.js";
+import {getShadowSectionMark} from "../get-shadow-section-mark/get-shadow-section-mark.js";
+import {getContributorsFromPackage} from "../../contributor/get-contributors-from-package.js";
+import {CONSTANT} from "../../constant/constant.js";
+import {findLicense} from "../../license/find-license/find-license.js";
+import {formatContributor} from "../../contributor/format-contributor.js";
+import {listFormat} from "../../util/list-format/list-format.js";
+import {formatUrl} from "../../markdown/format-url/format-url.js";
 import toc from "markdown-toc";
-import {join} from "path";
-import {Contributor} from "../../contributor/contributor";
+import path from "crosspath";
+import {Contributor} from "../../contributor/contributor.js";
 
 /**
  * Generates the text for a README.md based on the given options
@@ -295,8 +295,14 @@ async function generateInstallSection(context: GenerateReadmeContext): Promise<v
 						  ` need to install ${
 								optionalPeerDependencies.length < 2
 									? `\`${optionalPeerDependencies[0]}\``
-									: `${requiredPeerDependencies.length < 1 ? "" : "additional "}peer dependencies such as ${listFormat(optionalPeerDependencies, "or", element => `\`${element}\``)}`
-						  } depending on the features you are going to use. Refer to the documentation for the specific cases where ${optionalPeerDependencies.length < 2 ? "it" : "any of these"} may be relevant.`))
+									: `${requiredPeerDependencies.length < 1 ? "" : "additional "}peer dependencies such as ${listFormat(
+											optionalPeerDependencies,
+											"or",
+											element => `\`${element}\``
+									  )}`
+						  } depending on the features you are going to use. Refer to the documentation for the specific cases where ${
+								optionalPeerDependencies.length < 2 ? "it" : "any of these"
+						  } may be relevant.`))
 	);
 }
 
@@ -312,12 +318,13 @@ async function generateUsageSection(context: GenerateReadmeContext): Promise<voi
  */
 async function generateContributingSection(context: GenerateReadmeContext): Promise<void> {
 	// Only add the contributing section if a CONTRIBUTING.md file exists
-	const contributingFilePath = join(context.root, CONSTANT.codeOfConductFilename);
+	const contributingFilePath = path.join(context.root, CONSTANT.codeOfConductFilename);
+	const nativeContributingFilePath = path.native.normalize(contributingFilePath);
 
 	setSection(
 		context,
 		"contributing",
-		!context.fs.existsSync(contributingFilePath)
+		!context.fs.existsSync(nativeContributingFilePath)
 			? ""
 			: `## Contributing\n\n` + `Do you want to contribute? Awesome! Please follow [these recommendations](./${CONSTANT.contributingFilename}).`
 	);
@@ -473,12 +480,13 @@ async function generateBackersSection(context: GenerateReadmeContext): Promise<v
 async function generateLicenseSection(context: GenerateReadmeContext): Promise<void> {
 	const license = await findLicense(context);
 	const contributors = getContributorsFromPackage(context.pkg);
-	const licenseFilePath = join(context.root, CONSTANT.licenseFilename);
+	const licenseFilePath = path.join(context.root, CONSTANT.licenseFilename);
+	const nativeLicenseFilePath = path.native.normalize(licenseFilePath);
 
 	setSection(
 		context,
 		"license",
-		license == null || !context.fs.existsSync(licenseFilePath)
+		license == null || !context.fs.existsSync(nativeLicenseFilePath)
 			? ""
 			: `## License\n\n` +
 					`${license} © ${listFormat(

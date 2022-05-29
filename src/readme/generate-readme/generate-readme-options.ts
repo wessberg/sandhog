@@ -1,8 +1,8 @@
 import prettier from "prettier";
-import {SandhogConfig} from "../../config/sandhog-config";
-import {Package} from "../../package/package";
-import {ILogger} from "../../logger/i-logger";
-import {FileSystem} from "../../file-system/file-system";
+import {SandhogConfig} from "../../config/sandhog-config.js";
+import {Package} from "../../package/package.js";
+import {ILogger} from "../../logger/i-logger.js";
+import {FileSystem} from "../../file-system/file-system.js";
 
 export interface GenerateReadmeOptions {
 	prettier: typeof prettier;

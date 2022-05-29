@@ -1,6 +1,6 @@
-import {FindPackageOptions} from "../../package/find-package/find-package-options";
-import {Package} from "../../package/package";
-import {FileSystem} from "../../file-system/file-system";
+import {FindPackageOptions} from "../../package/find-package/find-package-options.js";
+import {Package} from "../../package/package.js";
+import {FileSystem} from "../../file-system/file-system.js";
 
 export interface FindConfigOptions extends FindPackageOptions {
 	fs?: Pick<FileSystem, "existsSync" | "readFileSync">;

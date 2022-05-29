@@ -1,4 +1,4 @@
-import {LicenseName} from "../license-name";
+import {LicenseName} from "../license-name.js";
 
 /**
  * Detects the license of the given text, if possible

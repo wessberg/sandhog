@@ -1,5 +1,5 @@
-import {SelectLogLevelOptions} from "./select-log-level-options";
-import {LogLevelKind} from "../../../../logger/log-level-kind";
+import {SelectLogLevelOptions} from "./select-log-level-options.js";
+import {LogLevelKind} from "../../../../logger/log-level-kind.js";
 
 /**
  * Selects a LogLevel based on the given options

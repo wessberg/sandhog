@@ -1,4 +1,4 @@
-import {GenerateLicenseOptions} from "../generate-license-options";
+import {GenerateLicenseOptions} from "../generate-license-options.js";
 
 /**
  * Generates a EPL-1.0 license

@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import {Command} from "commander";
-import {createCommand} from "../create-command/create-command";
-import {SHARED_OPTIONS} from "../shared/shared-options";
-import {generateTaskOptions} from "../../task/generate-task-options/generate-task-options";
-import {CONSTANT} from "../../../constant/constant";
-import {ensureSectionKind} from "../../../section/ensure-section-kind/ensure-section-kind";
-import {ensureBadgeKind} from "../../../badge/ensure-badge-kind/ensure-badge-kind";
+import {createCommand} from "../create-command/create-command.js";
+import {SHARED_OPTIONS} from "../shared/shared-options.js";
+import {generateTaskOptions} from "../../task/generate-task-options/generate-task-options.js";
+import {CONSTANT} from "../../../constant/constant.js";
+import {ensureSectionKind} from "../../../section/ensure-section-kind/ensure-section-kind.js";
+import {ensureBadgeKind} from "../../../badge/ensure-badge-kind/ensure-badge-kind.js";
 
 export function createReadmeCommand(program: Command) {
 	return createCommand(
@@ -27,32 +28,31 @@ export function createReadmeCommand(program: Command) {
 		},
 		async args => {
 			// Load the task
-			const {readmeTask} = await import("../../task/readme/readme-task");
-	
+			const {readmeTask} = await import("../../task/readme/readme-task.js");
+
 			// Prepare base options
 			const taskOptions = await generateTaskOptions(args);
-	
+
 			// If given via the command line, update the excluded sections
 			if (args["section.exclude"] != null) {
 				const splitted = args["section.exclude"].split(",");
-	
+
 				// Validate all of the given strings and update them on the options
 				taskOptions.config.readme.sections.exclude = splitted.map(ensureSectionKind);
 			}
-	
+
 			// If given via the command line, update the excluded badges
 			if (args["badge.exclude"] != null) {
 				const splitted = args["badge.exclude"].split(",");
-	
+
 				// Validate all of the given strings and update them on the options
 				taskOptions.config.readme.badges.exclude = splitted.map(ensureBadgeKind);
 			}
-	
+
 			// Execute the task
 			readmeTask({
 				...taskOptions
 			});
 		}
 	);
-	
 }

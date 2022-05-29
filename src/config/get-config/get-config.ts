@@ -1,11 +1,11 @@
-import {FindConfigOptions} from "../find-config/find-config-options";
-import {SandhogConfig} from "../sandhog-config";
-import {findConfig} from "../find-config/find-config";
-import {DEFAULT_SANDHOG_CONFIG} from "../default-sandhog-config";
-import {BadgeKind} from "../../badge/badge-kind";
-import {SectionKind} from "../../section/section-kind";
+import {FindConfigOptions} from "../find-config/find-config-options.js";
+import {SandhogConfig} from "../sandhog-config.js";
+import {findConfig} from "../find-config/find-config.js";
+import {DEFAULT_SANDHOG_CONFIG} from "../default-sandhog-config.js";
+import {BadgeKind} from "../../badge/badge-kind.js";
+import {SectionKind} from "../../section/section-kind.js";
 import {Options} from "prettier";
-import {Contributor} from "../../contributor/contributor";
+import {Contributor} from "../../contributor/contributor.js";
 
 /**
  * Gets a SandhogConfig. Will attempt to resolve a config and fall back to defaults

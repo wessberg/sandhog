@@ -1,4 +1,4 @@
-import {SandhogConfig} from "../config/sandhog-config";
+import {SandhogConfig} from "../config/sandhog-config.js";
 import {PartialDeep} from "helpertypes";
 
 interface Author {

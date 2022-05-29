@@ -1,4 +1,4 @@
-import {GenerateLicenseOptions} from "../generate-license-options";
+import {GenerateLicenseOptions} from "../generate-license-options.js";
 
 /**
  * Generates a CC-BY-4.0 license

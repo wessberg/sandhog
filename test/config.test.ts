@@ -1,7 +1,7 @@
 import test from "ava";
-import {Logger} from "../src/logger/logger";
-import {LogLevelKind} from "../src/logger/log-level-kind";
-import {getConfig} from "../src/config/get-config/get-config";
+import {Logger} from "../src/logger/logger.js";
+import {LogLevelKind} from "../src/logger/log-level-kind.js";
+import {getConfig} from "../src/config/get-config/get-config.js";
 
 test("Can sanitize a SandhogConfig", async t => {
 	const config = await getConfig({

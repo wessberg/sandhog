@@ -1,4 +1,4 @@
-import {LICENSE_NAMES, LicenseName} from "./license-name";
+import {LICENSE_NAMES, LicenseName} from "./license-name.js";
 
 /**
  * Ensures that the given license is a proper known LicenseName

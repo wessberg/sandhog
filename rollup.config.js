@@ -1,7 +1,8 @@
 import ts from "rollup-plugin-ts";
 import pkg from "./package.json";
-import {dirname} from "path";
+import path from "crosspath";
 import {builtinModules} from "module";
+import {importAssertions} from "acorn-import-assertions";
 
 const SHARED_OPTIONS = {
 	plugins: [
@@ -9,7 +10,16 @@ const SHARED_OPTIONS = {
 			tsconfig: "tsconfig.build.json"
 		})
 	],
+	acornInjectPlugins: [importAssertions],
 	external: [...builtinModules, ...Object.keys(pkg.dependencies ?? {}), ...Object.keys(pkg.devDependencies ?? {}), ...Object.keys(pkg.peerDependencies ?? {})]
+};
+
+const SHARED_OUTPUT_OPTIONS = {
+	sourcemap: true,
+	hoistTransitiveImports: false,
+	generatedCode: "es2015",
+	compact: false,
+	minifyInternalExports: false
 };
 
 export default [
@@ -18,9 +28,14 @@ export default [
 		preserveEntrySignatures: true,
 		output: [
 			{
-				dir: dirname(pkg.main),
+				dir: path.native.dirname(pkg.exports.require),
 				format: "cjs",
-				sourcemap: true
+				...SHARED_OUTPUT_OPTIONS
+			},
+			{
+				dir: path.native.dirname(pkg.exports.import),
+				format: "esm",
+				...SHARED_OUTPUT_OPTIONS
 			}
 		],
 		...SHARED_OPTIONS
@@ -31,8 +46,8 @@ export default [
 		output: [
 			{
 				dir: "./dist/cli",
-				format: "cjs",
-				sourcemap: true
+				format: "esm",
+				...SHARED_OUTPUT_OPTIONS
 			}
 		],
 		...SHARED_OPTIONS

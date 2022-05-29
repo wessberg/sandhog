@@ -1,22 +1,22 @@
-import {FindCodeStylesOptions} from "./find-code-styles-options";
-import {existsSync as _existsSync} from "fs";
-import {CodeStyleKind} from "../code-style-kind";
-import {resolveConfig} from "prettier";
-import {join} from "path";
-import {ESLint, Linter} from "eslint";
-import {listFormat} from "../../util/list-format/list-format";
-import {CONSTANT} from "../../constant/constant";
-import {findPackage} from "../../package/find-package/find-package";
-import {Package} from "../../package/package";
-import {CodeStyle} from "./code-style";
-import {getCodeStyleForCodeStyleKind} from "../get-code-style-for-code-style-kind/get-code-style-for-code-style-kind";
+import {FindCodeStylesOptions} from "./find-code-styles-options.js";
+import _fs from "fs";
+import {CodeStyleKind} from "../code-style-kind.js";
+import prettier from "prettier";
+import path from "crosspath";
+import eslintModule, {type Linter} from "eslint";
+import {listFormat} from "../../util/list-format/list-format.js";
+import {CONSTANT} from "../../constant/constant.js";
+import {findPackage} from "../../package/find-package/find-package.js";
+import {Package} from "../../package/package.js";
+import {CodeStyle} from "./code-style.js";
+import {getCodeStyleForCodeStyleKind} from "../get-code-style-for-code-style-kind/get-code-style-for-code-style-kind.js";
 
 /**
  * Finds the code kind for the current project from the given root directory, if possible.
  * It will use various heuristics to attempt to do so. For example, if there is a prettier config
  * within the project, it is probably a Prettier project.
  */
-export async function findCodeStyles({logger, root = process.cwd(), fs = {existsSync: _existsSync}, pkg}: FindCodeStylesOptions): Promise<CodeStyle[]> {
+export async function findCodeStyles({logger, root = process.cwd(), fs = {existsSync: _fs.existsSync}, pkg}: FindCodeStylesOptions): Promise<CodeStyle[]> {
 	if (pkg == null) {
 		pkg = (await findPackage({root, logger, fs})).pkg;
 	}
@@ -74,11 +74,9 @@ function getCodeStylesFromEslintConfig(config: Linter.Config): CodeStyleKind[] {
 	const extendsValue = config.extends == null ? [] : Array.isArray(config.extends) ? config.extends : [config.extends];
 	const pluginsValue = config.plugins == null ? [] : Array.isArray(config.plugins) ? config.plugins : [config.plugins];
 	const combinedValue = [...extendsValue, ...pluginsValue];
-	
 
 	// Check if it contains the Airbnb Style Guide
-	const containsAirbnb =
-	combinedValue.some(element => element === CONSTANT.eslintAirbnbCodeStyleName || element.includes(CONSTANT.eslintAirbnbCodeStyleHint));
+	const containsAirbnb = combinedValue.some(element => element === CONSTANT.eslintAirbnbCodeStyleName || element.includes(CONSTANT.eslintAirbnbCodeStyleHint));
 
 	if (containsAirbnb) {
 		codeStyles.push(CodeStyleKind.AIRBNB);
@@ -107,7 +105,7 @@ function getCodeStylesFromEslintConfig(config: Linter.Config): CodeStyleKind[] {
 
 	// Check if it contains Standard
 	const containsStandard =
-		(combinedValue.some(element => element === CONSTANT.eslintStandardCodeStyleName)) ||
+		combinedValue.some(element => element === CONSTANT.eslintStandardCodeStyleName) ||
 		ruleEntries.some(([key, value]) => CONSTANT.eslintStandardCodeStyleHints.some(hint => key === hint && value !== "off" && JSON.stringify(value) !== JSON.stringify(["off"])));
 
 	if (containsStandard) {
@@ -128,10 +126,10 @@ function getCodeStylesFromEslintConfig(config: Linter.Config): CodeStyleKind[] {
  * Finds (and parses) the found ESLint config, if any, from the given root
  */
 async function findEslintConfig(root: string): Promise<Linter.Config | undefined> {
-	const eslint = new ESLint({});
+	const eslint = new eslintModule.ESLint({});
 	// The config must be resolved for a specific file, so start from the package.json file (if it exists)
 	try {
-		return await eslint.calculateConfigForFile(join(root, "package.json"));
+		return await eslint.calculateConfigForFile(path.native.join(root, "package.json"));
 		return undefined;
 	} catch {
 		return undefined;
@@ -144,7 +142,7 @@ async function findEslintConfig(root: string): Promise<Linter.Config | undefined
 async function isPrettier(root: string): Promise<boolean> {
 	// It may throw if the config is malformed, so wrap it in a try-catch;
 	try {
-		const config = await resolveConfig(root);
+		const config = await prettier.resolveConfig(root);
 		return config != null;
 	} catch {
 		// The config was found, but it was malformed. This doesn't change the fact that it was found, though,

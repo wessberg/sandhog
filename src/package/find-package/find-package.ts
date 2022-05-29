@@ -1,27 +1,25 @@
-import {FindPackageOptions} from "./find-package-options";
-import {dirname, join} from "path";
-import {existsSync as _existsSync} from "fs";
-import {FindPackageResult} from "./find-package-result";
+import path from "crosspath";
+import _fs from "fs";
+import {FindPackageOptions} from "./find-package-options.js";
+import {FindPackageResult} from "./find-package-result.js";
 
 /**
  * Finds the nearest package.json from the given root directory
- *
- * @param options
- * @returns
  */
-export async function findPackage({root = process.cwd(), logger, fs = {existsSync: _existsSync}}: FindPackageOptions): Promise<FindPackageResult> {
-	const packageJsonPath = join(root, "package.json");
-	if (fs.existsSync(packageJsonPath)) {
-		logger.debug(`Found package.json: ${packageJsonPath}`);
+export async function findPackage({root = process.cwd(), logger, fs = {existsSync: _fs.existsSync}}: FindPackageOptions): Promise<FindPackageResult> {
+	const packageJsonPath = path.join(root, "package.json");
+	const nativePackageJsonPath = path.native.normalize(packageJsonPath);
+	if (fs.existsSync(nativePackageJsonPath)) {
+		logger.debug(`Found package.json: ${nativePackageJsonPath}`);
 
 		return {
-			root: dirname(packageJsonPath),
-			pkg: await import(packageJsonPath)
+			root: path.dirname(packageJsonPath),
+			pkg: await import(`file://${packageJsonPath}`, {assert: {type: "json"}})
 		};
 	}
 
 	// Rewrite the root to check the parent directory
-	const newRoot = join(root, "../");
+	const newRoot = path.join(root, "../");
 
 	// If there is no more parent directories to look in, no config exists
 	if (newRoot === root || newRoot === "/" || newRoot === "") {

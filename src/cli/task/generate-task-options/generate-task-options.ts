@@ -1,18 +1,15 @@
-import {TaskOptions} from "../task-options";
-import {getConfig} from "../../..";
-import {Logger} from "../../../logger/logger";
-import {SanitizedSharedOptions} from "./sanitized-shared-options";
-import {selectLogLevel} from "./select-log-level/select-log-level";
-import {findPackage} from "../../../package/find-package/find-package";
+import {TaskOptions} from "../task-options.js";
+import {Logger} from "../../../logger/logger.js";
+import {SanitizedSharedOptions} from "./sanitized-shared-options.js";
+import {selectLogLevel} from "./select-log-level/select-log-level.js";
+import {findPackage} from "../../../package/find-package/find-package.js";
 import prettier from "prettier";
 import fs from "fs";
-import {LogLevelKind} from "../../../logger/log-level-kind";
+import {LogLevelKind} from "../../../logger/log-level-kind.js";
+import { getConfig } from "../../../config/get-config/get-config.js";
 
 /**
  * Generates the task options that are shared across all commands
- *
- * @param options
- * @returns
  */
 export async function generateTaskOptions(options: SanitizedSharedOptions): Promise<TaskOptions> {
 	// Prepare a logger
