@@ -1,3 +1,12 @@
+## [2.0.1](https://github.com/wessberg/sandhog/compare/v2.0.0...v2.0.1) (2022-05-29)
+
+
+### Bug Fixes
+
+* handle the case where a module has a default export when constructing a config ([9bf7416](https://github.com/wessberg/sandhog/commit/9bf7416a7fa381a28ae8b283dd3311c2b641d95d))
+
+
+
 # [2.0.0](https://github.com/wessberg/sandhog/compare/v1.0.44...v2.0.0) (2022-05-29)
 
 
