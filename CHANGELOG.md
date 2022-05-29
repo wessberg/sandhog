@@ -1,3 +1,13 @@
+# [2.0.0](https://github.com/wessberg/sandhog/compare/v1.0.44...v2.0.0) (2022-05-29)
+
+
+### Bug Fixes
+
+* ensure node v14.19.0 or newer is used ([af3fb55](https://github.com/wessberg/sandhog/commit/af3fb5513db3b37a23ef487aeda2f6bedb133248))
+* remove internal usage of import assertion in async import for compatibility reasons ([f0fbac8](https://github.com/wessberg/sandhog/commit/f0fbac8a39f5d75ec31ac5b65393319904b6ecc3))
+
+
+
 ## [1.0.44](https://github.com/wessberg/sandhog/compare/v1.0.43...v1.0.44) (2022-05-28)
 
 
