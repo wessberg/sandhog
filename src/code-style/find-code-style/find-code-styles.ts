@@ -16,7 +16,7 @@ import {getCodeStyleForCodeStyleKind} from "../get-code-style-for-code-style-kin
  * It will use various heuristics to attempt to do so. For example, if there is a prettier config
  * within the project, it is probably a Prettier project.
  */
-export async function findCodeStyles({logger, root = process.cwd(), fs = {existsSync: _fs.existsSync}, pkg}: FindCodeStylesOptions): Promise<CodeStyle[]> {
+export async function findCodeStyles({logger, root = process.cwd(), fs = {existsSync: _fs.existsSync, readFileSync: _fs.readFileSync}, pkg}: FindCodeStylesOptions): Promise<CodeStyle[]> {
 	if (pkg == null) {
 		pkg = (await findPackage({root, logger, fs})).pkg;
 	}

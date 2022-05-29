@@ -61,8 +61,6 @@
 		"@typescript-eslint/parser": "^5.26.0",
 		"@wessberg/ts-config": "^2.0.2",
 		"@wessberg/prettier-config": "1.0.0",
-		"acorn-import-assertions": "^1.8.0",
-		"acorn": "^8.7.1",
 		"rollup-plugin-ts": "^2.0.7",
 		"rimraf": "^3.0.2",
 		"ava": "^4.2.0",

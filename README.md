@@ -162,6 +162,8 @@ Sandhog is highly configurable. You can provide a configuration in a variety of 
 
 - As a `sandhog` property inside your `package.json` file.
 - As a `sandhog.config.js` file within your repository root
+- As a `sandhog.config.cjs` file within your repository root
+- As a `sandhog.config.mjs` file within your repository root
 - As a `sandhog.config.json` file within your repository root
 - As a `sandhog.config.json5` file within your repository root
 - As a `sandhog.config.yaml` file within your repository root

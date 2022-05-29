@@ -2,7 +2,6 @@ import ts from "rollup-plugin-ts";
 import pkg from "./package.json";
 import path from "crosspath";
 import {builtinModules} from "module";
-import {importAssertions} from "acorn-import-assertions";
 
 const SHARED_OPTIONS = {
 	plugins: [
@@ -10,7 +9,6 @@ const SHARED_OPTIONS = {
 			tsconfig: "tsconfig.build.json"
 		})
 	],
-	acornInjectPlugins: [importAssertions],
 	external: [...builtinModules, ...Object.keys(pkg.dependencies ?? {}), ...Object.keys(pkg.devDependencies ?? {}), ...Object.keys(pkg.peerDependencies ?? {})]
 };
 

@@ -4,5 +4,5 @@ import {Package} from "../../package/package.js";
 
 export interface FindCodeStylesOptions extends FindPackageOptions {
 	pkg?: Package;
-	fs?: Pick<FileSystem, "existsSync">;
+	fs?: Pick<FileSystem, "existsSync"|"readFileSync">;
 }

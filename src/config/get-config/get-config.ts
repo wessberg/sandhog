@@ -10,9 +10,6 @@ import {Contributor} from "../../contributor/contributor.js";
 /**
  * Gets a SandhogConfig. Will attempt to resolve a config and fall back to defaults
  * if no such config could be found
- *
- * @type {FindConfigOptions} options
- * @returns
  */
 export async function getConfig(options: FindConfigOptions): Promise<SandhogConfig> {
 	// Resolve the config
