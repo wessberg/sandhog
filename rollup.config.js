@@ -1,6 +1,5 @@
 import ts from "rollup-plugin-ts";
 import pkg from "./package.json";
-import path from "crosspath";
 import {builtinModules} from "module";
 
 const SHARED_OPTIONS = {
@@ -26,12 +25,12 @@ export default [
 		preserveEntrySignatures: true,
 		output: [
 			{
-				dir: path.native.dirname(pkg.exports.require),
+				file: pkg.exports.require,
 				format: "cjs",
 				...SHARED_OUTPUT_OPTIONS
 			},
 			{
-				dir: path.native.dirname(pkg.exports.import),
+				file: pkg.exports.import,
 				format: "esm",
 				...SHARED_OUTPUT_OPTIONS
 			}
