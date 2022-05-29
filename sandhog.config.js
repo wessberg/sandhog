@@ -1,4 +1,5 @@
 import baseConfig from "@wessberg/ts-config/sandhog.config.js";
+
 export default {
 	...baseConfig,
 	isDevelopmentPackage: true,

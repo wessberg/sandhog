@@ -1,5 +1,7 @@
 <!-- SHADOW_SECTION_LOGO_START -->
 
+<div><img alt="Logo" src="https://raw.githubusercontent.com/wessberg/sandhog/master/documentation/asset/logo.png" height="200"   /></div>
+
 <!-- SHADOW_SECTION_LOGO_END -->
 
 <!-- SHADOW_SECTION_DESCRIPTION_SHORT_START -->
@@ -16,6 +18,7 @@
 <a href="https://github.com/wessberg/sandhog/graphs/contributors"><img alt="Contributors" src="https://img.shields.io/github/contributors/wessberg%2Fsandhog.svg"    /></a>
 <a href="https://github.com/prettier/prettier"><img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg"    /></a>
 <a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg"    /></a>
+<a href="https://www.patreon.com/bePatron?u=11315442"><img alt="Support on Patreon" src="https://img.shields.io/badge/patreon-donate-green.svg"    /></a>
 
 <!-- SHADOW_SECTION_BADGES_END -->
 
@@ -47,9 +50,23 @@ Sandhog works out of the box without any configuration. Some highlights include:
 
 <!-- SHADOW_SECTION_FEATURE_IMAGE_START -->
 
+<div><img alt="Feature image" src="https://raw.githubusercontent.com/wessberg/sandhog/master/documentation/asset/feature.svg" height="300"   /></div><br>
+
 <!-- SHADOW_SECTION_FEATURE_IMAGE_END -->
 
 <!-- SHADOW_SECTION_BACKERS_START -->
+
+## Backers
+
+[Become a sponsor/backer](https://github.com/wessberg/sandhog?sponsor=1) and get your logo listed here.
+
+| <a href="https://usebubbles.com"><img alt="Bubbles" src="https://uploads-ssl.webflow.com/5d682047c28b217055606673/5e5360be16879c1d0dca6514_icon-thin-128x128%402x.png" height="70"   /></a> | <a href="https://github.com/cblanc"><img alt="Christopher Blanchard" src="https://avatars0.githubusercontent.com/u/2160685?s=400&v=4" height="70"   /></a> | <a href="https://github.com/ideal-postcodes"><img alt="Ideal Postcodes" src="https://avatars.githubusercontent.com/u/4996310?s=200&v=4" height="70"   /></a> | <a href="https://www.xerox.com"><img alt="Xerox" src="https://avatars.githubusercontent.com/u/9158512?s=200&v=4" height="70"   /></a> | <a href="https://changelog.me"><img alt="Trent Raymond" src="https://avatars.githubusercontent.com/u/1509616?v=4" height="70"   /></a> | <a href="https://scrubtheweb.com"><img alt="scrubtheweb" src="https://avatars.githubusercontent.com/u/41668218?v=4" height="70"   /></a> |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| [Bubbles](https://usebubbles.com)<br><strong>Twitter</strong>: [@usebubbles](https://twitter.com/usebubbles)                                                                                | [Christopher Blanchard](https://github.com/cblanc)                                                                                                         | [Ideal Postcodes](https://github.com/ideal-postcodes)                                                                                                        | [Xerox](https://www.xerox.com)                                                                                                        | [Trent Raymond](https://changelog.me)                                                                                                  | [scrubtheweb](https://scrubtheweb.com)                                                                                                   |
+
+### Patreon
+
+<a href="https://www.patreon.com/bePatron?u=11315442"><img alt="Patrons on Patreon" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3Dwessberg%26type%3Dpatrons"  width="200"  /></a>
 
 <!-- SHADOW_SECTION_BACKERS_END -->
 
@@ -59,6 +76,8 @@ Sandhog works out of the box without any configuration. Some highlights include:
 
 - [Description](#description)
   - [Features](#features)
+- [Backers](#backers)
+  - [Patreon](#patreon)
 - [Table of Contents](#table-of-contents)
 - [Install](#install)
   - [npm](#npm)
@@ -109,19 +128,19 @@ Sandhog works out of the box without any configuration. Some highlights include:
 ### npm
 
 ```
-$ npm install sandhog
+$ npm install sandhog --save-dev
 ```
 
 ### Yarn
 
 ```
-$ yarn add sandhog
+$ yarn add sandhog --dev
 ```
 
 ### pnpm
 
 ```
-$ pnpm add sandhog
+$ pnpm add sandhog --save-dev
 ```
 
 ### Run once with npx

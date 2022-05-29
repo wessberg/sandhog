@@ -74,9 +74,11 @@ async function findConfigRecursiveStep(
 				case ".yaml":
 					// If it has a .y[a]ml extension, parse it as YAML
 					return yaml.parse(fs.readFileSync(nativeAbsolutePath, "utf8"));
-				default:
+				default: {
 					// Otherwise, use the module loader directly
-					return await import(`file://${absolutePath}`);
+					const result = await import(`file://${absolutePath}`);
+					return "default" in result ? result.default : result;
+				}
 			}
 		}
 	}
