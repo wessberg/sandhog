@@ -150,6 +150,10 @@ $ npx sandhog
 
 <!-- SHADOW_SECTION_INSTALL_END -->
 
+## Engine
+
+Sandhog requires Node.js v14.19.0 or newer to work correctly.
+
 <!-- SHADOW_SECTION_USAGE_START -->
 
 ## Usage

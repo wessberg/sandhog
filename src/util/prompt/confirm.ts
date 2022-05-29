@@ -1,10 +1,10 @@
-import {prompt} from "inquirer";
+import inquirer from "inquirer";
 
 /**
  * Prints a 'confirm' prompt in the terminal
  */
 export async function confirm(message: string, defaultValue?: boolean): Promise<boolean> {
-	const answer = await prompt([
+	const answer = await inquirer.prompt([
 		{
 			type: "confirm",
 			message,
