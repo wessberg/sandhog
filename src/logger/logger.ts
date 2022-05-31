@@ -1,12 +1,11 @@
 import {LogLevelKind} from "./log-level-kind.js";
-import chalk from "chalk";
+import color from "ansi-colors";
 import {ILogger} from "./i-logger.js";
 
 /**
  * A logger that can print to the console
  */
 export class Logger implements ILogger {
-	private readonly INFO_COLOR = "white";
 	private readonly VERBOSE_COLOR = "yellow";
 	private readonly WARNING_COLOR = "yellow";
 	private readonly DEBUG_COLOR = "cyan";
@@ -16,31 +15,31 @@ export class Logger implements ILogger {
 	/**
 	 * Logs info-related messages
 	 */
-	info(...messages: string[]): void {
+	 info(...messages: unknown[]): void {
 		if (this.logLevel < LogLevelKind.INFO) return;
-		console.log(chalk[this.INFO_COLOR](...messages));
+		console.log(...messages);
 	}
 
 	/**
 	 * Logs verbose-related messages
 	 */
-	verbose(...messages: string[]): void {
+	verbose(...messages: unknown[]): void {
 		if (this.logLevel < LogLevelKind.VERBOSE) return;
-		console.log(chalk[this.VERBOSE_COLOR](...messages));
+		console.log(color[this.VERBOSE_COLOR]("[VERBOSE]"), ...messages);
 	}
 
 	/**
 	 * Logs debug-related messages
 	 */
-	debug(...messages: string[]): void {
+	debug(...messages: unknown[]): void {
 		if (this.logLevel < LogLevelKind.DEBUG) return;
-		console.log(chalk[this.DEBUG_COLOR](...messages));
+		console.log(color[this.DEBUG_COLOR]("[DEBUG]"), ...messages);
 	}
 
 	/**
 	 * Logs warning-related messages
 	 */
-	warn(...messages: string[]): void {
-		console.warn(chalk[this.WARNING_COLOR](`(!)`, ...messages));
+	warn(...messages: unknown[]): void {
+		console.log(color[this.WARNING_COLOR](`(!)`), ...messages);
 	}
 }
