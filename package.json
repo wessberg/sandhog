@@ -22,7 +22,7 @@
 		"prebuild": "npm run clean",
 		"build": "pnpm run prebuild && pnpm run rollup",
 		"watch": "pnpm run prebuild && pnpm run rollup -- --watch",
-		"rollup": "rollup -c rollup.config.js",
+		"rollup": "rollup -c rollup.config.mjs",
 		"preversion": "pnpm run lint && pnpm run build",
 		"version": "pnpm run preversion && pnpm run generate:all && git add .",
 		"release": "np --no-cleanup --no-yarn",
