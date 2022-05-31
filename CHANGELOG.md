@@ -1,3 +1,13 @@
+## [2.0.2](https://github.com/wessberg/sandhog/compare/v2.0.1...v2.0.2) (2022-05-31)
+
+
+### Bug Fixes
+
+* convert rollup config to mjs format to instruct Rollup to treat the config as a pure ES module ([336167a](https://github.com/wessberg/sandhog/commit/336167abe14fd7bc01f1c22503e6243fdb7f07bd))
+* use ansi-colors instead of Chalk for better CJS fallback support ([85e15d5](https://github.com/wessberg/sandhog/commit/85e15d5a5163f8f17323d2ca0dcfa315cd863d1d))
+
+
+
 ## [2.0.1](https://github.com/wessberg/sandhog/compare/v2.0.0...v2.0.1) (2022-05-29)
 
 
