@@ -1,12 +1,10 @@
-import {GenerateContributingOptions} from "./generate-contributing-options.js";
+import type {GenerateContributingOptions} from "./generate-contributing-options.js";
 import {listFormat} from "../../util/list-format/list-format.js";
 
 /**
  * Generates a CONTRIBUTING.md based on the given options
- *
- * @param options
  */
-export function generateContributing({contributors, prettier, config, pkg}: GenerateContributingOptions): string {
+export function generateContributing({contributors, prettier, config, pkg}: GenerateContributingOptions): Promise<string> {
 	return prettier.format(
 		`\
 You are more than welcome to contribute to \`${pkg.name}\` in any way you please, including:
@@ -22,7 +20,7 @@ ${
 		: `- Reaching out to ${listFormat(
 				contributors.filter(contributor => contributor.twitter != null).map(contributor => `[@${contributor.twitter}](https://twitter.com/${contributor.twitter})`),
 				"or"
-		  )} on Twitter`
+			)} on Twitter`
 }
 - Submit an issue or a Pull Request`,
 		{

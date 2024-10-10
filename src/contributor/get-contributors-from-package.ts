@@ -1,5 +1,5 @@
-import {Package} from "../package/package.js";
-import {Contributor} from "./contributor.js";
+import type {Package} from "../package/package.js";
+import type {Contributor} from "./contributor.js";
 import {ensureContributor} from "./ensure-contributor.js";
 
 /**

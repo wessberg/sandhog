@@ -1,4 +1,4 @@
-import {ElementOf} from "helpertypes";
+import type {ElementOf} from "helpertypes";
 
 export const LICENSE_NAMES = [
 	"APACHE-2.0",

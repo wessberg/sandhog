@@ -1,4 +1,4 @@
-import {ReadmeTaskOptions} from "./readme-task-options.js";
+import type {ReadmeTaskOptions} from "./readme-task-options.js";
 import path from "crosspath";
 import {CONSTANT} from "../../../constant/constant.js";
 import {confirm} from "../../../util/prompt/confirm.js";

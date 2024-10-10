@@ -1,4 +1,4 @@
-import {FundingTaskOptions} from "./funding-task-options.js";
+import type {FundingTaskOptions} from "./funding-task-options.js";
 import {getContributorsFromPackage} from "../../../contributor/get-contributors-from-package.js";
 import path from "crosspath";
 import {CONSTANT} from "../../../constant/constant.js";
@@ -10,7 +10,7 @@ import {generateFunding} from "../../../funding/generate-funding/generate-fundin
  */
 export async function fundingTask({pkg, logger, prettier, config, root, fs, yes}: FundingTaskOptions): Promise<void> {
 	const contributors = getContributorsFromPackage(pkg);
-	const cocText = generateFunding({contributors, config, prettier});
+	const cocText = await generateFunding({contributors, config, prettier});
 	const dir = path.join(root, CONSTANT.githubDirName);
 	const pathFromRoot = path.join(dir, CONSTANT.fundingFilename);
 	const nativeDir = path.native.normalize(dir);

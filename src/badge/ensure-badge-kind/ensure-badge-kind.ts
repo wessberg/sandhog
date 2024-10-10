@@ -1,10 +1,10 @@
 import {listFormat} from "../../util/list-format/list-format.js";
-import {BadgeKind, BADGE_KINDS} from "../badge-kind.js";
+import {type BadgeKind, BADGE_KINDS} from "../badge-kind.js";
 
 /**
  * Ensures that the given input is a proper BadgeKind
  */
-export function ensureBadgeKind(badgeKind: BadgeKind | string): BadgeKind {
+export function ensureBadgeKind(badgeKind: string): BadgeKind {
 	if (typeof badgeKind !== "string") return badgeKind;
 	if (BADGE_KINDS.some(key => key === badgeKind)) {
 		return badgeKind as BadgeKind;

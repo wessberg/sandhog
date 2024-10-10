@@ -1,13 +1,11 @@
-import {GenerateLicenseOptions} from "../generate-license-options.js";
+import type {GenerateLicenseOptions} from "../generate-license-options.js";
 import {formatContributor} from "../../../contributor/format-contributor.js";
 import {listFormat} from "../../../util/list-format/list-format.js";
 
 /**
  * Generates a ZLIB license
- *
- * @param options
  */
-export function generate({contributors, prettier, config}: GenerateLicenseOptions): string {
+export function generate({contributors, prettier, config}: GenerateLicenseOptions): Promise<string> {
 	return prettier.format(
 		`\
 zlib License

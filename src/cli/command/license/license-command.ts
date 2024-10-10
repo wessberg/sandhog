@@ -1,4 +1,4 @@
-import {Command} from "commander";
+import type {Command} from "commander";
 import {createCommand} from "../create-command/create-command.js";
 import {SHARED_OPTIONS} from "../shared/shared-options.js";
 import {generateTaskOptions} from "../../task/generate-task-options/generate-task-options.js";
@@ -31,6 +31,7 @@ export function createLicenseCommand(program: Command) {
 
 			// Detect the license. It may be given/overridden from a CLI option
 			const license = await (async () => {
+				// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 				if (args.license != null) {
 					if (!isKnownLicenseName(args.license)) {
 						throw new TypeError(`The license: '${args.license}' given via a CLI option is not supported`);

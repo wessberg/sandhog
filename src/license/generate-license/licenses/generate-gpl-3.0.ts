@@ -1,13 +1,11 @@
-import {GenerateLicenseOptions} from "../generate-license-options.js";
+import type {GenerateLicenseOptions} from "../generate-license-options.js";
 import {listFormat} from "../../../util/list-format/list-format.js";
 import {formatContributor} from "../../../contributor/format-contributor.js";
 
 /**
  * Generates a GPL-3.0 license
- *
- * @param options
  */
-export function generate({contributors, prettier, config, pkg}: GenerateLicenseOptions): string {
+export function generate({contributors, prettier, config, pkg}: GenerateLicenseOptions): Promise<string> {
 	return prettier.format(
 		`\
                     GNU GENERAL PUBLIC LICENSE

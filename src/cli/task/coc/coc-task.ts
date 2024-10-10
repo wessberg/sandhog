@@ -1,4 +1,4 @@
-import {CocTaskOptions} from "./coc-task-options.js";
+import type {CocTaskOptions} from "./coc-task-options.js";
 import {getContributorsFromPackage} from "../../../contributor/get-contributors-from-package.js";
 import {generateCoc} from "../../../coc/generate-coc/generate-coc.js";
 import path from "crosspath";
@@ -10,7 +10,7 @@ import {confirm} from "../../../util/prompt/confirm.js";
  */
 export async function cocTask({pkg, logger, prettier, config, root, fs, yes}: CocTaskOptions): Promise<void> {
 	const contributors = getContributorsFromPackage(pkg);
-	const cocText = generateCoc({contributors, config, prettier});
+	const cocText = await generateCoc({contributors, config, prettier});
 	const pathFromRoot = path.join(root, CONSTANT.codeOfConductFilename);
 	const nativePath = path.native.normalize(pathFromRoot);
 

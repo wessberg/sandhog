@@ -1,5 +1,5 @@
-import {LicenseName} from "../license-name.js";
-import {License} from "../license.js";
+import type {LicenseName} from "../license-name.js";
+import type {License} from "../license.js";
 
 /**
  * Gets the License for the given LicenseName

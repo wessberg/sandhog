@@ -8,18 +8,14 @@ export interface CommandOption {
 	description: string;
 }
 
-export interface CommandOptions {
-	[key: string]: CommandOption;
-}
+export type CommandOptions = Record<string, CommandOption>;
 
 export interface CommandArg {
 	type: CommandArgType;
 	required: boolean;
 }
 
-export interface CommandArgs {
-	[key: string]: CommandArg;
-}
+export type CommandArgs = Record<string, CommandArg>;
 
 export interface CreateCommandOptions {
 	name: string;

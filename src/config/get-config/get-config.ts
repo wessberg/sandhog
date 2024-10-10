@@ -1,11 +1,12 @@
-import {FindConfigOptions} from "../find-config/find-config-options.js";
-import {SandhogConfig} from "../sandhog-config.js";
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
+import type {FindConfigOptions} from "../find-config/find-config-options.js";
+import type {SandhogConfig} from "../sandhog-config.js";
 import {findConfig} from "../find-config/find-config.js";
 import {DEFAULT_SANDHOG_CONFIG} from "../default-sandhog-config.js";
-import {BadgeKind} from "../../badge/badge-kind.js";
-import {SectionKind} from "../../section/section-kind.js";
-import {Options} from "prettier";
-import {Contributor} from "../../contributor/contributor.js";
+import type {BadgeKind} from "../../badge/badge-kind.js";
+import type {SectionKind} from "../../section/section-kind.js";
+import type {Options} from "prettier";
+import type {Contributor} from "../../contributor/contributor.js";
 
 /**
  * Gets a SandhogConfig. Will attempt to resolve a config and fall back to defaults

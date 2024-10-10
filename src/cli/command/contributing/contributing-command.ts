@@ -1,4 +1,4 @@
-import {Command} from "commander";
+import type {Command} from "commander";
 import {createCommand} from "../create-command/create-command.js";
 import {SHARED_OPTIONS} from "../shared/shared-options.js";
 import {generateTaskOptions} from "../../task/generate-task-options/generate-task-options.js";

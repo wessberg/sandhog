@@ -1,5 +1,6 @@
-import {GetLicenseOptions} from "./get-license-options.js";
-import {LICENSE_NAMES, LicenseName} from "../license-name.js";
+import type {GetLicenseOptions} from "./get-license-options.js";
+import type {LicenseName} from "../license-name.js";
+import {LICENSE_NAMES} from "../license-name.js";
 import {radio} from "../../util/prompt/radio.js";
 import {findLicense} from "../find-license/find-license.js";
 

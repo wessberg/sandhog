@@ -1,13 +1,11 @@
-import {GenerateLicenseOptions} from "../generate-license-options.js";
+import type {GenerateLicenseOptions} from "../generate-license-options.js";
 import {listFormat} from "../../../util/list-format/list-format.js";
 import {formatContributor} from "../../../contributor/format-contributor.js";
 
 /**
  * Generates a GPL-2.0 license
- *
- * @param options
  */
-export function generate({contributors, prettier, config, pkg}: GenerateLicenseOptions): string {
+export function generate({contributors, prettier, config, pkg}: GenerateLicenseOptions): Promise<string> {
 	return prettier.format(
 		`\
                     GNU GENERAL PUBLIC LICENSE
@@ -342,9 +340,9 @@ necessary.  Here is a sample; alter the names:
 
   Yoyodyne, Inc., hereby disclaims all copyright interest in the program
   \`${pkg.name}'${pkg.description == null || pkg.description.length < 1 ? "" : ` (${pkg.description})`} written by ${listFormat(
-			contributors.map(contributor => formatContributor(contributor, "markdown")),
-			"and"
-		)}.
+		contributors.map(contributor => formatContributor(contributor, "markdown")),
+		"and"
+	)}.
 
   <signature of Ty Coon>, 1 April 1989
   Ty Coon, President of Vice

@@ -1,4 +1,4 @@
-import {Command} from "commander";
+import type {Command} from "commander";
 
 export function createHelpCommand(program: Command): void {
 	program.addHelpText("before", `Welcome to Sandhog!\n`);

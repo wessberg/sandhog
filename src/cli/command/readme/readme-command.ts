@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import {Command} from "commander";
+import type {Command} from "commander";
 import {createCommand} from "../create-command/create-command.js";
 import {SHARED_OPTIONS} from "../shared/shared-options.js";
 import {generateTaskOptions} from "../../task/generate-task-options/generate-task-options.js";
@@ -34,6 +34,7 @@ export function createReadmeCommand(program: Command) {
 			const taskOptions = await generateTaskOptions(args);
 
 			// If given via the command line, update the excluded sections
+			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 			if (args["section.exclude"] != null) {
 				const splitted = args["section.exclude"].split(",");
 
@@ -42,6 +43,7 @@ export function createReadmeCommand(program: Command) {
 			}
 
 			// If given via the command line, update the excluded badges
+			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 			if (args["badge.exclude"] != null) {
 				const splitted = args["badge.exclude"].split(",");
 

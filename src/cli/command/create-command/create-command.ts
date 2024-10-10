@@ -1,7 +1,5 @@
-import {Command} from "commander";
-import {CommandAction, CommandActionOptions, CommandOptionType, CreateCommandOptions} from "./create-command-options.js";
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import type {Command} from "commander";
+import type {CommandAction, CommandActionOptions, CommandOptionType, CreateCommandOptions} from "./create-command-options.js";
 
 /**
  * Coerces the given option value into an acceptable data type

@@ -1,5 +1,5 @@
-import {LicenseName} from "../license-name.js";
-import {GenerateLicenseOptions} from "./generate-license-options.js";
+import type {LicenseName} from "../license-name.js";
+import type {GenerateLicenseOptions} from "./generate-license-options.js";
 import {isKnownLicenseName} from "../is-known-license-name.js";
 import {generate as apache2} from "./licenses/generate-apache-2.0.js";
 import {generate as agpl} from "./licenses/generate-agpl-3.0.js";
@@ -21,11 +21,11 @@ import {generate as zlib} from "./licenses/generate-zlib.js";
  */
 export async function generateLicense(license: LicenseName, options: GenerateLicenseOptions): Promise<string> {
 	if (!isKnownLicenseName(license)) {
-		throw new TypeError(`The given license: '${license}' is invalid or not supported`);
+		throw new TypeError(`The given license: '${String(license)}' is invalid or not supported`);
 	}
 
 	// Lazy-load the generate function to use
-	const generate = await (async () => {
+	const generate = (() => {
 		switch (license) {
 			case "APACHE-2.0":
 				return apache2;

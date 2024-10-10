@@ -1,16 +1,17 @@
-import test from "ava";
+import test from "node:test";
+import assert from "node:assert";
 import {Logger} from "../src/logger/logger.js";
 import {LogLevelKind} from "../src/logger/log-level-kind.js";
 import {getConfig} from "../src/config/get-config/get-config.js";
 
-test("Can sanitize a SandhogConfig", async t => {
+test("Can sanitize a SandhogConfig", async () => {
 	const config = await getConfig({
 		root: process.cwd(),
 		logger: new Logger(LogLevelKind.NONE)
 	});
 
 	// Verify that it has no optional keys
-	t.true(
+	assert(
 		"donate" in config &&
 			"patreon" in config.donate &&
 			"userId" in config.donate.patreon &&

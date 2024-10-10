@@ -1,13 +1,11 @@
-import {GenerateCocOptions} from "./generate-coc-options.js";
+import type {GenerateCocOptions} from "./generate-coc-options.js";
 import {formatContributor} from "../../contributor/format-contributor.js";
 import {listFormat} from "../../util/list-format/list-format.js";
 
 /**
  * Generates a Code Of Conduct based on the given options
- *
- * @param options
  */
-export function generateCoc({contributors, prettier, config}: GenerateCocOptions): string {
+export function generateCoc({contributors, prettier, config}: GenerateCocOptions): Promise<string> {
 	return prettier.format(
 		`\
 Contributor Covenant Code of Conduct

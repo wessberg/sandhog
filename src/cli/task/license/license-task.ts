@@ -1,4 +1,4 @@
-import {LicenseTaskOptions} from "./license-task-options.js";
+import type {LicenseTaskOptions} from "./license-task-options.js";
 import path from "crosspath";
 import {CONSTANT} from "../../../constant/constant.js";
 import {getContributorsFromPackage} from "../../../contributor/get-contributors-from-package.js";

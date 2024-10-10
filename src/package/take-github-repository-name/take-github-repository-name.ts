@@ -1,4 +1,4 @@
-import {Package} from "../package.js";
+import type {Package} from "../package.js";
 
 const REGEX = /(http?s?:\/\/?)?(www\.)?github.com\//g;
 
@@ -9,6 +9,6 @@ const REGEX = /(http?s?:\/\/?)?(www\.)?github.com\//g;
  * @returns
  */
 export function takeGithubRepositoryName(pkg: Package): string | undefined {
-	if (pkg.repository == null || pkg.repository.url == null) return undefined;
+	if (pkg.repository?.url == null) return undefined;
 	return pkg.repository.url.replace(REGEX, "").replace(".git", "");
 }

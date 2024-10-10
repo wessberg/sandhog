@@ -1,12 +1,10 @@
-import {GenerateFundingOptions} from "./generate-funding-options.js";
-import {Contributor} from "../../contributor/contributor.js";
+import type {GenerateFundingOptions} from "./generate-funding-options.js";
+import type {Contributor} from "../../contributor/contributor.js";
 
 /**
  * Generates a FUNDING.yml based on the given options
- *
- * @param options
  */
-export function generateFunding({contributors, prettier, config}: GenerateFundingOptions): string {
+export function generateFunding({contributors, prettier, config}: GenerateFundingOptions): Promise<string> {
 	let yaml = ``;
 	// Take all of the contributors that has a github username defined in the package.json file.
 	// These will be the fundable ones. For those, take their Github user names and deduplicate them

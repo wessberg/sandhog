@@ -1,4 +1,4 @@
-import {Contributor} from "./contributor.js";
+import type {Contributor} from "./contributor.js";
 
 const NAME_REGEXP = /([^<]*)/;
 const NAME_EMAIL_REGEXP = /([^<]*)<([^>]*)>/;
@@ -18,26 +18,26 @@ export function ensureContributor(contributor: string | Contributor): Contributo
 	if (NAME_EMAIL_URL_REGEXP.test(contributor)) {
 		const [, name, email, url] = contributor.match(NAME_EMAIL_URL_REGEXP)!;
 		return {
-			name: name.trim(),
+			name: name?.trim(),
 			email,
 			url
 		};
 	} else if (NAME_URL_REGEXP.test(contributor)) {
 		const [, name, url] = contributor.match(NAME_URL_REGEXP)!;
 		return {
-			name: name.trim(),
+			name: name?.trim(),
 			url
 		};
 	} else if (NAME_EMAIL_REGEXP.test(contributor)) {
 		const [, name, email] = contributor.match(NAME_EMAIL_REGEXP)!;
 		return {
-			name: name.trim(),
+			name: name?.trim(),
 			email
 		};
 	} else if (NAME_REGEXP.test(contributor)) {
 		const [, name] = contributor.match(NAME_REGEXP)!;
 		return {
-			name: name.trim()
+			name: name?.trim()
 		};
 	} else {
 		throw new TypeError(`Could not parse string: '${contributor}' as a contributor`);

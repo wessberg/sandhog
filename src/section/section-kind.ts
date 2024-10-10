@@ -1,4 +1,4 @@
-import {ElementOf} from "helpertypes";
+import type {ElementOf} from "helpertypes";
 
 export const SECTION_KINDS = [
 	"toc",

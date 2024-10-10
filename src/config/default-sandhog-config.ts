@@ -1,5 +1,5 @@
-import {SandhogConfig} from "./sandhog-config.js";
-import prettier, {type Options} from "prettier"
+import type {SandhogConfig} from "./sandhog-config.js";
+import prettier, {type Options} from "prettier";
 
 /**
  * This object holds all of the default config options for a SandhogConfig

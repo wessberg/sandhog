@@ -1,5 +1,5 @@
-import {GenerateReadmeOptions} from "./generate-readme-options.js";
-import {SectionKind} from "../../section/section-kind.js";
+import type {GenerateReadmeOptions} from "./generate-readme-options.js";
+import type {SectionKind} from "../../section/section-kind.js";
 
 export interface GenerateReadmeContext extends GenerateReadmeOptions {
 	sections: Set<SectionKind>;

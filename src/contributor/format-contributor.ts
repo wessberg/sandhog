@@ -1,10 +1,7 @@
-import {Contributor} from "./contributor.js";
+import type {Contributor} from "./contributor.js";
 
 /**
  * Formats the relevant data of the given contributor
- *
- * @param contributor
- * @param [format]
  */
 export function formatContributor({name, email, twitter, url}: Contributor, format: "html" | "markdown" | "plain" = "plain"): string {
 	switch (format) {

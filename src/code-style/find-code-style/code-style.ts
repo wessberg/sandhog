@@ -1,4 +1,4 @@
-import {CodeStyleKind} from "../code-style-kind.js";
+import type {CodeStyleKind} from "../code-style-kind.js";
 
 export interface CodeStyle {
 	kind: CodeStyleKind;

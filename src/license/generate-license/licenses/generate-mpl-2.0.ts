@@ -1,11 +1,9 @@
-import {GenerateLicenseOptions} from "../generate-license-options.js";
+import type {GenerateLicenseOptions} from "../generate-license-options.js";
 
 /**
  * Generates a MPL-2.0 license
- *
- * @param options
  */
-export function generate({prettier, config}: GenerateLicenseOptions): string {
+export function generate({prettier, config}: GenerateLicenseOptions): Promise<string> {
 	return prettier.format(
 		`\
 Mozilla Public License Version 2.0

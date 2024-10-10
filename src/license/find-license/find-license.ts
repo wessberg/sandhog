@@ -1,12 +1,12 @@
 import path from "crosspath";
 import _fs from "fs";
-import {FindLicenseOptions} from "./find-license-options.js";
-import {LicenseName} from "../license-name.js";
+import type {FindLicenseOptions} from "./find-license-options.js";
+import type {LicenseName} from "../license-name.js";
 import {isKnownLicenseName} from "../is-known-license-name.js";
 import {CONSTANT} from "../../constant/constant.js";
-import {ILogger} from "../../logger/i-logger.js";
+import type {ILogger} from "../../logger/i-logger.js";
 import {findPackage} from "../../package/find-package/find-package.js";
-import {FileSystem} from "../../file-system/file-system.js";
+import type {FileSystem} from "../../file-system/file-system.js";
 import {detectLicense} from "../detect-license/detect-license.js";
 
 /**

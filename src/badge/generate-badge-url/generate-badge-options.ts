@@ -1,4 +1,4 @@
-import {BadgeColor} from "../badge-color.js";
+import type {BadgeColor} from "../badge-color.js";
 
 export interface GenerateBadgeOptions {
 	subject: string;

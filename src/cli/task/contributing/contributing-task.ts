@@ -1,4 +1,4 @@
-import {ContributingTaskOptions} from "./contributing-task-options.js";
+import type {ContributingTaskOptions} from "./contributing-task-options.js";
 import {getContributorsFromPackage} from "../../../contributor/get-contributors-from-package.js";
 import path from "crosspath";
 import {CONSTANT} from "../../../constant/constant.js";
@@ -10,7 +10,7 @@ import {confirm} from "../../../util/prompt/confirm.js";
  */
 export async function contributingTask({pkg, logger, prettier, config, root, fs, yes}: ContributingTaskOptions): Promise<void> {
 	const contributors = getContributorsFromPackage(pkg);
-	const contributingText = generateContributing({contributors, config, prettier, pkg});
+	const contributingText = await generateContributing({contributors, config, prettier, pkg});
 	const pathFromRoot = path.join(root, CONSTANT.contributingFilename);
 	const nativePath = path.native.normalize(pathFromRoot);
 

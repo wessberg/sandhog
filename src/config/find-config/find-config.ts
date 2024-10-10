@@ -2,13 +2,13 @@ import path from "crosspath";
 import _fs from "fs";
 import json5 from "json5";
 import yaml from "yaml";
-import {SandhogConfig} from "../sandhog-config.js";
+import type {SandhogConfig} from "../sandhog-config.js";
 import {CONSTANT} from "../../constant/constant.js";
-import {FindConfigOptions} from "./find-config-options.js";
+import type {FindConfigOptions} from "./find-config-options.js";
 import {findPackage} from "../../package/find-package/find-package.js";
-import {ILogger} from "../../logger/i-logger.js";
-import {FileSystem} from "../../file-system/file-system.js";
-import {PartialDeep} from "helpertypes";
+import type {ILogger} from "../../logger/i-logger.js";
+import type {FileSystem} from "../../file-system/file-system.js";
+import type {PartialDeep} from "helpertypes";
 
 /**
  * Finds a sandhog config if possible
@@ -54,7 +54,7 @@ async function findConfigRecursiveStep(
 					path.join(root, CONSTANT.configFilenameYaml),
 					path.join(root, CONSTANT.configFilenameYml),
 					path.join(root, CONSTANT.configFilenameRc)
-			  ];
+				];
 
 	for (const absolutePath of absolutePaths) {
 		const nativeAbsolutePath = path.native.normalize(absolutePath);
@@ -73,11 +73,13 @@ async function findConfigRecursiveStep(
 				case ".yml":
 				case ".yaml":
 					// If it has a .y[a]ml extension, parse it as YAML
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 					return yaml.parse(fs.readFileSync(nativeAbsolutePath, "utf8"));
 				default: {
 					// Otherwise, use the module loader directly
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 					const result = await import(`file://${absolutePath}`);
-					return "default" in result ? result.default : result;
+					return "default" in result ? (result as {default: PartialDeep<SandhogConfig>}).default : (result as PartialDeep<SandhogConfig>);
 				}
 			}
 		}

@@ -1,12 +1,16 @@
 import path from "crosspath";
 import _fs from "fs";
-import {FindPackageOptions} from "./find-package-options.js";
-import {FindPackageResult} from "./find-package-result.js";
+import type {FindPackageOptions} from "./find-package-options.js";
+import type {FindPackageResult} from "./find-package-result.js";
 
 /**
  * Finds the nearest package.json from the given root directory
  */
-export async function findPackage({root = process.cwd(), logger, fs = {existsSync: _fs.existsSync, readFileSync: _fs.readFileSync}}: FindPackageOptions): Promise<FindPackageResult> {
+export async function findPackage({
+	root = process.cwd(),
+	logger,
+	fs = {existsSync: _fs.existsSync, readFileSync: _fs.readFileSync}
+}: FindPackageOptions): Promise<FindPackageResult> {
 	const packageJsonPath = path.join(root, "package.json");
 	const nativePackageJsonPath = path.native.normalize(packageJsonPath);
 	if (fs.existsSync(nativePackageJsonPath)) {
@@ -14,7 +18,8 @@ export async function findPackage({root = process.cwd(), logger, fs = {existsSyn
 
 		return {
 			root: path.dirname(packageJsonPath),
-			pkg: JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"))
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+			pkg: await import(packageJsonPath, {with: {type: "json"}})
 		};
 	}
 

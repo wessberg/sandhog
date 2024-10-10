@@ -1,6 +1,6 @@
 import {LogLevelKind} from "./log-level-kind.js";
 import color from "ansi-colors";
-import {ILogger} from "./i-logger.js";
+import type {ILogger} from "./i-logger.js";
 
 /**
  * A logger that can print to the console
@@ -15,7 +15,7 @@ export class Logger implements ILogger {
 	/**
 	 * Logs info-related messages
 	 */
-	 info(...messages: unknown[]): void {
+	info(...messages: unknown[]): void {
 		if (this.logLevel < LogLevelKind.INFO) return;
 		console.log(...messages);
 	}

@@ -1,6 +1,6 @@
-import {GenerateReadmeOptions} from "./generate-readme-options.js";
-import {SectionKind} from "../../section/section-kind.js";
-import {GenerateReadmeContext} from "./generate-readme-context.js";
+import type {GenerateReadmeOptions} from "./generate-readme-options.js";
+import type {SectionKind} from "../../section/section-kind.js";
+import type {GenerateReadmeContext} from "./generate-readme-context.js";
 import {getBadges} from "../../badge/get-badges/get-badges.js";
 import {getRelevantSections} from "../../section/get-relevant-sections/get-relevant-sections.js";
 import {formatImage} from "../../markdown/format-image/format-image.js";
@@ -13,13 +13,10 @@ import {listFormat} from "../../util/list-format/list-format.js";
 import {formatUrl} from "../../markdown/format-url/format-url.js";
 import toc from "markdown-toc";
 import path from "crosspath";
-import {Contributor} from "../../contributor/contributor.js";
+import type {Contributor} from "../../contributor/contributor.js";
 
 /**
  * Generates the text for a README.md based on the given options
- *
- * @param options
- * @returns
  */
 export async function generateReadme(options: GenerateReadmeOptions): Promise<string> {
 	const sections = getRelevantSections(options);
@@ -27,59 +24,59 @@ export async function generateReadme(options: GenerateReadmeOptions): Promise<st
 	const context: GenerateReadmeContext = {
 		...options,
 		sections,
-		str: options.existingReadme != null ? options.existingReadme : ""
+		str: options.existingReadme ?? ""
 	};
 
 	if (sections.has("logo")) {
-		await generateLogoSection(context);
+		generateLogoSection(context);
 	}
 
 	if (sections.has("description_short")) {
-		await generateDescriptionShortSection(context);
+		generateDescriptionShortSection(context);
 	}
 
 	if (sections.has("badges")) {
-		await generateBadgesSection(context);
+		generateBadgesSection(context);
 	}
 
 	if (sections.has("description_long")) {
-		await generateDescriptionLongSection(context);
+		generateDescriptionLongSection(context);
 	}
 
 	if (sections.has("features")) {
-		await generateFeaturesSection(context);
+		generateFeaturesSection(context);
 	}
 
 	if (sections.has("feature_image")) {
-		await generateFeatureImageSection(context);
+		generateFeatureImageSection(context);
 	}
 
 	if (sections.has("backers")) {
-		await generateBackersSection(context);
+		generateBackersSection(context);
 	}
 
 	if (sections.has("toc")) {
-		await generateTableOfContentsSection(context, true);
+		generateTableOfContentsSection(context, true);
 	}
 
 	if (sections.has("install")) {
-		await generateInstallSection(context);
+		generateInstallSection(context);
 	}
 
 	if (sections.has("usage")) {
-		await generateUsageSection(context);
+		generateUsageSection(context);
 	}
 
 	if (sections.has("contributing")) {
-		await generateContributingSection(context);
+		generateContributingSection(context);
 	}
 
 	if (sections.has("maintainers")) {
-		await generateMaintainersSection(context);
+		generateMaintainersSection(context);
 	}
 
 	if (sections.has("faq")) {
-		await generateFaqSection(context);
+		generateFaqSection(context);
 	}
 
 	if (sections.has("license")) {
@@ -87,7 +84,7 @@ export async function generateReadme(options: GenerateReadmeOptions): Promise<st
 	}
 
 	if (sections.has("toc")) {
-		await generateTableOfContentsSection(context, false);
+		generateTableOfContentsSection(context, false);
 	}
 
 	// Stringify the StringBuilder
@@ -118,10 +115,8 @@ function setSection(context: GenerateReadmeContext, sectionKind: SectionKind, co
 
 /**
  * Generates the logo section of the README
- *
- * @param context
  */
-async function generateLogoSection(context: GenerateReadmeContext): Promise<void> {
+function generateLogoSection(context: GenerateReadmeContext): void {
 	setSection(
 		context,
 		"logo",
@@ -132,14 +127,14 @@ async function generateLogoSection(context: GenerateReadmeContext): Promise<void
 					url: context.config.logo.url,
 					alt: "Logo",
 					height: context.config.logo.height
-			  })}</div>`
+				})}</div>`
 	);
 }
 
 /**
  * Generates the feature image section of the README
  */
-async function generateFeatureImageSection(context: GenerateReadmeContext): Promise<void> {
+function generateFeatureImageSection(context: GenerateReadmeContext): void {
 	setSection(
 		context,
 		"feature_image",
@@ -150,21 +145,21 @@ async function generateFeatureImageSection(context: GenerateReadmeContext): Prom
 					url: context.config.featureImage.url,
 					alt: "Feature image",
 					height: context.config.featureImage.height
-			  })}</div><br>`
+				})}</div><br>`
 	);
 }
 
 /**
  * Generates the Table Of Contents section of the README
  */
-async function generateTableOfContentsSection(context: GenerateReadmeContext, reserveOnly = false): Promise<void> {
+function generateTableOfContentsSection(context: GenerateReadmeContext, reserveOnly = false): void {
 	setSection(
 		context,
 		"toc",
 		`## Table of Contents\n\n` +
 			(reserveOnly
 				? // Only reserve the spot within the README with an empty placeholder that can be replaced later on
-				  ``
+					``
 				: toc(context.str).content)
 	);
 }
@@ -177,6 +172,7 @@ async function generateBadgesSection(context: GenerateReadmeContext): Promise<vo
 
 	const content = Object.values(badges)
 		.map(value => {
+			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 			if (value == null) return "";
 			return value.join("\n");
 		})
@@ -187,7 +183,7 @@ async function generateBadgesSection(context: GenerateReadmeContext): Promise<vo
 /**
  * Generates the short description section of the README
  */
-async function generateDescriptionShortSection(context: GenerateReadmeContext): Promise<void> {
+function generateDescriptionShortSection(context: GenerateReadmeContext): void {
 	// Don't proceed if the package has no description
 	if (context.pkg.description == null) return;
 
@@ -197,21 +193,21 @@ async function generateDescriptionShortSection(context: GenerateReadmeContext): 
 /**
  * Generates the long description section of the README
  */
-async function generateDescriptionLongSection(context: GenerateReadmeContext): Promise<void> {
+function generateDescriptionLongSection(context: GenerateReadmeContext): void {
 	setSection(context, "description_long", `## Description`);
 }
 
 /**
  * Generates the features section of the README
  */
-async function generateFeaturesSection(context: GenerateReadmeContext): Promise<void> {
+function generateFeaturesSection(context: GenerateReadmeContext): void {
 	setSection(context, "features", `### Features\n\n`);
 }
 
 /**
  * Generates the FAQ section of the README
  */
-async function generateFaqSection(context: GenerateReadmeContext): Promise<void> {
+function generateFaqSection(context: GenerateReadmeContext): void {
 	setSection(context, "faq", `## FAQ\n\n`);
 }
 
@@ -247,7 +243,7 @@ function generateNpxStep(binName: string, requiredPeerDependencies: string[], co
 /**
  * Generates the install section of the README
  */
-async function generateInstallSection(context: GenerateReadmeContext): Promise<void> {
+function generateInstallSection(context: GenerateReadmeContext): void {
 	// Don't proceed if the package has no name
 	if (context.pkg.name == null) return;
 	const peerDependencies =
@@ -256,7 +252,7 @@ async function generateInstallSection(context: GenerateReadmeContext): Promise<v
 			: Object.keys(context.pkg.peerDependencies).map(peerDependency => ({
 					peerDependency,
 					optional: Boolean(context.pkg.peerDependenciesMeta?.[peerDependency]?.optional)
-			  }));
+				}));
 
 	const requiredPeerDependencies = peerDependencies.filter(({optional}) => !optional).map(({peerDependency}) => peerDependency);
 	const optionalPeerDependencies = peerDependencies.filter(({optional}) => optional).map(({peerDependency}) => peerDependency);
@@ -283,40 +279,40 @@ async function generateInstallSection(context: GenerateReadmeContext): Promise<v
 			(peerDependencies.length < 1
 				? ""
 				: "\n\n" +
-				  `### Peer Dependencies\n\n` +
-				  (requiredPeerDependencies.length < 1
+					`### Peer Dependencies\n\n` +
+					(requiredPeerDependencies.length < 1
 						? ""
 						: `\`${context.pkg.name}\` depends on ${listFormat(requiredPeerDependencies, "and", element => `\`${element}\``)}, so you need to manually install ${
 								requiredPeerDependencies.length === 1 ? "this" : "these"
-						  }${context.config.isDevelopmentPackage ? ` as ${requiredPeerDependencies.length === 1 ? "a development dependency" : "development dependencies"}` : ``} as well.`) +
-				  (optionalPeerDependencies.length < 1
+							}${context.config.isDevelopmentPackage ? ` as ${requiredPeerDependencies.length === 1 ? "a development dependency" : "development dependencies"}` : ``} as well.`) +
+					(optionalPeerDependencies.length < 1
 						? ""
 						: (requiredPeerDependencies.length < 1 ? `You may` : `\n\nYou may also`) +
-						  ` need to install ${
+							` need to install ${
 								optionalPeerDependencies.length < 2
 									? `\`${optionalPeerDependencies[0]}\``
 									: `${requiredPeerDependencies.length < 1 ? "" : "additional "}peer dependencies such as ${listFormat(
 											optionalPeerDependencies,
 											"or",
 											element => `\`${element}\``
-									  )}`
-						  } depending on the features you are going to use. Refer to the documentation for the specific cases where ${
+										)}`
+							} depending on the features you are going to use. Refer to the documentation for the specific cases where ${
 								optionalPeerDependencies.length < 2 ? "it" : "any of these"
-						  } may be relevant.`))
+							} may be relevant.`))
 	);
 }
 
 /**
  * Generates the usage section of the README
  */
-async function generateUsageSection(context: GenerateReadmeContext): Promise<void> {
+function generateUsageSection(context: GenerateReadmeContext): void {
 	setSection(context, "usage", `## Usage`);
 }
 
 /**
  * Generates the contributing section of the README
  */
-async function generateContributingSection(context: GenerateReadmeContext): Promise<void> {
+function generateContributingSection(context: GenerateReadmeContext): void {
 	// Only add the contributing section if a CONTRIBUTING.md file exists
 	const contributingFilePath = path.join(context.root, CONSTANT.codeOfConductFilename);
 	const nativeContributingFilePath = path.native.normalize(contributingFilePath);
@@ -341,16 +337,16 @@ function generateContributorTable(contributors: Contributor[]): string {
 						alt: contributor.name,
 						url: contributor.imageUrl,
 						height: CONSTANT.contributorImageUrlHeight
-				  });
+					});
 
 		const formattedImageWithUrl =
 			inner == null
 				? ""
 				: contributor.email != null
-				? formatUrl({url: `mailto:${contributor.email}`, inner})
-				: contributor.url != null
-				? formatUrl({url: contributor.url, inner})
-				: inner;
+					? formatUrl({url: `mailto:${contributor.email}`, inner})
+					: contributor.url != null
+						? formatUrl({url: contributor.url, inner})
+						: inner;
 
 		str += formattedImageWithUrl;
 		str += "|";
@@ -369,7 +365,7 @@ function generateContributorTable(contributors: Contributor[]): string {
 			} else if (contributor.url != null) {
 				str += `[${contributor.name}](${contributor.url})`;
 			} else {
-				str += `${contributor.name}`;
+				str += contributor.name;
 			}
 		}
 
@@ -394,7 +390,7 @@ function generateContributorTable(contributors: Contributor[]): string {
 /**
  * Generates the maintainers section of the README
  */
-async function generateMaintainersSection(context: GenerateReadmeContext): Promise<void> {
+function generateMaintainersSection(context: GenerateReadmeContext): void {
 	const contributors = getContributorsFromPackage(context.pkg);
 
 	setSection(context, "maintainers", contributors.length < 1 ? "" : `## Maintainers\n\n` + generateContributorTable(contributors));
@@ -422,7 +418,7 @@ function guessPreferredFundingUrlForOtherDonations(context: GenerateReadmeContex
 /**
  * Generates the backers section of the README
  */
-async function generateBackersSection(context: GenerateReadmeContext): Promise<void> {
+function generateBackersSection(context: GenerateReadmeContext): void {
 	let content = "";
 
 	if (context.config.donate.other.donors.length > 0) {
@@ -475,8 +471,6 @@ async function generateBackersSection(context: GenerateReadmeContext): Promise<v
 	setSection(context, "backers", context.config.donate.patreon.userId == null && context.config.donate.openCollective.project == null ? "" : `## Backers\n\n` + content);
 }
 
-/**
- */
 async function generateLicenseSection(context: GenerateReadmeContext): Promise<void> {
 	const license = await findLicense(context);
 	const contributors = getContributorsFromPackage(context.pkg);

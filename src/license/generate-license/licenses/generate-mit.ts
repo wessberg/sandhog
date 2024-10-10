@@ -1,13 +1,11 @@
-import {GenerateLicenseOptions} from "../generate-license-options.js";
+import type {GenerateLicenseOptions} from "../generate-license-options.js";
 import {listFormat} from "../../../util/list-format/list-format.js";
 import {formatContributor} from "../../../contributor/format-contributor.js";
 
 /**
  * Generates a MIT license
- *
- * @param options
  */
-export function generate({contributors, prettier, config}: GenerateLicenseOptions): string {
+export function generate({contributors, prettier, config}: GenerateLicenseOptions): Promise<string> {
 	return prettier.format(
 		`\
 The MIT License (MIT)

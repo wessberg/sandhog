@@ -16,17 +16,10 @@ export const CONSTANT = {
 	licenseFilename: "LICENSE.md",
 	eslintIdiomaticCodeStyleName: "idiomatic",
 	eslintGoogleCodeStyleName: "google",
-	eslintPrettierCodeStyleName: "eslint-config-prettier",
+	eslintPrettierCodeStyleName: "prettier",
 	eslintAirbnbCodeStyleName: "airbnb",
-	eslintAirbnbCodeStyleHint: "eslint-config-airbnb",
 	eslintXoCodeStyleName: "xo",
 	eslintStandardCodeStyleName: "standard",
-	eslintStandardCodeStyleHints: [
-		"standard/object-curly-even-spacing",
-		"standard/array-bracket-even-spacing",
-		"standard/computed-property-even-spacing",
-		"standard/no-callback-literal"
-	],
 	shieldRestEndpoint: "https://img.shields.io/badge",
 	patreonDonateUrl: (userId: string) => `https://www.patreon.com/bePatron?u=${userId}`,
 	patreonBadgeUrl: (username: string) => `https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3D${username}%26type%3Dpatrons`,

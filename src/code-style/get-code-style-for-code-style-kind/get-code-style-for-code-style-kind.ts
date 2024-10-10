@@ -1,5 +1,5 @@
 import {CodeStyleKind} from "../code-style-kind.js";
-import {CodeStyle} from "../find-code-style/code-style.js";
+import type {CodeStyle} from "../find-code-style/code-style.js";
 import {generateBadgeUrl} from "../../badge/generate-badge-url/generate-badge-url.js";
 
 /**

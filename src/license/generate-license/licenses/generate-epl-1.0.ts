@@ -1,11 +1,9 @@
-import {GenerateLicenseOptions} from "../generate-license-options.js";
+import type {GenerateLicenseOptions} from "../generate-license-options.js";
 
 /**
  * Generates a EPL-1.0 license
- *
- * @param options
  */
-export function generate({prettier, config}: GenerateLicenseOptions): string {
+export function generate({prettier, config}: GenerateLicenseOptions): Promise<string> {
 	return prettier.format(
 		`\
 Eclipse Public License - v 1.0
