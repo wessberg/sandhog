@@ -1,3 +1,12 @@
+# [3.0.0](https://github.com/wessberg/sandhog/compare/v2.0.2...v3.0.0) (2024-10-10)
+
+
+### Features
+
+* migrate to Node 22 ([ddcb7fe](https://github.com/wessberg/sandhog/commit/ddcb7fe84def1dd721c30851ef2b86794291cd2b))
+
+
+
 ## [2.0.2](https://github.com/wessberg/sandhog/compare/v2.0.1...v2.0.2) (2022-05-31)
 
 

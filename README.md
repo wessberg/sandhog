@@ -58,12 +58,6 @@ Sandhog works out of the box without any configuration. Some highlights include:
 
 ## Backers
 
-[Become a sponsor/backer](https://github.com/wessberg/sandhog?sponsor=1) and get your logo listed here.
-
-| <a href="https://usebubbles.com"><img alt="Bubbles" src="https://uploads-ssl.webflow.com/5d682047c28b217055606673/5e5360be16879c1d0dca6514_icon-thin-128x128%402x.png" height="70"   /></a> | <a href="https://github.com/cblanc"><img alt="Christopher Blanchard" src="https://avatars0.githubusercontent.com/u/2160685?s=400&v=4" height="70"   /></a> | <a href="https://github.com/ideal-postcodes"><img alt="Ideal Postcodes" src="https://avatars.githubusercontent.com/u/4996310?s=200&v=4" height="70"   /></a> | <a href="https://www.xerox.com"><img alt="Xerox" src="https://avatars.githubusercontent.com/u/9158512?s=200&v=4" height="70"   /></a> | <a href="https://changelog.me"><img alt="Trent Raymond" src="https://avatars.githubusercontent.com/u/1509616?v=4" height="70"   /></a> | <a href="https://scrubtheweb.com"><img alt="scrubtheweb" src="https://avatars.githubusercontent.com/u/41668218?v=4" height="70"   /></a> |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| [Bubbles](https://usebubbles.com)<br><strong>Twitter</strong>: [@usebubbles](https://twitter.com/usebubbles)                                                                                | [Christopher Blanchard](https://github.com/cblanc)                                                                                                         | [Ideal Postcodes](https://github.com/ideal-postcodes)                                                                                                        | [Xerox](https://www.xerox.com)                                                                                                        | [Trent Raymond](https://changelog.me)                                                                                                  | [scrubtheweb](https://scrubtheweb.com)                                                                                                   |
-
 ### Patreon
 
 <a href="https://www.patreon.com/bePatron?u=11315442"><img alt="Patrons on Patreon" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3Dwessberg%26type%3Dpatrons"  width="200"  /></a>
@@ -113,7 +107,6 @@ Sandhog works out of the box without any configuration. Some highlights include:
   - [`backers`](#backers)
   - [`license`](#license)
 - [Contributing](#contributing)
-- [Maintainers](#maintainers)
   - [FAQ](#faq)
     - [Do you support custom templates?](#do-you-support-custom-templates)
     - [How do you determine the Code Style of the project?](#how-do-you-determine-the-code-style-of-the-project)
@@ -179,83 +172,83 @@ Sandhog is highly configurable. You can provide a configuration in a variety of 
 
 ```typescript
 interface SandhogOptions {
-	// If true, the install directions inside generated READMEs will suggest installing this package as a development dependency.
-	isDevelopmentPackage: boolean;
-	// If provided, a logo image will be placed in the top of generated or updated README files
-	logo: {
-		// An URL to the logo.
-		url: string;
-		// The height of the logo in pixels
-		height: number;
-	};
+  // If true, the install directions inside generated READMEs will suggest installing this package as a development dependency.
+  isDevelopmentPackage: boolean;
+  // If provided, a logo image will be placed in the top of generated or updated README files
+  logo: {
+    // An URL to the logo.
+    url: string;
+    // The height of the logo in pixels
+    height: number;
+  };
 
-	// If provided, a feature image will be placed within generated or updated README files
-	featureImage: {
-		// An URL to the feature image.
-		url: string;
-		// The height of the feature image in pixels
-		height: number;
-	};
-	// If Patreon, Open Collective, and/or other donation options is given, badges and backer/sponsor shields will be generated and added to generated or updated README files.
-	donate: {
-		patreon: {
-			userId: string;
-		};
-		openCollective: {
-			project: string;
-		};
-		other: {
-			fundingUrl: string;
-			donors: [
-				{
-					name: string;
-					url: string;
-					imageUrl: string;
-					twitter: string;
-				}
-			];
-		};
-	};
-	readme: {
-		badges: {
-			// The given iterable of SectionKinds will never be added to generated or updated READMEs
-			// Can be any of the following: 'toc', 'logo', 'badges', 'description_short', 'description_long', 'features', 'feature_image', 'usage', 'install', 'contributing', 'maintainers', 'faq', 'backers', and 'license'
-			exclude: Iterable<
-				| "toc"
-				| "logo"
-				| "badges"
-				| "description_short"
-				| "description_long"
-				| "features"
-				| "feature_image"
-				| "usage"
-				| "install"
-				| "contributing"
-				| "maintainers"
-				| "faq"
-				| "backers"
-				| "license"
-			>;
-		};
-		sections: {
-			// The given iterable of BadgeKinds will never be added to generated or updated READMEs.
-			// Can be any of the following: 'downloads', 'dependencies', 'npm', 'contributors', 'license', 'patreon', 'open_collective_donate', 'open_collective_backers', 'open_collective_sponsors', and 'code_style'
-			exclude: Iterable<
-				| "downloads"
-				| "dependencies"
-				| "npm"
-				| "contributors"
-				| "license"
-				| "patreon"
-				| "open_collective_donate"
-				| "open_collective_backers"
-				| "open_collective_sponsors"
-				| "code_style"
-			>;
-		};
-	};
-	// By default, Sandhog will try to locate a Prettier config within the project. You can also just provide it or override the Prettier options here
-	prettier: PrettierOptions;
+  // If provided, a feature image will be placed within generated or updated README files
+  featureImage: {
+    // An URL to the feature image.
+    url: string;
+    // The height of the feature image in pixels
+    height: number;
+  };
+  // If Patreon, Open Collective, and/or other donation options is given, badges and backer/sponsor shields will be generated and added to generated or updated README files.
+  donate: {
+    patreon: {
+      userId: string;
+    };
+    openCollective: {
+      project: string;
+    };
+    other: {
+      fundingUrl: string;
+      donors: [
+        {
+          name: string;
+          url: string;
+          imageUrl: string;
+          twitter: string;
+        }
+      ];
+    };
+  };
+  readme: {
+    badges: {
+      // The given iterable of SectionKinds will never be added to generated or updated READMEs
+      // Can be any of the following: 'toc', 'logo', 'badges', 'description_short', 'description_long', 'features', 'feature_image', 'usage', 'install', 'contributing', 'maintainers', 'faq', 'backers', and 'license'
+      exclude: Iterable<
+        | "toc"
+        | "logo"
+        | "badges"
+        | "description_short"
+        | "description_long"
+        | "features"
+        | "feature_image"
+        | "usage"
+        | "install"
+        | "contributing"
+        | "maintainers"
+        | "faq"
+        | "backers"
+        | "license"
+      >;
+    };
+    sections: {
+      // The given iterable of BadgeKinds will never be added to generated or updated READMEs.
+      // Can be any of the following: 'downloads', 'dependencies', 'npm', 'contributors', 'license', 'patreon', 'open_collective_donate', 'open_collective_backers', 'open_collective_sponsors', and 'code_style'
+      exclude: Iterable<
+        | "downloads"
+        | "dependencies"
+        | "npm"
+        | "contributors"
+        | "license"
+        | "patreon"
+        | "open_collective_donate"
+        | "open_collective_backers"
+        | "open_collective_sponsors"
+        | "code_style"
+      >;
+    };
+  };
+  // By default, Sandhog will try to locate a Prettier config within the project. You can also just provide it or override the Prettier options here
+  prettier: PrettierOptions;
 }
 ```
 
@@ -270,19 +263,19 @@ For example:
 ```json5
 // Inside package.json
 {
-	contributors: [
-		{
-			name: "John Done",
-			email: "john@doe.com",
-			url: "https://john.doe",
+  contributors: [
+    {
+      name: "John Done",
+      email: "john@doe.com",
+      url: "https://john.doe",
 
-			// The following three fields are enhancements
-			imageUrl: "https://john.doe/avatar.png",
-			role: "Lead Developer",
-			twitter: "JohnDoe",
-			github: "johndoe"
-		}
-	]
+      // The following three fields are enhancements
+      imageUrl: "https://john.doe/avatar.png",
+      role: "Lead Developer",
+      twitter: "JohnDoe",
+      github: "johndoe"
+    }
+  ]
 }
 ```
 
@@ -569,12 +562,6 @@ Do you want to contribute? Awesome! Please follow [these recommendations](./CONT
 
 <!-- SHADOW_SECTION_MAINTAINERS_START -->
 
-## Maintainers
-
-| <a href="mailto:frederikwessberg@hotmail.com"><img alt="Frederik Wessberg" src="https://avatars2.githubusercontent.com/u/20454213?s=460&v=4" height="70"   /></a>                                                                |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Frederik Wessberg](mailto:frederikwessberg@hotmail.com)<br><strong>Twitter</strong>: [@FredWessberg](https://twitter.com/FredWessberg)<br><strong>Github</strong>: [@wessberg](https://github.com/wessberg)<br>_Lead Developer_ |
-
 <!-- SHADOW_SECTION_MAINTAINERS_END -->
 
 <!-- SHADOW_SECTION_FAQ_START -->
@@ -600,6 +587,6 @@ By looking for several things, including:
 
 ## License
 
-MIT © [Frederik Wessberg](mailto:frederikwessberg@hotmail.com) ([@FredWessberg](https://twitter.com/FredWessberg)) ([Website](https://github.com/wessberg))
+MIT ©
 
 <!-- SHADOW_SECTION_LICENSE_END -->
