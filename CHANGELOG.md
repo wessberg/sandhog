@@ -1,3 +1,7 @@
+## [3.0.1](https://github.com/wessberg/sandhog/compare/v3.0.0...v3.0.1) (2024-10-11)
+
+
+
 # [3.0.0](https://github.com/wessberg/sandhog/compare/v2.0.2...v3.0.0) (2024-10-10)
 
 
