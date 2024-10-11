@@ -1,10 +1,10 @@
-import {rawlist} from "@inquirer/prompts";
+import {select} from "@inquirer/prompts";
 
 /**
  * Provides a "radio button group" of potential options the user may pick
  */
 export async function radio<T extends string>(message: string, items: T[] | readonly T[]): Promise<T> {
-	const answer = await rawlist({
+	const answer = await select({
 		message,
 		choices: items.map(item => ({name: item, value: item}))
 	});
