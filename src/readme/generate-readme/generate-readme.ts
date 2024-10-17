@@ -11,7 +11,7 @@ import {findLicense} from "../../license/find-license/find-license.js";
 import {formatContributor} from "../../contributor/format-contributor.js";
 import {listFormat} from "../../util/list-format/list-format.js";
 import {formatUrl} from "../../markdown/format-url/format-url.js";
-import toc from "markdown-toc";
+import toc from "@effect/markdown-toc";
 import path from "crosspath";
 import type {Contributor} from "../../contributor/contributor.js";
 

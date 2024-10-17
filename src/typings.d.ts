@@ -1,4 +1,4 @@
-declare module "markdown-toc" {
+declare module "@effect/markdown-toc" {
 	interface Result {
 		content: string;
 	}
